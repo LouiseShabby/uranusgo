@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <!-- build:js scripts/popup.js -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="scripts/popup.js"></script>
+  <!-- endbuild -->
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="styles/main.css">
+  <!-- endbuild -->
+  <style>
+    html, body {
+      width: 400px;
+    }
+    img {
+      width: 30px;
+      height: 30px;
+    }
+    img.off {
+      opacity: 0.3;
+    }
+    #quest-history button {
+      width: 100%;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <form>
+    <fieldset>
+      <legend>插件</legend>
+        <div><input id="enabled" name="enabled" type="checkbox" />啟動/關閉(需要重整)</div>
+    </fieldset>
+    <fieldset>
+      <legend>自動任務</legend>
+      <input style="width: 100%" type="text" name="quest-id" id="quest-id" placeholder="輸入完整任務進入路徑後按Start，或從下方選擇" />
+      <button type="button" class="btn btn-info" id="start">Start</button>
+      <button type="button" class="btn btn-danger" id="stop">Stop</button>
+    </fieldset>
+    <fieldset>
+      <legend>一般設定</legend>
+      <div id="use-water">
+        <input name="use-full" type="checkbox" /><img src="http://gbf.game-a.mbga.jp/assets/img/sp/assets/item/normal/s/1.jpg" />
+        <input name="use-semi" type="checkbox" /><img src="http://gbf.game-a.mbga.jp/assets/img/sp/assets/item/normal/s/2.jpg" />
+      </div>
+      <div> 
+        <div><input name="normal-attack-only" type="checkbox" />只使用普通攻擊</div>
+		<div><input name="FCopen" type="checkbox" />使用FC</div>
+		<div><input name="FCrefresh" type="checkbox" />奥义完成后自动刷新</div>
+		<div><input name="xuecaibichi" type="checkbox" />雪菜</div>
+        <div><input name="auto-choose-supporter" type="checkbox" />自動選擇好友</div>
+        <div><input name="dragon-girl" type="checkbox" />格蘭丁優先</div>
+		<div><input name="black-dragon" type="checkbox" />巴哈姆特優先</div>
+		<div><input name="gay" type="checkbox" />路西法優先</div>
+        <div><input name="auto-summon" type="checkbox" />自動召喚</div>
+        <div><input name="auto-medal" type="checkbox" />自動抽戰貨</div>
+		<div><input name="use-green-potion" type="checkbox" />自動使用綠色藥水藍色藥水</div>
+        <div><input name="use-event-potion" type="checkbox" />自動使用事件藥水</div>
+        <div><input name="use-event-revive" type="checkbox" />自動使用事件復活水</div>
+		<div><input name="fire" type="checkbox" />火屬性召喚獸</div>
+		<div><input name="water" type="checkbox" />水屬性召喚獸</div>
+		<div><input name="wind" type="checkbox" />風屬性召喚獸</div>
+		<div><input name="land" type="checkbox" />土屬性召喚獸</div>
+		<div><input name="light" type="checkbox" />光屬性召喚獸</div>
+		<div><input name="dark" type="checkbox" />暗屬性召喚獸</div>
+		<div><input name="select" type="checkbox" />自定義召喚，需要先勾選召喚獸屬性（此功能測試中）</div>
+		<input style="width: 100%" type="text" name="select-id" id="select-id" placeholder="此處輸入召喚名字(此功能測試中)" />
+		<button type="button" class="btn btn-info" id="OK">確定</button>
+		
+		
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>戰鬥中指定個別技能施放（非普攻狀態下）</legend>
+      <div id="skill-list">
+      </div>
+    </fieldset>
+  </form>
+</body>
+</html>
