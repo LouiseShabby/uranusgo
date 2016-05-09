@@ -10,6 +10,8 @@
   <!-- build:css styles/main.css -->
   <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="styles/main.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
   <!-- endbuild -->
   <style>
     html, body {
@@ -26,6 +28,38 @@
       width: 100%;
       text-align: left;
     }
+				.buttonGroup input[type="radio"] {
+				display: none;
+			}
+
+		.buttonGroup label {
+				border-top: solid 1px #999999;
+				border-bottom: solid 1px #999999;
+				border-right: solid 1px #999999;
+				background-color: #cccccc;
+				padding: 3px 10px;
+			}
+
+			.buttonGroup > label:first-of-type {
+				border-left: solid 1px #999999;
+				border-top-left-radius: 5px;
+				border-bottom-left-radius: 5px;
+			}
+
+			.buttonGroup > label:last-of-type {
+				border-top-right-radius: 5px;
+				border-bottom-right-radius: 5px;
+			}
+
+	.buttonGroup input[type="radio"]:checked + label {
+				background-color: #FFCCFF;
+	}
+    .buttonGroup input[type="checkbox"] {
+                display: none;
+    }
+    .buttonGroup input[type="checkbox"]:checked + label {
+	            background-color	: #FFCCFF;
+    }
   </style>
 </head>
 <body>
@@ -41,6 +75,21 @@
       <button type="button" class="btn btn-danger" id="stop">Stop</button>
     </fieldset>
     <fieldset>
+       <legend>召唤兽属性</legend>
+		<div class="buttonGroup" style="vertical-align:middle; padding:3px 0;">
+			<input type="radio" name="ptZokusei" value="1" id="ptZokusei-1"><!--
+			--><label for="ptZokusei-1">火</label><!--
+			--><input type="radio" name="ptZokusei" value="2" id="ptZokusei-2"><!--
+			--><label for="ptZokusei-2">水</label><!--
+			--><input type="radio" name="ptZokusei" value="3" id="ptZokusei-3"><!--
+			--><label for="ptZokusei-3">土</label><!--
+			--><input type="radio" name="ptZokusei" value="4" id="ptZokusei-4"><!--
+			--><label for="ptZokusei-4">木</label><!--
+			--><input type="radio" name="ptZokusei" value="5" id="ptZokusei-5"><!--
+			--><label for="ptZokusei-5">光</label><!--
+			--><input type="radio" name="ptZokusei" value="6" id="ptZokusei-6"><!--
+			--><label for="ptZokusei-6">闇</label>
+		</div>
       <legend>一般設定</legend>
       <div id="use-water">
         <input name="use-full" type="checkbox" /><img src="http://gbf.game-a.mbga.jp/assets/img/sp/assets/item/normal/s/1.jpg" />
@@ -60,12 +109,6 @@
 		<div><input name="use-green-potion" type="checkbox" />自動使用綠色藥水藍色藥水</div>
         <div><input name="use-event-potion" type="checkbox" />自動使用事件藥水</div>
         <div><input name="use-event-revive" type="checkbox" />自動使用事件復活水</div>
-		<div><input name="fire" type="checkbox" />火屬性召喚獸</div>
-		<div><input name="water" type="checkbox" />水屬性召喚獸</div>
-		<div><input name="wind" type="checkbox" />風屬性召喚獸</div>
-		<div><input name="land" type="checkbox" />土屬性召喚獸</div>
-		<div><input name="light" type="checkbox" />光屬性召喚獸</div>
-		<div><input name="dark" type="checkbox" />暗屬性召喚獸</div>
 		<div><input name="select" type="checkbox" />自定義召喚，需要先勾選召喚獸屬性（此功能測試中）</div>
 		<input style="width: 100%" type="text" name="select-id" id="select-id" placeholder="此處輸入召喚名字(此功能測試中)" />
 		<button type="button" class="btn btn-info" id="OK">確定</button>

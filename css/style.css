@@ -1,0 +1,2370 @@
+@charset "Shift-JIS";
+
+body	{
+	 /* 画面全体のフォント指定 */
+	font-family	:"ＭＳ ゴシック";
+	font-size	:11pt;
+	font-style	:bold;
+	margin		:10px 10px 0px 10px;
+	padding		:0;
+/* 	overflow	:hidden; */
+}
+
+body.dlog {
+	/* ダイアログ画面 */
+	font-family	:"ＭＳ ゴシック";
+	font-size	:11pt;
+	font-style	: bold;
+	margin-top	:0px;
+	margin-left	:15px;
+}
+
+body.dlogInf {
+	/* ダイアログ画面 */
+	font-family	:"ＭＳ ゴシック";
+	font-size	:11pt;
+	margin-top	:0px;
+	margin-left	:0px;
+}
+
+body.main {
+	padding			:5px;
+	margin			:0px;
+	/*IE6 IE7 */
+	filter			: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startcolorstr=#ffffff, endcolorstr=#eeeeee));
+	/* IE8 */
+	-ms-filter		:"progid:DXImageTransform.Microsoft.gradient(GradientType=0,startcolorstr=#ffffff, endcolorstr=#eeeeee))";
+	zoom			: 1;
+	/* webkit用 */
+	background		:-webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#eeeeee));
+	/* mozilla用 */
+	background		:-moz-linear-gradient(top, #ffffff, #eeeeee);
+	/* IE6でaタグ以外にもhoverを有効にする */
+	behavior: url("../css/csshover3.htc");
+}
+
+
+iframe,form {
+	padding: 0;
+	margin: 0;
+}
+
+table {
+	border-collapse	:collapse;
+	border			:0px none;
+}
+
+td {
+	padding			:0px;
+}
+
+table tr th {
+	/* 一覧タイトル行 */
+	height				:25px;
+	border				:1px solid #b0b0b0;
+	background			:#c6d3ff; /*url(../img/bg_glass_75_c6d3ff_1x400.png) 50% 50%;*/
+	color				:#000000;
+	font-size			:11pt;
+	font-weight			:normal;
+	text-align			:center;
+	text-valign			:middle;
+	border-style		:solid;
+	border-color		:#999999;
+	border-collapse		:collapse;
+	white-space			:nowrap;
+}
+
+table tr td {
+	/* 一覧行 */
+	/* 折り返し禁止、かつ表示があふれた場合非表示 */
+	white-space	:nowrap;
+	overflow	:hidden;
+}
+
+input {
+	font-family		:"ＭＳ ゴシック";
+	font-size		:11pt;
+	height			:21px;
+	vertical-align	:middle;
+}
+
+textarea {
+	font-family	:"ＭＳ ゴシック";
+	font-size	:11pt;
+}
+
+select {
+	font-size	:11pt;
+	z-index		:1;
+}
+
+.helpBtn {
+	padding		:0;
+	/*margin	:0 3px;*/
+	height		:21px;
+	width		:21px;
+	font-family	:"ＭＳ Ｐゴシック" !important;
+	font-size	:11pt !important;
+}
+
+.searchBtn {
+	padding		:0;
+	margin		:0 3px;
+	height		:40px;
+	width		:70px;
+}
+
+.normalBtn {
+	padding		:0;
+	margin		:0 3px;
+	height		:21px;
+	width		:140px;
+}
+
+.table01 {
+	border-style	:solid;
+	border-color	:#999999;
+	border-collapse	:collapse;
+	table-layout	:fixed;
+}
+
+table.table01 td {
+	border-style		:solid;
+	border-color		:#999999;
+	border-collapse		:collapse;
+	padding-left		:2px;
+	padding-right		:2px;
+}
+
+.table02 {
+	border-style		:solid;
+	border-color		:#999999;
+	border-collapse		:collapse;
+	table-layout		:fixed;
+}
+
+table.table02 td {
+	border-style		:solid;
+	border-color		:#999999;
+	border-collapse		:collapse;
+	padding-left		:1px;
+	padding-right		:1px;
+}
+
+.table03 {
+	/* 検索条件、ヘッダ情報 */
+	/*border-style		:none;*/
+	table-layout		:fixed;
+	margin-top			:-3px;
+}
+
+table.table03 td {
+	/*border-style		:none;*/
+	border-collapse		:collapse;
+	padding-top			:1px;
+	padding-bottom		:1px;
+}
+
+.table04 {
+	border-style		:none;
+	border-collapse		:collapse;
+	table-layout		:fixed;
+}
+
+table.table04 td {
+	border-style		:none;
+	border-collapse		:collapse;
+	padding-top			:1px;
+	padding-left		:5px;
+	padding-bottom		:1px;
+}
+
+.table05 {
+	border-style		:none;
+	border-collapse		:separate;
+	table-layout		:auto;
+	margin-left			:auto;
+	margin-right		:auto;
+}
+
+table.table05 td {
+	border-style		:none;
+	border-collapse		:collapse;
+	padding-top			:1px;
+	padding-bottom		:1px;
+}
+
+.table06 {
+	/* マスタ画面用 */
+	border-style		:none;
+	border-collapse		:separate;
+	margin				:0px;
+	padding				:0px;
+}
+
+table.table06 td {
+	font-size			:9pt;*/
+}
+
+.table07 {
+	/* 明細ヘッダ用 */
+	/*border-style		:none;*/
+	table-layout		:fixed;
+	margin-bottom		:2px;
+}
+
+table.table07 td {
+	/*border-style		:none;*/
+	border-collapse		:collapse;
+	padding-top			:1px;
+	padding-bottom		:1px;
+}
+
+.tableLstInput {
+	border-collapse		:collapse;
+	table-layout		:fixed;
+}
+
+table.tableLstInput td {
+	border				:1px solid #999999;
+	padding-left		:1px;
+	padding-right		:1px;
+}
+
+.selectTable {
+	border-style		:none;
+	border-collapse		:collapse;
+	table-layout		:fixed;
+	margin-bottom		:7px;
+}
+
+table.selectTable td {
+	border-style		:none;
+	border-collapse		:collapse;
+	padding-top			:1px;
+	padding-bottom		:1px;
+}
+
+table.tableMargin01 {
+	margin-left			:3px;
+}
+
+
+.title {
+	/* 画面タイトル(background:なし font:黒) */
+	color			:#000000;
+	background		:#ffffcf;
+	font-family		:"ＭＳ ゴシック";
+	font-weight		:bold;
+	font-size		:15pt;
+	text-align		:center;
+	text-valign		:middle;
+	height			:30px;
+	line-height		:30px;
+	padding-top		:2px;
+}
+
+.inputPanel {
+	overflow-x		:hidden;
+	overflow-y		:auto;
+}
+
+.divTable {
+	margin			:0;
+	padding			:0;
+	clear			:both;
+}
+.divTable-row {
+	clear			:both;
+	padding			:3px 0px;
+}
+
+div.checkbox-label {
+	padding			:0;
+	margin			:0;
+	display			:inline;
+}
+
+div .cell-input, div .cell-label {
+	height			:25px;
+	line-height		:25px;
+	padding			:0px 2px;
+	text-valign		:middle;
+	float			:left;
+	display			:inline-block;
+	font-size		:11pt;
+	font-family		:"ＭＳ ゴシック";
+}
+
+div .cell-input {
+	border			:1px solid #ffffff;
+}
+
+div .cell-label {
+	/* タイトル */
+	padding-left	:10px;
+	padding-right	:10px;
+	width			:150px;
+	border			:1px solid #b0b0b0;
+	background		:#c6d3ff;
+	color			:#000000;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Spread */
+.spread-mainDiv {
+	border		:1px solid #b0b0b0;
+	overflow	:hidden;
+	top			:0;
+	left		:0;
+}
+
+.spread-headerDiv {
+	position	:relative;
+	float		:left;
+	padding		:0;
+	margin		:0;
+	top			:-1;
+	left		:-2;
+}
+
+.spread-headerTable {
+	table-layout	:fixed;
+	margin			:0;
+	border-collapse	:collapse;
+}
+
+.spread-mainTableDiv {
+	overflow	:hidden;
+}
+
+.spread-detailDiv {
+	display			:block;
+	position		:absolute;
+	z-index			:-1;
+	overflow		:hidden;
+	table-layout	:fixed;
+	padding			:0;
+	margin			:0;
+}
+
+.spread-scrollXDiv {
+	table-layout	:fixed;
+	padding			:0;
+	margin			:0;
+	overflow-x		:scroll;
+	overflow-y		:hidden;
+	position		:absolute;
+}
+
+.spread-scrollYDiv {
+	table-layout	:fixed;
+	padding			:0;
+	margin			:0;
+	overflow-x		:hidden;
+	overflow-y		:scroll;
+	position		:absolute;
+}
+
+.spread-scrollHeaderY {
+	background		:#c6d3ff;
+	border			:1px solid #999999;
+	table-layout	:fixed;
+	padding			:0px;
+	margin			:0px;
+	overflow		:hidden;
+	position		:absolute;
+	z-index			:-1;
+	top				:-1;
+	left			:0;
+}
+
+.spread-detailTable {
+	top				:0;
+	left			:-1;
+	table-layout	:fixed;
+	position		:absolute;
+	margin			:0;
+	border-collapse	:collapse;
+}
+
+.spread-fixHeaderDiv {
+	z-index		:1;
+	overflow	:hidden;
+	top			:-1;
+	left		:-2;
+	position	:absolute;
+	padding		:0;
+	margin		:0;
+}
+
+.spread-fixTableDiv {
+	display		:none;
+	left		:-2;
+	overflow	:hidden;
+	position	:absolute;
+}
+
+.spread-fixTable {
+	display			:block;
+	table-layout	:fixed;
+	position		:absolute;
+	top				:0;
+	left			:-1;
+	margin			:0;
+	border-left		:1px solid #999999;
+	border-right	:1px solid #999999;
+	border-collapse	:collapse;
+}
+
+.spread-tr-div {
+	overflow	:hidden;
+	height		:0;
+	padding		:2px 0;
+}
+
+.spread-tr-div-outer {
+	white-space	:nowrap;
+	position	:relative;
+	top			:50%;
+}
+
+.spread-tr-div-outer-middle {
+	position	:relative;
+	top			:-50%;
+}
+
+.spread-focus-ctl {
+	position	:absolute;
+	width		:0;
+	left		:-1000px;
+}
+
+.spread-file-upload {
+	position:relative;
+	width:100%;
+    overflow:hidden;
+}
+.spread-file-btn {
+	position:relative;
+	bottom:1px;
+	width:100%;
+}
+.spread-file-btn-size1 {
+	top:-13px;
+}
+.spread-file-btn-size2 {
+	top:-14px;
+}
+
+.spread-file-upload .spread-file {
+	top:0;
+	right:0;
+	position:absolute;
+	opacity:0;
+	filter:alpha(opacity=0);
+	-ms-filter:"alpha(opacity=0)";
+	cursor:pointer;
+	z-index:99;
+	width:100%;
+	font-size:50px;
+}
+
+/* ---------------------------------------------------------------------- */
+.divAcHeader {
+	/* タイトル */
+	cursor			:pointer;
+	padding			:0 5px;
+	margin			:0;
+	height			:25px;
+	line-height		:25px;
+	background		:#C6D3FF;
+	color			:#000000;
+	font-size		:11pt;
+	font-weight		:bold;
+	vertical-align	:middle;
+	font-family 	:"ＭＳ ゴシック";
+	text-valign		:middle;
+	border			:1px solid #999999;
+}
+
+.th01 {
+	/* タイトル */
+	height			:25px;
+	background		:#C6D3FF;
+	color			:#000000;
+	font-size		:11pt;
+	font-family 	:"ＭＳ ゴシック";
+	text-align		:center;
+	text-valign		:middle;
+}
+
+.th01_td {
+	/* 一覧タイトル行 */
+	/*border-top	: 0px none #C6D3FF;*/
+	/*border-top	: 1px solid;*/
+}
+
+.th02 {
+	/* 入力フィールド見出し */
+	height			:25px;
+	border			:1px solid #b0b0b0;
+	background		:#c6d3ff; /*url(../img/bg_glass_75_c6d3ff_1x400.png) 50% 50%;*/
+	color			:#000000;
+	font-size		:11pt;
+	font-family		:"ＭＳ ゴシック";
+	text-align		:center;
+	text-valign		:middle;
+}
+
+.th03 {
+	/* 入力フィールド見出し */
+	width			:100px;
+	height			:25px;
+	line-height		:25px;
+	border			:1px solid #b0b0b0;
+	background		:#c6d3ff;
+	color			:#000000;
+	font-size		:11pt;
+	font-family		:"ＭＳ ゴシック";
+	text-align		:left;
+	text-valign		:middle;
+	padding-left	:10px;
+	padding-right	:10px;
+	float			:left;
+}
+
+.th03_vertical {
+	/* 入力フィールド見出し */
+	border			:1px solid #b0b0b0;
+	background		:#c6d3ff;
+	color			:#000000;
+	font-size		:11pt;
+	font-family		:"ＭＳ ゴシック";
+	text-align		:left;
+	text-valign		:middle;
+	padding-left	:10px;
+	padding-right	:10px;
+}
+
+.th03_red {
+	/* 入力フィールド見出し */
+	height			:25px;
+	border			:1px solid #b0b0b0;
+	background		:#c6d3ff;
+	color			:#FF0000;
+	font-size		:11pt;
+	font-family		:"ＭＳ ゴシック";
+	text-align		:left;
+	text-valign		:middle;
+	padding-left	:10px;
+	padding-right	:10px;
+}
+
+.th04 {
+	/* 入力フィールド見出し */
+	height			:25px;
+	border			:1px solid #b0b0b0;
+	background		:#FFFFE0;
+	color			:#000000;
+	font-size		:11pt;
+	font-family		:"ＭＳ ゴシック";
+	text-align		:left;
+	text-valign		:middle;
+	padding-left	:10px;
+	padding-right	:10px;
+}
+
+.th05 {
+	/* ラベル枠表示 */
+	height			:25px;
+	border			:1px solid #b0b0b0 !important;
+/*	border-top-color:#b0b0b0 !important;
+	border-left-color:#b0b0b0 !important;
+	border-right-color:#b0b0b0 !important;
+	border-bottom-color:#b0b0b0 !important;
+	border-top-width:1px !important;
+	border-left-width:1px !important;
+	border-right-width:1px !important;
+	border-bottom-width:1px !important;
+	border-top-style:solid !important;
+	border-left-style:solid !important;
+	border-right-style:solid !important;
+	border-bottom-style:solid !important;*/
+	color			:#000000;
+	font-size		:10pt;
+	font-family		:"ＭＳ ゴシック";
+	text-align		:left;
+	text-valign		:middle;
+}
+
+.th06 {
+	/* 入力フィールド見出し */
+	height			:25px;
+	border			:none;
+	color			:#000000;
+	font-size		:11pt;
+	font-family		:"ＭＳ ゴシック";
+}
+
+.th_font_red {
+	/* スプレッドタイトル 文字色赤 */
+	color			:#FF0000;
+}
+
+.th_font_blue {
+	/* スプレッドタイトル 文字色青 */
+	color			:#0000FF;
+}
+
+.th_yellow {
+	/* スプレッドタイトル 黄色 */
+	background		:#FFFFE0;
+}
+
+.th_white {
+	/* スプレッドタイトル 白色 */
+	background		:#FFFFFF;
+}
+
+.th_green {
+	/* スプレッドタイトル 緑色 */
+	background		:#E0FFE0;
+}
+
+.thDummy {
+	display			:none;
+}
+
+.thDummy td {
+	height			: 0px;
+	background		: #C6D3FF;
+	border-top		: 0px none #C6D3FF;
+	border-left		: 0px none #C6D3FF;
+	border-right	: 0px none #C6D3FF;
+	border-bottom	: 0px none #C6D3FF;
+}
+
+.tr01 {
+	/* 一覧明細行(奇数行 background:白 font:黒) */
+	height			:25px;
+	color			:#000000;
+	background		:#FFFFFF;
+}
+
+tr.even {
+	/* 一覧明細行(偶数行 background:薄灰 font:黒) */
+	background		:#EEEEEE;
+}
+
+.tr02 {
+	/* 一覧明細行(偶数行 background:薄灰 font:黒) */
+	background		:#EEEEEE;
+}
+
+.tr03 {
+	/* 一覧明細行(偶数行 background:濃灰 font:黒) */
+	background		:#DDDDDD;
+}
+
+.tr_sel {
+	/* 一覧明細行(選択時 background:青 font:白) */
+	height			:25px;
+	color			:#ffffff;
+	background		:#3366CC;
+}
+
+.tr_batch_active {
+	/* バッチステータス確認画面-実行状態 */
+	height			:25px;
+	color			:#000000;
+	background		:#F0F060;
+}
+
+.tr_batch_nonactive {
+	/* バッチステータス確認画面-終了状態 */
+	height			:25px;
+	color			:#000000;
+	background		:#FFFFFF;
+}
+
+.tr_batch_error {
+	/* バッチステータス確認画面-異常終了状態 */
+	height			:25px;
+	color			:#000000;
+	background		:#FFBFBF;
+}
+
+.td_all,.all_font,.td_half,.half_font {
+	font-size		:11pt;
+	font-family		:"ＭＳ ゴシック";
+}
+
+.lbl_all {
+	/* 全角フィールドフォント */
+	font-size		:11pt;
+	float			:left;
+	height			:100%;
+	vertical-align	:bottom;
+}
+
+.lbl_half {
+	/* 半角フィールドフォント */
+	font-family		:"ＭＳ ゴシック";
+	font-size		:11pt;
+	float			:left;
+	height			:40px;
+	vertical-align	:bottom;
+	display:table-cell;
+}
+
+.td_double_div{
+	height			:30px;
+	width			:100%;
+	margin			:0px;
+	padding			:0px;
+}
+
+.td_double_disp_top {
+	/* 2行表示ラベル用(上) */
+	height			:50%;
+	width			:100%;
+	border-bottom	:1px solid #999999;
+	margin			:4px 0px 0px 0px;
+	padding			:0px 1px;
+}
+
+.td_double_disp_bottom {
+	/* 2行表示ラベル用(下) */
+	height			:50%;
+	width			:100%;
+	border			:none;
+	margin			:4px 0px 0px 0px;
+	padding			:0px 1px;
+}
+
+.td_double_input_top {
+	/* 2行表示テキスト用(上) */
+	height			:50%;
+	width			:100%;
+	border-bottom	:1px solid #999999;
+	margin			:0px;
+	padding			:0px 1px;
+}
+
+.td_double_input_bottom {
+	/* 2行表示テキスト用(下) */
+	height			:50%;
+	width			:100%;
+	border			:none;
+	margin			:0px;
+	padding			:0px 1px;
+}
+
+.td_double_input_bottom {
+	/* 2行表示テキスト用(下) */
+	height			:50%;
+	width			:100%;
+	border			:none;
+	margin			:0px;
+	padding			:0px 1px;
+}
+
+.td_yellow {
+	/* 黄色 */
+	background		:#FFFF99;
+}
+.td_blue {
+	/* 青 */
+	background-color:#B2FFFF;
+}
+
+/*
+.nowrap {
+*/	/* 折り返し禁止、かつ表示があふれた場合非表示 */
+/*
+	white-space		:nowrap;
+	overflow		:hidden;
+}
+*/
+/* ファンクションボタンテーブル用 */
+table.func {
+	table-layout	:fixed;
+}
+
+/* ファンクションボタン表示(background:灰 font:黒) */
+table.func td {
+	border		:none;
+	color		:#000000;
+	font-family	:"ＭＳ ゴシック";
+	font-size	:11pt;
+	width		:90px;
+	height		:44px;
+	padding		:0px 2px;
+	background	:#FFFFFF;
+	text-align	:center;
+	line-height	:1em;
+}
+
+/* ファンクションボタン非表示 */
+table.func td.blank {
+	border		:none;
+	font-family	:"ＭＳ ゴシック";
+	font-size	:11pt;
+	width		:82px;
+	height		:44px;
+	padding		:0px 2px;
+	background	:#FFFFFF;
+	text-align	:center;
+}
+
+.td_err_cell {
+	 /* エラー表示用セル-borderなし */
+	 border-style:none;
+}
+
+.dummy_row {
+	height		:15px;
+}
+
+ /* コード入力フィールド */
+.cd {
+	font-family	:"ＭＳ ゴシック";
+	text-align	:center;
+	ime-mode	:inactive; /* 半角モード */
+}
+.cd_1 {
+	width		:14px;
+}
+.cd_2 {
+	width		:22px;
+}
+.cd_3 {
+	width		:30px;
+}
+.cd_4 {
+	width		:38px;
+}
+.cd_5 {
+	width		:46px;
+}
+.cd_6 {
+	width		:54px;
+}
+.cd_7 {
+	width		:62px;
+}
+.cd_8 {
+	width		:70px;
+}
+.cd_9 {
+	width		:78px;
+}
+.cd_10 {
+	width		:86px;
+}
+.cd_11 {
+	width		:94px;
+}
+.cd_18 {
+	width		:150px;
+}
+
+ /* 数字入力フィールド */
+.num {
+	font-family	:"ＭＳ ゴシック";
+	text-align	:right;
+	ime-mode	:inactive; /* 半角モード */
+}
+.num_1 {
+	width		:14px;
+}
+.num_2 {
+	width		:22px;
+}
+.num_3 {
+	width		:30px;
+}
+.num_4 {
+	width		:38px;
+}
+.num_5 {
+	width		:46px;
+}
+.num_6 {
+	width		:54px;
+}
+.num_7 {
+	width		:62px;
+}
+.num_8 {
+	width		:70px;
+}
+.num_9 {
+	width		:78px;
+}
+.num_10 {
+	width		:86px;
+}
+.num_11 {
+	width		:94px;
+}
+.num_12 {
+	width		:102px;
+}
+.num_13 {
+	width		:110px;
+}
+.num_14 {
+	width		:118px;
+}
+.num_15 {
+	width		:126px;
+}
+.num_16 {
+	width		:134px;
+}
+.num_17 {
+	width		:142px;
+}
+.num_18 {
+	width		:150px;
+}
+.num_19 {
+	width		:158px;
+}
+.num_20 {
+	width		:166px;
+}
+.num_21 {
+	width		:174px;
+}
+
+ /* 半角文字列入力フィールド */
+.txt_h {
+	font-family	:"ＭＳ ゴシック";
+	text-align	:left;
+	ime-mode	:inactive; /* 半角モード */
+}
+/* 半角数字入力フィールド */
+.txt_h_n {
+	font-family	:"ＭＳ ゴシック";
+	text-align	:left;
+	ime-mode	:inactive; /* 半角モード */
+}
+/* 半角文字入力フィールド */
+.txt_h_s {
+	font-family	:"ＭＳ ゴシック";
+	text-align	:left;
+	ime-mode	:active; /* 全角モード */
+}
+.txt_h_1, .txt_h_n_1, .txt_h_s_1 {
+	width		:18px;
+}
+.txt_h_2, .txt_h_n_2, .txt_h_s_2 {
+	width		:26px;
+}
+.txt_h_3, .txt_h_n_3, .txt_h_s_3 {
+	width		:34px;
+}
+.txt_h_4, .txt_h_n_4, .txt_h_s_4 {
+	width		:42px;
+}
+.txt_h_5, .txt_h_n_5, .txt_h_s_5 {
+	width		:50px;
+}
+.txt_h_6, .txt_h_n_6, .txt_h_s_6 {
+	width		:58px;
+}
+.txt_h_7, .txt_h_n_7, .txt_h_s_7 {
+	width		:66px;
+}
+.txt_h_8, .txt_h_n_8, .txt_h_s_8 {
+	width		:74px;
+}
+.txt_h_9, .txt_h_n_9, .txt_h_s_9 {
+	width		:82px;
+}
+.txt_h_10, .txt_h_n_10, .txt_h_s_10 {
+	width		:90px;
+}
+.txt_h_11, .txt_h_n_11, .txt_h_s_11 {
+	width		:98px;
+}
+.txt_h_12, .txt_h_n_12, .txt_h_s_12 {
+	width		:106px;
+}
+.txt_h_13, .txt_h_n_13, .txt_h_s_13 {
+	width		:114px;
+}
+.txt_h_14, .txt_h_n_14, .txt_h_s_14 {
+	width		:122px;
+}
+.txt_h_15, .txt_h_n_15, .txt_h_s_15 {
+	width		:130px;
+}
+.txt_h_16, .txt_h_n_16, .txt_h_s_16 {
+	width		:138px;
+}
+.txt_h_17, .txt_h_n_17, .txt_h_s_17 {
+	width		:146px;
+}
+.txt_h_18, .txt_h_n_18, .txt_h_s_18 {
+	width		:154px;
+}
+.txt_h_19, .txt_h_n_19, .txt_h_s_19 {
+	width		:162px;
+}
+.txt_h_20, .txt_h_n_20, .txt_h_s_20 {
+	width		:170px;
+}
+.txt_h_24, .txt_h_n_24, .txt_h_s_24 {
+	width		:202px;
+}
+.txt_h_30, .txt_h_n_30, .txt_h_s_30 {
+	width		:250px;
+}
+.txt_h_32, .txt_h_n_32, .txt_h_s_32 {
+	width		:266px;
+}
+.txt_h_40, .txt_h_n_40, .txt_h_s_40 {
+	width		:330px;
+}
+.txt_h_45, .txt_h_n_45, .txt_h_s_45 {
+	width		:370px;
+}
+.txt_h_48, .txt_h_n_48, .txt_h_s_48 {
+	width		:394px;
+}
+.txt_h_60, .txt_h_n_60, .txt_h_s_60 {
+	width		:490px;
+}
+.txt_h_256, .txt_h_n_256, .txt_h_s_256 {
+	width		:2058px;
+}
+
+ /* 全角文字列入力フィールド */
+.txt_a, .txta_a {
+	text-align	:left;
+	ime-mode	:active; /* 全角モード */
+}
+.txt_a_1 {
+	width		:18px;
+}
+.txt_a_2 {
+	width		:26px;
+}
+.txt_a_3 {
+	width		:34px;
+}
+.txt_a_4 {
+	width		:42px;
+}
+.txt_a_5 {
+	width		:50px;
+}
+.txt_a_6 {
+	width		:58px;
+}
+.txt_a_7 {
+	width		:66px;
+}
+.txt_a_8 {
+	width		:74px;
+}
+.txt_a_9 {
+	width		:82px;
+}
+.txt_a_10 {
+	width		:90px;
+}
+.txt_a_11 {
+	width		:98px;
+}
+.txt_a_12 {
+	width		:106px;
+}
+.txt_a_13 {
+	width		:114px;
+}
+.txt_a_14 {
+	width		:122px;
+}
+.txt_a_15 {
+	width		:130px;
+}
+.txt_a_16 {
+	width		:138px;
+}
+.txt_a_17 {
+	width		:146px;
+}
+.txt_a_18 {
+	width		:154px;
+}
+.txt_a_19 {
+	width		:162px;
+}
+.txt_a_20 {
+	width		:170px;
+}
+.txt_a_21 {
+	width		:178px;
+}
+.txt_a_22 {
+	width		:186px;
+}
+.txt_a_23 {
+	width		:194px;
+}
+.txt_a_24 {
+	width		:202px;
+}
+.txt_a_25 {
+	width		:210px;
+}
+.txt_a_26 {
+	width		:218px;
+}
+.txt_a_27 {
+	width		:226px;
+}
+.txt_a_28 {
+	width		:234px;
+}
+.txt_a_29 {
+	width		:242px;
+}
+.txt_a_30 {
+	width		:250px;
+}
+.txt_a_31 {
+	width		:258px;
+}
+.txt_a_32 {
+	width		:266px;
+}
+.txt_a_33 {
+	width		:274px;
+}
+.txt_a_34 {
+	width		:282px;
+}
+.txt_a_35 {
+	width		:290px;
+}
+.txt_a_36 {
+	width		:298px;
+}
+.txt_a_37 {
+	width		:306px;
+}
+.txt_a_38 {
+	width		:314px;
+}
+.txt_a_39 {
+	width		:322px;
+}
+.txt_a_40 {
+	width		:330px;
+}
+.txt_a_44 {
+	width		:342px;
+}
+.txt_a_45 {
+	width		:350px;
+}
+.txt_a_50 {
+	width		:410px;
+}
+.txt_a_60 {
+	width		:490px;
+}
+
+.txt_a_62 {
+	width		:506px;
+}
+.txt_a_75 {
+	width		:610px;
+}
+.txt_a_80 {
+	width		:650px;
+}
+.txt_a_100 {
+	width		:820px;
+}
+.txt_a_120 {
+	width		:970px;
+}
+
+txta_a_51_12 {
+	width		:803px;
+	height		:68px;
+}
+
+txta_a_51_6 {
+	width		:803px;
+	height		:68px;
+}
+
+.txta_a_60_4 {
+	width		:505px;
+	height		:68px;
+}
+
+.txta_a_60_5 {
+	width		:505px;
+	height		:83px;
+}
+
+.txta_a_80_2 {
+	width		:350px;
+	height		:38px;
+}
+
+.txta_a_80_3 {
+	width		:665px;
+	height		:54px;
+}
+
+.txta_a_80_4 {
+	width		:665px;
+	height		:68px;
+}
+
+.txta_a_80_5 {
+	width		:650px;
+	height		:83px;
+}
+
+.txta_a_100_3 {
+	width		:830px;
+	height		:54px;
+}
+
+.txta_a_100_4 {
+	width		:830px;
+	height		:68px;
+}
+
+.txta_a_100_10 {
+	width		:830px;
+	height		:162px;
+}
+
+.txta_a_128_2 {
+	width		:1049px;
+	height		:39px;
+}
+
+/* ファイル指定用フィールド */
+.file {
+	text-align	:left;
+}
+.file_50 {
+	width		:466px;
+}
+.file_80 {
+	width		:649px;
+}
+
+/* ファイル指定用フィールド(Text用) */
+.file_txt {
+	text-align	:left;
+	ime-mode	:inactive; /* 全角モード */
+}
+.file_txt_50 {
+	width		:406px;
+	margin-left:-471px;
+}
+
+/* 日付入力フィールド */
+.date {
+	font-family	:"ＭＳ ゴシック";
+	text-align	:center;
+	ime-mode	:inactive; /* 半角モード */
+}
+.date_10 {
+	/* yyyy.mm.dd */
+	width		:86px;
+}
+.date_2 {
+ 	/* mm or dd */
+	width		:22px;
+}
+.date_4 {
+ 	/* yyyy */
+	width		:38px;
+}
+.date_5 {
+	/* mm.dd */
+	width		:46px;
+}
+.date_7 {
+	 /* yyyy.mm */
+	width		:60px;
+}
+.date_8 {
+	 /* hh:mm:ss */
+	width		:70px;
+}
+
+/* 時刻入力フィールド */
+.time {
+	font-family	:"ＭＳ ゴシック";
+	text-align	:center;
+	ime-mode	:inactive; /* 半角モード */
+}
+.time_5 {
+	/* hh.mm */
+	width		:46px;
+}
+.time_8 {
+	 /* hh:mm:ss */
+	width		:70px;
+}
+
+/* 金額(カンマ込)入力フィールド */
+.price {
+	font-family	:"ＭＳ ゴシック";
+	text-align	:right;
+	ime-mode	:inactive; /* 半角モード */
+}
+.price_4 {
+	width		:45px;
+}
+.price_5 {
+	width		:54px;
+}
+.price_6 {
+	width		:62px;
+}
+.price_7 {
+	width		:78px;
+}
+.price_8 {
+	width		:86px;
+}
+.price_9 {
+	width		:94px;
+}
+.price_10 {
+	width		:110px;
+}
+.price_11 {
+	width		:116px;
+}
+.price_12 {
+	width		:126px;
+}
+
+/* 金額(マイナス、カンマ込)入力フィールド */
+.price_m {
+	font-family	:"ＭＳ ゴシック";
+	text-align	:right;
+	ime-mode	:inactive; /* 半角モード */
+}
+.price_m_7 {
+	width		:87px;
+}
+.price_m_8 {
+	width		:90px;
+}
+.price_m_9 {
+	width		:94px;
+}
+.price_m_10 {
+	width		:110px;
+}
+.price_m_11 {
+	width		:118px;
+}
+.price_m_12 {
+	width		:126px;
+}
+.price_m_13 {
+	width		:142px;
+}
+.price_m_14 {
+	width		:150px;
+}
+.price_m_18 {
+	width		:152px;
+}
+
+/* 全角選択フィールド */
+.sel_a {
+	font-family	:"ＭＳ ゴシック";
+}
+.sel_a_2 {
+	width		:42px;
+}
+.sel_a_4 {
+	width		:58px;
+}
+.sel_a_6 {
+	width		:74px;
+}
+.sel_a_7 {
+	width		:82px;
+}
+.sel_a_8 {
+	width		:90px;
+}
+.sel_a_9 {
+	width		:98px;
+}
+.sel_a_10 {
+	width		:106px;
+}
+.sel_a_12 {
+	width		:122px;
+}
+.sel_a_14 {
+	width		:138px;
+}
+.sel_a_16 {
+	width		:154px;
+}
+.sel_a_18 {
+	width		:170px;
+}
+.sel_a_20 {
+	width		:185px;
+}
+.sel_a_24 {
+	width		:220px;
+}
+.sel_a_26 {
+	width		:233px;
+}
+.sel_a_30 {
+	width		:266px;
+}
+.sel_a_32 {
+	width		:280px;
+}
+.sel_a_36 {
+	width		:314px;
+}
+.sel_a_38 {
+	width		:330px;
+}
+.sel_a_40 {
+	width		:346px;
+}
+.sel_a_50 {
+	width		:426px;
+}
+.sel_a_60 {
+	width		:506px;
+}
+
+.sel_a_80 {
+	width		:666px;
+}
+
+.sel_a_100 {
+	width		:826px;
+}
+
+.txtMF_I {
+	/* メッセージ出力フィールド(下部余白なし), 背景色：白 */
+	width			:1000px;
+	height			:21px;
+	font-family		:"ＭＳ ゴシック";
+	font-size		:11pt;
+	color			:#000000;
+	background		:#FFFFFF;
+	text-align		:left;
+	border-style	:solid;
+	border-width	:1px;
+	border-color	:#8888BB;
+	margin			:0px;
+}
+
+.txtMF_A {
+	 /* メッセージ出力フィールド(下部余白なし), 背景色：黄 */
+	width			:1000px;
+	height			:21px;
+	font-family		:"ＭＳ ゴシック";
+	font-size		:11pt;
+	color			:#000000;
+	background		:#F0F060;
+	text-align		:left;
+	border-style	:solid;
+	border-width	:1px;
+	border-color	:#8888BB;
+	margin			:0px;
+}
+
+.txtMF_E {
+	 /* メッセージ出力フィールド(下部余白なし), 背景色：赤 */
+	width			:1000px;
+	height			:21px;
+	font-family		:"ＭＳ ゴシック";
+	font-size		:11pt;
+	color			:#000000 !important;
+	background		:#FFBFBF !important;
+	text-align		:left;
+	border-style	:solid;
+	border-width	:1px;
+	border-color	:#8888BB;
+	margin			:0px;
+}
+
+.txtMF_L {
+	 /* メッセージ出力フィールド(下部余白なし), 背景色：灰 */
+	width			:1002px;
+	height			:21px;
+	font-family		:"ＭＳ ゴシック";
+	font-size		:11pt;
+	font-weight		:bold;
+	color			:#000000 !important;
+	background		:#DFDFDF !important;
+	text-align		:right;
+	border-style	:solid;
+	border-width	:1px;
+	border-color	:#8888BB;
+	margin			:4px 2px;
+}
+
+.ctrl_BG_I {
+	 /* 背景色：白 */
+	background		:#FFFFFF !important;
+	border-style	:solid;
+	border-width	:1px;
+	border-color	:#8888BB;
+	padding			:2px;
+}
+
+.ctrl_BG_A {
+	 /* 背景色：黄 */
+	background		:#F0F060 !important;
+	border-style	:solid;
+	border-width	:1px;
+	border-color	:#8888BB;
+	padding			:2px;
+}
+
+.ctrl_BG_E {
+	 /* 背景色：赤 */
+	background-color:#FFBFBF !important;
+	border-style	:solid;
+	border-width	:1px;
+	border-color	:#8888BB;
+	padding			:2px;
+}
+
+.ctrl_BG_L {
+	 /* 背景色：灰 */
+	font-family		:"ＭＳ ゴシック";
+	background		:#DFDFDF !important;
+	border-style	:solid;
+	border-width	:1px;
+	border-color	:#8888BB;
+	padding			:2px;
+}
+
+.readonly {
+	 /* 背景色：灰 readonly用*/
+	/*height			:21px;*/
+	/*background		:#DFDFDF;*/
+	background		:#f0f0f0;
+	border-style	:solid;
+	border-width	:1px;
+	border-color	:#8888BB;
+	padding			:2px;
+	cursor			:default;
+}
+
+.display {
+	 /* 背景色：透明 display用(ラベル表示)*/
+	height			:21px;
+	background-color:transparent;
+	border-style	:none;
+	padding			:2px;
+}
+
+/*
+.input-display {
+	border			:1px solid #8888BB;
+	background-color:#DFDFDF;
+	cursor			:default;
+}
+*/
+
+.display_list {
+	 /* display 一覧用(ラベル表示)*/
+	height			:16px;
+	border-style	:none;
+	padding			:0px;
+}
+
+#tooltip {
+	/* ツールチップ */
+	position		:absolute;
+	z-index			:3000;
+	border			:1px solid;
+	border-color	:#8888BB;
+	background		:#FFFFE5;
+	padding			:0px;
+	opacity			:0.85;
+}
+#tooltip h3, #tooltip div {
+	/* ツールチップ内文字 */
+	margin			:0;
+	font-family		:"ＭＳ ゴシック";
+	font-weight		:normal;
+	font-size		:10pt;
+}
+
+.btn01 {
+	 /* ボタンフォント(11pt) */
+	font-family	:"ＭＳ ゴシック";
+	font-size	:11pt;
+	cursor		:pointer;
+}
+
+.btn02 {
+	 /* ボタンフォント(10pt) */
+	font-family	:"ＭＳ ゴシック";
+	font-size	:10pt;
+	cursor		:pointer;
+}
+
+.error {
+	/* エラー表示用 */
+	color		:#FF0000;
+}
+
+.warning {
+	/* 警告表示用 */
+	color		:#FF0000;
+}
+
+.maxWidth {
+	 /* 幅100% */
+	width		:100%;
+}
+
+.maxHeight {
+	 /* 高さ100% */
+	height		:100%;
+}
+
+.invisible {
+	/* 非表示コントロール */
+	display		:none;
+}
+
+.invisible2 {
+	/* 非表示コントロール */
+	opacity		:0;
+}
+
+.selectLine, .selected {
+	/* 行選択状態 */
+	background	:#316ac5 !important;
+	color		:#FFFFFF !important;	/** 文字色反転 */
+}
+
+.separator {
+	width			:1256px;
+	margin-top		:0px;
+	margin-bottom	:0px;
+	padding-top		:0px;
+	padding-bottom	:0px;
+}
+
+.mainDiv .separator {
+	width			:100%;
+}
+
+.scrollMainDiv {
+	overflow		:auto;
+	width			:100%;
+	padding-right	:0;
+}
+
+.noScrollMainDiv {
+	overflow		:hidden;
+	padding-right	:0;
+}
+
+/** Aタグの範囲をブロックレベルに拡張 */
+.blockLink {
+	color			:#000000;
+	text-decoration	:none;
+	background		:#EEEEEE;
+	display			:block;
+	margin			:0px;
+	padding			:6px 0px;
+	border			:1px solid #999999;
+	position		:relative;	/** IE6対応 */
+}
+
+.block_disp {
+	position	:absolute;
+ 	left		:0;
+ 	top			:0;
+	width		:103%;	/** IE6対応 */
+	height		:100%;
+	color		:black;
+	z-index		:100;
+	opacity		:0.8;
+	padding-top	:25%;
+	font-family	:"ＭＳ ゴシック";
+	font-size	:15pt;
+	font-weight	:bold;
+	background	:#e7e7e7;
+	filter		:alpha(style=0,opacity=70);
+}
+
+.block_disp_f{
+	z-index		:10;
+	position	:absolute;
+	left		:0;
+	top			:0;
+	width		:1268px;			/** IE6対応 */
+	height		:932px;
+	filter		:alpha(style=0,opacity=0);
+}
+
+/** システムタイトル欄 */
+.appTitle {
+	background	:#C6D3FF;
+	border		:1px solid;
+	font-size	:12px;
+	height		:20px;
+}
+
+/** ログイン画面 */
+/** お知らせ領域 */
+.infoTitleBlock {
+	background		:#C6D3FF;
+	border			:none;
+	width			:500px;
+	text-align		:left;
+	margin-top		:60px;
+	margin-left		:auto;
+	margin-right	:auto;
+	padding			:4px 1px;
+}
+
+/** お知らせタイトル */
+.infoTitleBlock span{
+	font			:bold;
+	font-size		:12pt;
+}
+
+/** お知らせリストブロック */
+.infoListBlock {
+	overflow		:auto;
+	height			:300px;
+	border			:1px #C6D3FF solid;
+	width			:500px;
+	text-align		:left;
+	margin-left		:auto;
+	margin-right	:auto;
+}
+
+.infoListBlock dl dt{
+	clear			:both;
+	float			:left;
+	padding			:4px 2px;
+}
+
+.infoListBlock dl dd {
+	border-bottom	:1px dashed #CCCCCC;
+	padding			:4px 4px 20px 90px;
+	margin-left		:0px;
+}
+
+/** 区分-ナビ領域 */
+.dv_navi {
+	height			:18px;
+}
+/** パスワード変更画面-メッセージ領域 */
+.passwordChangeMessage {
+	width			:450px;
+	height			:60px;
+	margin-left		:auto;
+	margin-right	:auto;
+	text-align		:left;
+	padding			:12px 0px;
+}
+
+/** メニュー画面 */
+/** メニューボタン 基本 */
+.menuButton {
+	cursor					:pointer;
+	font-size				:14px;
+	width					:350px;
+	height					:30px;
+	margin					:0px;
+	padding					:0px 5px;
+	white-space				:nowrap;
+	overflow				:hidden;
+	text-overflow			:ellipsis;
+	-webkit-text-overflow	:ellipsis;
+	-o-text-overflow		:ellipsis;
+	border-style			:solid;
+	border-color			:black;
+	border-width			:0px;
+	display					:block;
+	background				:#e6e6e6/*{bgColorDefault}*/ url(../img/ui-bg_glass_75_e6e6e6_1x400.png)/*{bgImgUrlDefault}*/ 50%/*{bgDefaultXPos}*/ 50%/*{bgDefaultYPos}*/ repeat-x/*{bgDefaultRepeat}*/;
+}
+
+/** メニューボタン フォーカス時 */
+.menuButtonFocus {
+	border		:1px #C6D3FF solid;
+	/*モダンブラウザ用*/
+	opacity		:0.7;
+	/*IE7以下用*/
+	filter		:alpha(opacity=70);
+	/*IE8用*/
+	-ms-filter	:"alpha(opacity=70)";
+}
+/** メニューボタン マウスオーバー */
+.menuButton:hover {
+	/*モダンブラウザ用*/
+	opacity		:0.7;
+	/*IE7以下用*/
+	filter		:alpha(opacity=70);
+	/*IE8用*/
+	-ms-filter	:"alpha(opacity=70)";
+}
+
+/** メニューラベル */
+.menuLabel {
+	font-size	:12pt;
+	padding		:0px 3px;
+}
+
+/** メニュー編集用ボタン */
+.menuEditButton {
+	width		:100%;
+	height		:100%;
+	padding		:0px;
+	margin		:0px;
+}
+
+/** 編集ボタン */
+.editButton {
+	width: 20px;
+	background:url(../img/plus.png) left top no-repeat;
+}
+
+/** sortable用(メイン) */
+#sortable {
+    list-style-type	:none;
+    margin			:0;
+    padding			:2px 0px 0px 0px;
+    width			:1046px;
+    height			:486px;
+	background		:#FFFFFF;
+	border-width	:1px;
+	border-style	:solid;
+    text-align		:center;
+}
+/** sortable用(メイン) Chrome用*/
+body:nth-of-type(1) #sortable {
+    width			:984px;
+    height			:512px;
+}
+
+/** sortable用(ドラッグ対象)
+#sortable li {
+    float			:left;
+    margin			:1px;
+    padding			:0px 2px 0px 3px;
+	border-width	:1px;
+	border-style	:solid;
+    cursor			:move;
+    width			:237px;
+    height			:30px;
+    text-align		:center;
+}
+*/
+#sortable li {
+	margin			:1px;
+	padding			:0px;
+	border-width	:1px;
+	border-style	:solid;
+	border-color	:#d3d3d3/*{borderColorDefault}*/;
+	cursor			:move;
+	width			:340px;
+	height			:30px;
+	text-align		:center;
+	position		:absolute;
+}
+/** sortable用(placeholder) */
+.placeholder {
+	font-size	:12pt;
+	padding		:0px 3px;
+	background	:#D3D3D3;
+	width		:100%;
+	height		:100%;
+	text-align	:left;
+}
+/** floatWindow用 */
+#floatWindow{
+	display			:none;
+	position		:absolute;
+	z-index			:9999;
+}
+#floatWindow dl{
+	width			:56px;
+	height			:58px;
+	border			:1px solid #999999;
+	background-color:#fffcef;
+	margin			:0px;
+}
+#floatWindow dl dd{
+	margin			:0px;
+	padding			:1px;
+	line-height		:1.1em;
+	text-indent		:10px;
+}
+
+.colorText {
+	border-color	:#999999;
+	border-width	:1px;
+	border-style	:solid;
+}
+
+/** メイン */
+.mainMenu {
+	padding			:0px;
+	margin-left		:auto;
+	margin-right	:auto;
+	text-align		:center;
+	width			:980px;
+}
+.menuMainTable {
+	background		:#FFFFFF;
+	margin-left		:auto;
+	margin-right	:auto;
+	border-width	:1px;
+	border-style	:solid;
+	width			:1080px;
+}
+.menuMainTable tr td {
+	height			:34px;
+	padding			:0px;
+	text-align		:center;
+}
+
+/** ヘッダー*/
+.menuHeadTable {
+	background		:#FFFFFF;
+	width			:100%;
+	height			:24px;
+	border-width	:1px;
+	border-style	:solid;
+}
+
+.menuHeadTable tr td {
+	padding-left	:2px;
+	font-size		:10pt;
+	overflow		:hidden;
+	border-width	:1px;
+	border-style	:solid;
+}
+
+/** 申請 */
+.menuShinsei {
+	background		:#C6D3FF;
+	width			:1080px;
+	height			:24px;
+	margin-bottom	:5px;
+	padding-left	:15px;
+	text-align		:left;
+	padding-top		:4px;
+}
+
+.menuShinsei a{
+}
+
+#directFuncBlock {
+	height				:23px;
+	width				:200px;
+	float				:left;
+	background-color	:white;
+}
+
+.menuLinkBlock {
+	text-align	:right;
+}
+
+.menuLink {
+	margin		:0px 5px;
+}
+
+.logoutButton {
+	width		:120px;
+	border		:1px solid;
+	height		:20px;
+}
+
+/** 一括入力画面-ヘッダ固定用 */
+.fixDiv {
+	position	:relativ;
+	overflow	:hidden;
+}
+
+/** 一括入力画面-ヘッダ固定用(head用) */
+.fixHeadDiv {
+	position	:absolute;
+	overflow	:hidden;
+}
+/** 一括入力画面-ヘッダ固定用(body用) */
+.fixBodyDiv {
+	position	:absolute;
+	overflow	:auto;
+}
+
+/** 画面のメイン領域 */
+.mainDiv {
+	width		:800px;
+	overflow	:auto;
+}
+
+/** 申請画面の書類プレビュー領域 */
+.shinseiImgDiv {
+	width		:986px;
+	height		:495px;
+	overflow	:auto;
+}
+
+/** PDF出力画面のメイン領域 */
+.mainPdfDiv {
+	height		:200px;
+	overflow	:hidden;
+}
+
+/** 画面のフッター領域 */
+.footerDiv {
+	width		:1256px;
+	height		:73px;
+	overflow	:hidden;
+	padding		:0;
+	margin		:0;
+}
+
+/** 画面フッターボタン領域 */
+.footerBtnDiv {
+	text-align	:center;
+	width		:1241px;
+	height		:44px;
+	overflow	:hidden;
+	padding		:0px 9px 0px 9px;
+	margin		:0;
+}
+
+.footerInfoDiv {
+	width		:1241px;
+	overflow	:hidden;
+	padding		:0px 0px 0px 11px;
+	margin		:4px 0px 0px 0px;
+}
+
+/* ファンクションボタン表示(background:灰 font:黒) */
+div.footerBtnDiv div {
+	float		:left;
+	border		:none;
+	color		:#000000;
+	font-family	:"ＭＳ ゴシック";
+	font-size	:11pt;
+	width		:89px;
+	height		:44px;
+	padding		:0px 2px;
+	background	:#FFFFFF;
+	text-align	:center;
+	line-height	:1em;
+}
+
+/* ファンクションボタン非表示 */
+div.footerBtnDiv div.blank {
+	border		:none;
+	font-family	:"ＭＳ ゴシック";
+	font-size	:11pt;
+	width		:82px;
+	height		:44px;
+	padding		:0px 2px;
+	background	:#FFFFFF;
+	text-align	:center;
+}
+
+/* ファンクションボタン表示(Disenable用) */
+div.footerBtnDiv div.disenable {
+	float		:left;
+	border		:none;
+	color		:#000000;
+	font-family	:"ＭＳ ゴシック";
+	font-size	:11pt;
+	width		:89px;
+	height		:44px;
+	padding		:0px 2px;
+	background	:#FFFFFF;
+	text-align	:center;
+	line-height	:1em;
+}
+
+/** ファイル一覧表示 */
+.fileList {
+	padding:2px 0;
+}
+
+/** メインセンタリングフィールド */
+.mainCenter{
+	margin-top:20px;
+}
+
+.nowTime {
+	 /* 半角文字列入力フィールド, 20桁 */
+	font-family	:"ＭＳ ゴシック";
+	text-align	:left;
+	ime-mode	:inactive; /* 半角モード */
+	width		:158px;
+}
+
+.ui-spread-resizable{
+	overflow	:hidden;
+	vertical-align: middle;
+}
+
+.clear {clear: both;}
+
+.sorting_asc {
+	background: url('../img/sort_asc.png') no-repeat center right;
+	background-color		:#C6D3FF;
+}
+.sorting_desc {
+	background: url('../img/sort_desc.png') no-repeat center right;
+	background-color		:#C6D3FF;
+}
+
+div.modeDiv {
+	width			:100%;
+	padding-top		:3px;
+	padding-right	:18px;
+	position		:absolute;
+	text-align		:right;
+}
+div.modeDiv input {
+	border-style	:inset;
+	border-width	:1px;
+	width			:70px;
+	height			:25px;
+	font-family		:"ＭＳ ゴシック";
+	text-align		:center;
+	vertical-align	:middle;
+	font-weight		:bold;
+	font-size		:13pt;
+}
+
+div.shinseiModeDiv {
+	width			:100%;
+	padding-top		:3px;
+	padding-right	:18px;
+	position		:absolute;
+	text-align		:right;
+}
+div.shinseiModeDiv input {
+	border-style	:inset;
+	border-width	:1px;
+	width			:80px;
+	height			:25px;
+	font-family		:"ＭＳ ゴシック";
+	text-align		:center;
+	vertical-align	:middle;
+	font-weight		:bold;
+	font-size		:13pt;
+}
+
+.modeTxtCre {
+	background	:#c0ffff;
+}
+.modeTxtEdi {
+	background	:#c0ffc0;
+}
+.modeTxtDel {
+	background	:#ffc0c0;
+}
+.modeTxtRef {
+	background	:#ffe0c0;
+}
+
+.color_R {
+	color	:	#FF0000;
+}
+.color_G {
+	color	:	#00FF00;
+}
+.color_B {
+	color	:	#0000FF;
+}
+
+.focus_in {
+	/* フォーカスイン */
+	border-color	:#ffa500;
+}
+
+.btn-hover {
+	/* ボタンホバー */
+	background	:#A6F4FF;
+	border		:1px solid #26A0DA;
+}
+.hiddenFileSpan {
+	/* 非表示コントロール */
+	display		:none;
+}
+
+.spreadPaging{
+	/* スプレッドページング */
+	text-align		:right;
+	padding-right	:11px;
+	padding-top		:5px;
+}
+
+/* リンク項目のカーソル */
+.link_cursor{
+	cursor			:pointer;
+}
+
+/* 太字 */
+.weight_Bold {
+	font-weight	:	bold;
+}
+
+/* 袋販売 販売 */
+.fukuroHanbai {
+	background	:#00ffff;
+}
+/* 袋販売 前受 */
+.fukuroMaeuke {
+	background	:#ffff00;
+}
+
+/* 申請書類管理データ存在時 */
+.sskDataExist1{
+	border-color:#3399ff;
+	background:#3399ff;
+	color:#ffffff;
+}
+
+/* 申請書類管理データ一時保存時 */
+.sskDataExist2{
+	border-color:#FA3701;
+	background:#FA3701;
+	color:#ffffff;
+
+}
+
+.trBlank{
+	height:0px;
+}
+.div00 {
+	/* 入力フィールド見出し */
+	height			:25px;
+	line-height		:25px;
+	border			:1px solid #b0b0b0;
+	background		:#FFFFE0;
+	color			:#000000;
+	font-size		:11pt;
+	font-family		:"ＭＳ ゴシック";
+	text-align		:left;
+	text-valign		:middle;
+	padding-left	:10px;
+	padding-right	:10px;
+	padding-top		:2px;
+	padding-bottom	:2px;
+	margin-bottom	:3px;
+	float			:left;
+	white-space		:nowrap;
+	overflow		:hidden;
+}
+
+.div01 {
+	/* 入力フィールド見出し */
+	height			:25px;
+	line-height		:25px;
+	border			:1px solid #b0b0b0;
+	background		:#c6d3ff;
+	color			:#000000;
+	font-size		:11pt;
+	font-family		:"ＭＳ ゴシック";
+	text-align		:left;
+	text-valign		:middle;
+	padding-left	:10px;
+	padding-right	:10px;
+	padding-top		:2px;
+	padding-bottom	:2px;
+	margin-bottom	:3px;
+	float			:left;
+	white-space		:nowrap;
+	overflow		:hidden;
+}
+.div02 {
+	/* 入力フィールド見出し */
+	height			:25px;
+	line-height		:25px;
+	color			:#000000;
+	font-size		:11pt;
+	font-family		:"ＭＳ ゴシック";
+	text-align		:left;
+	text-valign		:middle;
+	padding-left	:2px;
+	padding-right	:2px;
+	padding-top		:1px;
+	padding-bottom	:1px;
+	float			:left;
+}
+
+.buttonGroup input[type="radio"] {
+	display: none;
+}
+
+.buttonGroup {
+	margin	: 0;
+	padding	: 2px 0px 2px 0px;
+}
+
+.buttonGroup label {
+	border-top			: solid 1px #999999;
+	border-bottom		: solid 1px #999999;
+	border-right		: solid 1px #999999;
+	background-color	: #cccccc;
+	padding				: 5px 20px;
+}
+
+.buttonGroup > label:first-of-type {
+	border-left					: solid 1px #999999;
+	border-top-left-radius		: 3px;
+	border-bottom-left-radius	: 3px;
+}
+
+.buttonGroup > label:last-of-type {
+	border-top-right-radius		: 3px;
+	border-bottom-right-radius	: 3px;
+}
+
+.buttonGroup input[type="radio"]:checked + label {
+	background-color	: #FFCCFF;
+}
+
+/* 2015.06.13 paQ*/
+#liHensei{
+	padding: 0;
+	list-style-type: none;
+	width: 100%;
+}
+/* 2015.07.23 paQ*/
+.buttonGroup input[type="checkbox"] {
+	display: none;
+}
+.buttonGroup input[type="checkbox"]:checked + label {
+	background-color	: #FFCCFF;
+}

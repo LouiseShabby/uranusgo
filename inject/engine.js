@@ -4,6 +4,85 @@ window.SkillChecker = {
   'ディレイ': function() {}
 }
 
+setInterval(function(){turnWaitCancel();},10);
+
+setInterval(function(){
+    
+    if (getStrMatch(String($("div.prt-error-infomation").find("p").html()), "エラーが発生しました。")) {
+    	if (getStrMatchFront(location.hash,"#raid")) {
+		    setTimeout("pageReload()",1000);
+    	} else {
+		    setTimeout("goMypage()",3000);
+	}
+        return false;
+	}
+	if (getStrMatch(String($("div.txt-popup-body").find("p").html()), "エラー")) {
+		if (getStrMatchFront(location.hash,"#raid")) {
+			setTimeout("pageReload()",1000);
+		} else {
+			setTimeout("goMypage()",3000);
+		}
+		return false;
+	}
+    if (getStrMatch(String($("div.prt-popup-header").find("p").html()), "このバトルは終了")) {
+         setTimeout("pageReload()",1000);
+        return false;
+    }
+	
+},1000)
+
+function turnWaitCancel() {
+	if ("直前のターンを処理中です" == $("#pop div.txt-popup-body").html()	&&
+		$("#pop div.btn-usual-ok").attr("oshita") == undefined) {
+		$("#pop div.btn-usual-ok").attr("oshita","1");
+		tap($("#pop div.btn-usual-ok"));
+	}
+}
+
+function getStrMatchFront(str1, str2) {
+	var str = " " + str1;
+	if (str.indexOf(" " + str2) !== -1) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function getStrMatchRear(str1, str2) {
+	var str = str1 + " ";
+	if (str.indexOf(str2 + " ") !== -1) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function getStrMatchAll(str1, str2) {
+	var str = " " + str1 + " ";
+	if (str.indexOf(" " + str2 + " ") !== -1) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function getStrMatch(str1, str2) {
+	if(str1.indexOf(str2) != -1) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+
+function pageReload() {
+	location.reload();
+	window.Engine.start();
+}
+
+function goMypage() {
+	location.href = "http://gbf.game.mbga.jp/#mypage";
+}
 
 window.Engine = {
   start: function() {
@@ -109,7 +188,8 @@ window.Engine = {
       else {
                      if ($(".btn-lock").hasClass("lock0")) {
                           this.click(".btn-lock");} }}
-	if ($('.prt-navi.btn-scene-next').is(':active')) { this.debug("按掉了提示框！");
+	if ($('.prt-navi.btn-scene-next').is(':active')) {
+	    this.debug("按掉了提示框！");
 			this.click('.prt-navi.btn-scene-next');}
 	//this.click('.prt-navi btn-scene-next active.display-on');		
     this.waitUntilVisible('.btn-attack-start.display-on').then(function() {
@@ -118,15 +198,13 @@ window.Engine = {
       if (this.isBossWave()) {
         return this.summonIfPossible();
       } else {
-		    return this.sleep(1);
-        //return Promise.resolve();
+		return Promise.resolve();
       }
     }.bind(this)).then(function() {
       if (this.isBossWave()) {
         return this.castIfAvailable();
       } else {
-		    return this.sleep(1);
-        //return Promise.resolve();
+        return Promise.resolve();
       }
     }.bind(this)).then(function() {
 	  //this.sleep(2);
@@ -135,14 +213,13 @@ window.Engine = {
 	  if (fcGo === 1 && window.localStorage.getItem('FCrefresh') == 'true'){ 
 					this.debug("re");this.sleep(2);window.location.reload();
 							this._handle_raid_multi();}
-      return this.sleep(3);
+      return Promise.resolve();
     }.bind(this)).then(function() {
       return this.waitUntilVisible('.btn-attack-start.display-on');
 	  
     }.bind(this)).then(function() {
       if (this.wave !== currentWave) {
-		    return this.sleep(1);
-       // return Promise.resolve();
+        return Promise.resolve();
       }
       this.eachTurn(this.getTurnNum());
     }.bind(this));
@@ -177,6 +254,9 @@ window.Engine = {
       } else if ($('.btn-usual-close:visible').length) {
         this.click('.btn-usual-close');
         observer.disconnect();
+      }else if ($('.btn-control:visible').length) {
+        this.click('.btn-control');
+        observer.disconnect();    
       }
     }.bind(this));
 
@@ -575,9 +655,6 @@ window.Engine = {
 };
 function remainTime(){ 
 	console.log("3000 pass remainTime"); 
-	var url = window.localStorage.getItem('quest-id');
-	$('#stop').click;
-	$('#quest-id').value = url;
-	$('#start').click;
+	setTimeout("pageReload()",1000);
 } 
 window.Engine.start();

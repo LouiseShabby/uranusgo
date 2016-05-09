@@ -97,11 +97,28 @@ window.Extra = {
     }.bind(this));
   },
   '_handle_coopraid/room': function() {
+	//if(window.localStorage.getItem('coopraid-owner') === 'true'){
+	/*	this.waitUntilVisible('.btn-open-stage-2').then(function() {
+			this.click('.btn-open-stage-2');
+		}.bind(this));
+		this.waitUntilVisible('.btn-forward').then(function() {
+			this.click('.btn-forward');
+		}.bind(this));
+		this.waitUntilVisible('.btn-stage-detail:10').then(function() {
+			this.click('.btn-stage-detail.room');
+		}.bind(this));
+			this.waitUntilVisible('.btn-stage-detail').then(function() {
+			this.click('.btn-set-quest');
+		}.bind(this));
+	//}   */
     this.waitUntilVisible('.btn-make-ready-large.not-ready').then(function() {
       this.click('.btn-make-ready-large.not-ready');
     }.bind(this));
-    this.waitOnce('.btn-execute-ready.se-ok').then(function() {
+    this.waitUntilVisible('.btn-execute-ready.se-ok').then(function() {
       this.click('.btn-execute-ready.se-ok');
+    }.bind(this));
+	this.waitUntilVisible('.btn-quest-start.se-quest-start').then(function() {
+      this.click('.btn-quest-start.se-quest-start');
     }.bind(this));
   },
   '_handle_coopraid/offer': function() {

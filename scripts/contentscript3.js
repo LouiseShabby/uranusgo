@@ -169,6 +169,8 @@ var Client = {
     var prefs = [];
 	var set
 	var set_attribute = [];
+	set_attribute = window.localStorage.getItem('ptZokusei'); 
+    /*
 	if (this.getPreference('fire') === 'true') {
      set_attribute = '1';
     }
@@ -186,7 +188,9 @@ var Client = {
     }
 		if (this.getPreference('dark') === 'true') {
        set_attribute = '6';
-    }	 
+    }
+    */
+    
 	if (this.getPreference('select') === 'true') {
 	   var select = window.localStorage.getItem('select-id');
       prefs.push(select);
@@ -209,7 +213,7 @@ var Client = {
     }
     var button = '';
     var expected = prefs.some(function(summon) {
-      var supporters = $('div.prt-supporter-summon:contains("' + summon + '")');
+      var supporters = $('div.prt-supporter-summon:contains("' + summon + '")').not(':contains("プロト")');
       if (supporters.length) {
         var userID = supporters[0].parentNode.parentNode.parentNode.dataset.supporterUserId;
         button = '[data-supporter-user-id="' + userID + '"][data-attribute="'+ set_attribute +'"]';
@@ -218,7 +222,8 @@ var Client = {
     }, this);
     if (!expected) {
       var candidates = [];
-	 
+	set_attribute = window.localStorage.getItem('ptZokusei'); 
+    /*
 	if (this.getPreference('fire') === 'true') {
      set_attribute = '1';
     }
@@ -237,6 +242,7 @@ var Client = {
 		if (this.getPreference('dark') === 'true') {
        set_attribute = '6';
     }	
+	*/
 	
       var $summonSkills = $('.prt-summon-skill:visible');
       if (!$summonSkills.length) {
