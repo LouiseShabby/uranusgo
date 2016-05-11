@@ -274,6 +274,9 @@ window.Engine = {
       }else if ($('.btn-control:visible').length) {
         this.click('.btn-control');
         observer.disconnect();    
+      }else if ($('.btn-usual-close:visible').length) {
+        this.click('.btn-usual-close');
+        observer.disconnect();    
       }
     }.bind(this));
 
