@@ -4,6 +4,7 @@ var Popup = {
   start: function() {
     this.initSkills();
     this.initQuests();
+
     $('#quest-id').val(window.localStorage.getItem('quest-id'));
     $('#start').on('click', function() {
       $('#quest-id').trigger('change');
@@ -15,7 +16,24 @@ var Popup = {
     $('#OK').on('click', function() {
       $('#select-id').trigger('change');
     });	
-	
+	$('#seachEx-1').val(window.localStorage.getItem('seachEx-1'));
+	//$('#saveList').on('click', function() {
+  //    $('#seachEx-1').trigger('change');
+  //  });	
+	$('input[name="ptZokusei"]').val([localStorage["ptZokusei"]]);
+	$('input[name="ptZokusei"]').change(function() {
+		localStorage["ptZokusei"] = $('input[name="ptZokusei"]:checked').val();
+	});
+	$('#seachEx-1').val(window.localStorage.getItem('seachEx-1'));
+	$('#seachEx-2').val(window.localStorage.getItem('seachEx-2'));
+	$('#seachEx-3').val(window.localStorage.getItem('seachEx-3'));	
+	$('#seachEx-4').val(window.localStorage.getItem('seachEx-4'));
+	$('#seachEx-5').val(window.localStorage.getItem('seachEx-5'));
+	$('#seachEx-6').val(window.localStorage.getItem('seachEx-6'));	
+	$('#saveList').on('click', function() {
+		for(var i=1;i<=6;i++){
+			    $("#seachEx-"+i).trigger('change');
+	}});	
     $('form').on('click', '[data-quest-id]', function() {
       $('#quest-id').val($(this)[0].dataset.questId).trigger('change');
     });
@@ -32,7 +50,8 @@ var Popup = {
         $(this).attr('checked', true);
       }
     });
-  },
+		
+},
   initQuests: function() {
     var quests = window.localStorage.getItem('quest-database');
     if (!quests) {
@@ -65,6 +84,7 @@ var Popup = {
 };
 document.addEventListener('DOMContentLoaded', function () {
   Popup.start();
+
 });
 
 

@@ -1,3 +1,5 @@
+'use strict';
+
 window.Extra = {
   '_handle_party/top/detail_weapon': function() {
     var a = window.location.hash.split('/');
@@ -10,6 +12,45 @@ window.Extra = {
   },
   '_handle_party/index': function() {
     this.inject('inject/weapon.js');
+  },
+  '_handle_mypage': function() {
+    var exLis = [];
+	console.log("111 = "+window.localStorage.getItem('seachEx-1'));
+	for(var i=1;i<=6;i++){
+		console.log(window.localStorage.getItem("seachEx-"+i));
+	
+		if(window.localStorage.getItem("seachEx-"+i) != ""){
+			exLis.push(window.localStorage.getItem("seachEx-"+i));
+			 console.log(exLis);
+		}
+	}
+  },
+  '_handle_result_multi/empty':function() {
+    var self = this;
+	  console.log(window.localStorage.getItem('autoSeachEx'));
+	  if(window.localStorage.getItem('autoSeachEx') === 'true'){
+		  setInterval(function () {
+			  if ($('.btn-control').length > 0) {
+						self.click(".btn-control");
+					}
+				else{
+						location.href = "http://gbf.game.mbga.jp/#quest/assist";
+				}
+	  }, 2000);}
+  },
+  '_handle_quest/index': function() {
+	  var self = this;
+	  console.log(window.localStorage.getItem('autoSeachEx'));
+	  if(window.localStorage.getItem('autoSeachEx') === 'true'){
+		  setInterval(function () {
+			  if ($('.btn-usual-ok').length > 0) {
+						self.click(".btn-usual-ok:eq(0)");
+					}
+				else{
+						location.href = "http://gbf.game.mbga.jp/#quest/assist";
+				}
+	  }, 2000);}
+       
   },
   '_handle_enhancement/weapon/material': function() {
     this.change(function(mutations) {
@@ -27,7 +68,7 @@ window.Extra = {
   '_handle_enhancement/weapon/base': function() {
     this.parseSkillLevel();
   },
-  _handle_list: function() {
+  '_handle_list': function() {
     this.parseSkillLevel();
   },
   parseSkillLevel: function() {
@@ -46,12 +87,66 @@ window.Extra = {
   '_handle_quest/assist': function() {
     var self = this;
     var found = false;
-    this.change(function(mutations) {
+	
+	var exLis = [];
+	for(var i=1;i<=6;i++){
+		if(window.localStorage.getItem("seachEx-"+i) != ""){
+			exLis.push(window.localStorage.getItem("seachEx-"+i));
+		}
+	}
+	//console.log($('.btn-multi-raid').length);
+	if(window.localStorage.getItem('autoSeachEx') === 'true'){
+
+			setInterval(function () {
+			currtime++;
+			//onsole.log(currtime % 10);
+			if ($('.btn-usual-ok').length == 1) {
+                       self.click(".btn-usual-ok");
+             }
+			if (/raid_multi/i.test(location.hash)) {
+			}
+			else if (/result_multi/i.test(location.hash) || /result\//i.test(location.hash)) {
+					if ($('.btn-control').length > 0) {
+						self.click(".btn-control:eq(0)");
+					}
+			}
+			 else if (/#quest\/supporter_raid/i.test(location.hash)) {
+				return self.sleep(10);
+			}
+			else if (/quest\/assist/i.test(location.hash)) {
+					if ($('.btn-use-full').length > 0) {
+						self.click(".btn-use-full:eq(1)");
+					}
+					for (var i = 0; i < $(".btn-multi-raid").length; i++) {
+						//console.log($(".btn-multi-raid:eq(" + i + ")").attr("data-quest-id"));
+						var mu_index = exLis.indexOf($(".btn-multi-raid:eq(" + i + ")").attr("data-quest-id"));
+						//console.log("index =========="+mu_index);
+						if (mu_index >= 0) {
+							self.click(".btn-multi-raid:eq(" + i + ")");
+							return self.sleep(5);
+					}
+				}
+				
+				if (currtime % 10  == "9") {
+						self.click(".btn-tabs:eq(0)");
+						
+				}
+			}
+			else {
+				location.href = "http://gbf.game.mbga.jp/#quest/assist";
+			}
+		}, 3000);
+	    }
+	//randomTime = getRandomInt(0, 5);
+
+	/*	 
       mutations.forEach(function(mutation) {
         if (mutation.attributeName !== 'class') {
           return;
         }
-        if (mutation.target.id === 'prt-assist-multi') {
+		//console.log($(this).find('#prt-multi-list'));
+		//console.log(mutation.target.id);      
+			if (mutation.target.id === 'prt-assist-multi') {
           [].slice.call(mutation.target.querySelectorAll('.btn-multi-raid')).some(function(node) {
             var boss = node.querySelector('.txt-raid-name');
             if (boss.textContent.indexOf('ティアマト・マグナ') >= 0) {
@@ -83,7 +178,10 @@ window.Extra = {
           }
         }
       }, this);
-    }.bind(this));
+	  
+    
+	*/
+	//}.bind(this));
   },
   '_handle_sell': function() {
     this.change(function(mutations) {
@@ -154,3 +252,5 @@ window.Extra = {
     }.bind(this));
   }
 }
+
+var currtime=0;

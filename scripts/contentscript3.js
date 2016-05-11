@@ -1,5 +1,4 @@
 'use strict';
-var fcRE = 0;
 
 var Client = {
   raid: [],

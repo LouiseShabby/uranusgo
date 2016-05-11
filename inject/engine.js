@@ -1,12 +1,25 @@
-'use strict';
+
 
 window.SkillChecker = {
   'ディレイ': function() {}
 }
+var runFlag = 0;
+
 
 setInterval(function(){turnWaitCancel();},10);
 
-setInterval(function(){
+setInterval(function(){skiperror();},1000);
+
+setInterval(function(){runFlag = 0;},10000);
+
+setInterval(function(){ifnotrun();},60000);
+
+function ifnotrun(){
+	if(runFlag == 0){pageReload();}
+	return;	
+}
+
+function skiperror(){
     
     if (getStrMatch(String($("div.prt-error-infomation").find("p").html()), "エラーが発生しました。")) {
     	if (getStrMatchFront(location.hash,"#raid")) {
@@ -29,7 +42,7 @@ setInterval(function(){
         return false;
     }
 	
-},1000)
+}
 
 function turnWaitCancel() {
 	if ("直前のターンを処理中です" == $("#pop div.txt-popup-body").html()	&&
@@ -160,7 +173,8 @@ window.Engine = {
     if (this.turn === turn) {
       return;
     }
-	setTimeout("remainTime()",60*1000);  
+	runFlag = 1;
+	//setTimeout("remainTime()",60*1000);  
     this.turn = turn;
     var currentWave = this.wave;
     var allFull = 0;	 
@@ -209,7 +223,7 @@ window.Engine = {
     }.bind(this)).then(function() {
 	  //this.sleep(2);
       this.attack();
-	
+	  
 	  if (fcGo === 1 && window.localStorage.getItem('FCrefresh') == 'true'){ 
 					this.debug("re");this.sleep(2);window.location.reload();
 							this._handle_raid_multi();}

@@ -33,11 +33,7 @@
     }
   ],
   "permissions": [
-    "tabs",
-    "http://*/*",
-    "https://*/*",
-    "notifications",
-    "storage"
+		"notifications","browsingData","tabs" ,"http://localhost/","http://gbf.game.mbga.jp/*","storage"
   ],
   "web_accessible_resources": [
     "reload.js",
