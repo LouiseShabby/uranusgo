@@ -5,6 +5,9 @@ window.SkillChecker = {
 }
 var runFlag = 0;
 
+setInterval(function(){		if ($('.btn-usual-ok').length >0) {
+				self.click(".btn-usual-ok");	
+			}},1000);
 
 setInterval(function(){turnWaitCancel();},10);
 

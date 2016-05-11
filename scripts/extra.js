@@ -38,6 +38,20 @@ window.Extra = {
 				}
 	  }, 2000);}
   },
+   '_handle_quest': function() {
+	  var self = this;
+	  console.log(window.localStorage.getItem('autoSeachEx'));
+	  if(window.localStorage.getItem('autoSeachEx') === 'true'){
+		  setInterval(function () {
+			  if ($('.btn-usual-ok').length > 0) {
+						self.click(".btn-usual-ok:eq(0)");
+					}
+				else{
+						location.href = "http://gbf.game.mbga.jp/#quest/assist";
+				}
+	  }, 2000);}
+       
+  },
   '_handle_quest/index': function() {
 	  var self = this;
 	  console.log(window.localStorage.getItem('autoSeachEx'));
@@ -97,7 +111,7 @@ window.Extra = {
 	//console.log($('.btn-multi-raid').length);
 	if(window.localStorage.getItem('autoSeachEx') === 'true'){
 
-			setInterval(function () {
+	var bbc =setInterval(function () {
 			currtime++;
 			//onsole.log(currtime % 10);
 			if ($('.btn-usual-ok').length == 1) {
@@ -108,12 +122,11 @@ window.Extra = {
 			else if (/result_multi/i.test(location.hash) || /result\//i.test(location.hash)) {
 					if ($('.btn-control').length > 0) {
 						self.click(".btn-control:eq(0)");
-					}
-			}
-			 else if (/#quest\/supporter_raid/i.test(location.hash)) {
-				return self.sleep(10);
-			}
-			else if (/quest\/assist/i.test(location.hash)) {
+			}}
+			else if (/#quest\/supporter_raid/i.test(location.hash)) {
+				clearInterval(bbc);
+				//return self.sleep(10);
+			}else if (/quest\/assist/i.test(location.hash)) {
 					if ($('.btn-use-full').length > 0) {
 						self.click(".btn-use-full:eq(1)");
 					}
@@ -123,20 +136,13 @@ window.Extra = {
 						//console.log("index =========="+mu_index);
 						if (mu_index >= 0) {
 							self.click(".btn-multi-raid:eq(" + i + ")");
-							return self.sleep(5);
-					}
-				}
-				
-				if (currtime % 10  == "9") {
+							clearInterval(bbc);
+					}}	
+					if (currtime % 10  == "9") {
 						self.click(".btn-tabs:eq(0)");
 						
-				}
-			}
-			else {
-				location.href = "http://gbf.game.mbga.jp/#quest/assist";
-			}
-		}, 3000);
-	    }
+			}}else {				location.href = "http://gbf.game.mbga.jp/#quest/assist";
+			}}, 3000); }
 	//randomTime = getRandomInt(0, 5);
 
 	/*	 
@@ -209,7 +215,50 @@ window.Extra = {
 			this.click('.btn-set-quest');
 		}.bind(this));
 	//}   */
-    this.waitUntilVisible('.btn-make-ready-large.not-ready').then(function() {
+	var self = this;
+	if(window.localStorage.getItem('master')=='true'){
+		var ok =setInterval(function () {
+			if ($('.btn-usual-ok').length >0) {
+				self.click(".btn-usual-ok");	
+			}
+			if ($('.btn-use-full').length > 0) {
+					self.click(".btn-use-full:eq(1)");
+			}		
+			console.log($(".prt-quest-banner").length);
+			if ($('.btn-make-ready-large').length > 0) {
+					self.click(".btn-make-ready-large");
+					clearInterval(ok);					
+					
+		}}, 2000);
+		var bba =setInterval(function () {
+			
+			if ($('.btn-open-stage-2').length == 1) {
+				self.click(".btn-open-stage-2");
+				clearInterval(bba);
+				}
+			}, 5000); 
+		var bbb =setInterval(function () {
+			if ($('.btn-forward').length > 0) {
+				self.click(".btn-forward");
+				clearInterval(bbb);
+				}
+			}, 5000); 
+		var bbc =setInterval(function () {
+			if ($('.btn-stage-detail').length >0) {
+				if($('.btn-stage-detail:eq(2)').attr("data-stage-id")==10){
+					self.click(".btn-stage-detail:eq(2)");
+					clearInterval(bbc);
+				}}
+			}, 5000); 
+		var bbd =setInterval(function () {
+				if ($('.btn-set-quest').length >0) {
+				self.click(".btn-set-quest:eq(0)");	
+				clearInterval(bbd);
+				}
+			}, 5000); 
+			
+	}
+	 this.waitUntilVisible('.btn-make-ready-large.not-ready').then(function() {
       this.click('.btn-make-ready-large.not-ready');
     }.bind(this));
     this.waitUntilVisible('.btn-execute-ready.se-ok').then(function() {
