@@ -125,6 +125,7 @@ window.Extra = {
                      self.click(".btn-usual-ok");
              }
 			if (/raid_multi/i.test(location.hash)) {
+					clearInterval(bbc);
 			}
 			else if (/result_multi/i.test(location.hash) || /result\//i.test(location.hash)) {
 					if ($('.btn-control').length > 0) {
@@ -134,10 +135,8 @@ window.Extra = {
 				//clearInterval(bbc);
 				//return self.sleep(10);
 			}else if (/quest\/assist/i.test(location.hash)) {
-					
-
-					if(isClick == true){
-						return;}
+				
+				//	if(isClick == true){return;}
 					for (var i = 0; i < $(".btn-multi-raid").length; i++) {
 						
 						//console.log($(".btn-multi-raid:eq(" + i + ")").attr("data-quest-id"));
@@ -150,7 +149,7 @@ window.Extra = {
 					if (currtime % 10  == "9") {
 						self.click(".btn-tabs:eq(0)");
 						
-			}}}else {				location.href = "http://gbf.game.mbga.jp/#quest/assist";
+			}}}else {	location.href = "http://gbf.game.mbga.jp/#quest/assist";
 			}}, 3000); }
 	//randomTime = getRandomInt(0, 5);
 
