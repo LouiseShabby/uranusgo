@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <!-- build:js scripts/popup.js -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="scripts/popup.js"></script>
+  <!-- endbuild -->
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="styles/main.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
+  <!-- endbuild -->
+  <style>
+    html, body {
+      width: 400px;
+    }
+    img {
+      width: 30px;
+      height: 30px;
+    }
+    img.off {
+      opacity: 0.3;
+    }
+    #quest-history button {
+      width: 100%;
+      text-align: left;
+    }
+				.buttonGroup input[type="radio"] {
+				display: none;
+			}
+
+		.buttonGroup label {
+				border-top: solid 1px #999999;
+				border-bottom: solid 1px #999999;
+				border-right: solid 1px #999999;
+				background-color: #cccccc;
+				padding: 3px 10px;
+			}
+
+			.buttonGroup > label:first-of-type {
+				border-left: solid 1px #999999;
+				border-top-left-radius: 5px;
+				border-bottom-left-radius: 5px;
+			}
+
+			.buttonGroup > label:last-of-type {
+				border-top-right-radius: 5px;
+				border-bottom-right-radius: 5px;
+			}
+
+	.buttonGroup input[type="radio"]:checked + label {
+				background-color: #FFCCFF;
+	}
+    .buttonGroup input[type="checkbox"] {
+                display: none;
+    }
+    .buttonGroup input[type="checkbox"]:checked + label {
+	            background-color	: #FFCCFF;
+    }
+  </style>
+</head>
+<body>
+  <form>
+    <fieldset>
+      <legend>插件</legend>
+        <div><input id="enabled" name="enabled" type="checkbox" />啟動/關閉(需要重整)</div>
+		<div><input id="coopraid" name="coopraid" type="checkbox" />共斗毒瘤</div>
+		<div><input id="master" name="master" type="checkbox" />我是房主</div>
+    </fieldset>
+    <fieldset>
+      <legend>自動任務</legend>
+      <input style="width: 100%" type="text" name="quest-id" id="quest-id" placeholder="輸入完整任務進入路徑後按Start，或從下方選擇" />
+      <button type="button" class="btn btn-info" id="start">Start</button>
+      <button type="button" class="btn btn-danger" id="stop">Stop</button>
+    </fieldset>
+    <fieldset>
+       <legend>召唤兽属性</legend>
+		<div class="buttonGroup" style="vertical-align:middle; padding:3px 0;">
+			<input type="radio" name="ptZokusei" value="1" id="ptZokusei-1"><!--
+			--><label for="ptZokusei-1">火</label><!--
+			--><input type="radio" name="ptZokusei" value="2" id="ptZokusei-2"><!--
+			--><label for="ptZokusei-2">水</label><!--
+			--><input type="radio" name="ptZokusei" value="3" id="ptZokusei-3"><!--
+			--><label for="ptZokusei-3">土</label><!--
+			--><input type="radio" name="ptZokusei" value="4" id="ptZokusei-4"><!--
+			--><label for="ptZokusei-4">木</label><!--
+			--><input type="radio" name="ptZokusei" value="5" id="ptZokusei-5"><!--
+			--><label for="ptZokusei-5">光</label><!--
+			--><input type="radio" name="ptZokusei" value="6" id="ptZokusei-6"><!--
+			--><label for="ptZokusei-6">闇</label>
+		</div>
+      <legend>一般設定</legend>
+      <div id="use-water">
+        <input name="use-full" type="checkbox" /><img src="http://gbf.game-a.mbga.jp/assets/img/sp/assets/item/normal/s/1.jpg" />
+        <input name="use-semi" type="checkbox" /><img src="http://gbf.game-a.mbga.jp/assets/img/sp/assets/item/normal/s/2.jpg" />
+      </div>
+      <div> 
+        <div><input name="normal-attack-only" type="checkbox" />只使用普通攻擊</div>
+		<div><input name="FCopen" type="checkbox" />使用FC</div>
+		<div><input name="FCrefresh" type="checkbox" />奥义完成后自动刷新</div>
+		<div><input name="xuecaibichi" type="checkbox" />雪菜</div>
+        <div><input name="auto-choose-supporter" type="checkbox" />自動選擇好友</div>
+        <div><input name="dragon-girl" type="checkbox" />格蘭丁優先</div>
+		<div><input name="black-dragon" type="checkbox" />巴哈姆特優先</div>
+		<div><input name="gay" type="checkbox" />路西法優先</div>
+        <div><input name="auto-summon" type="checkbox" />自動召喚</div>
+        <div><input name="auto-medal" type="checkbox" />自動抽戰貨</div>
+		<div><input name="use-green-potion" type="checkbox" />自動使用綠色藥水藍色藥水</div>
+        <div><input name="use-event-potion" type="checkbox" />自動使用事件藥水</div>
+        <div><input name="use-event-revive" type="checkbox" />自動使用事件復活水</div>
+		<div><input name="select" type="checkbox" />自定義召喚，需要先勾選召喚獸屬性（此功能測試中）</div>
+		<input style="width: 100%" type="text" name="select-id" id="select-id" placeholder="此處輸入召喚名字(此功能測試中)" />
+		<button type="button" class="btn btn-info" id="OK">確定</button>
+		
+		
+      </div>
+	  
+	      <div><input id="autoSeachEx" name="autoSeachEx" type="checkbox">开启蹲婊模式</div>
+	<td style="vertical-align:middle;font-size: 10pt;">	  
+    </div>
+		<div class="clear"></div>
+		<div class="div01">要蹲的怪001</div>
+		<div class="div02"><input type="text" name="seachEx-1" value=""  id="seachEx-1" class="txt_h txt_h_30"  placeholder="此處輸入怪物ID"></div>
+		<div class="clear"></div>
+	  	<div class="div01">要蹲的怪002</div>
+		<div class="div02"><input type="text" name="seachEx-2" value=""  id="seachEx-2" class="txt_h txt_h_30"  placeholder="此處輸入怪物ID"></div>
+		<div class="clear"></div>
+		<div class="div01">要蹲的怪003</div>
+		<div class="div02"><input type="text" name="seachEx-3" value=""  id="seachEx-3" class="txt_h txt_h_30"  placeholder="此處輸入怪物ID"></div>
+		<div class="clear"></div>
+		<div class="div01">要蹲的怪004</div>
+		<div class="div02"><input type="text" name="seachEx-4" value=""  id="seachEx-4" class="txt_h txt_h_30"  placeholder="此處輸入怪物ID"></div>
+		<div class="clear"></div>
+		<div class="div01">要蹲的怪005</div>
+		<div class="div02"><input type="text" name="seachEx-5" value=""  id="seachEx-5" class="txt_h txt_h_30"  placeholder="此處輸入怪物ID"></div>
+		<div class="clear"></div>
+		<div class="div01">要蹲的怪006</div>
+		<div class="div02"><input type="text" name="seachEx-6" value=""  id="seachEx-6" class="txt_h txt_h_30"  placeholder="此處輸入怪物ID"></div>
+		<div class="clear"></div>
+		<button type="button" class="btn btn-info" id="saveList">SAVE LIST</button>
+
+	</td>
+    </fieldset>
+    <fieldset>
+      <legend>戰鬥中指定個別技能施放（非普攻狀態下）</legend>
+      <div id="skill-list">
+      </div>
+    </fieldset>
+  </form>
+</body>
+</html>

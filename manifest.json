@@ -1,0 +1,46 @@
+{
+  "name": "意大利咖喱棒",
+  "version": "9.0.1",
+  "manifest_version": 2,
+  "description": "8团内用禁止外泄",
+  "icons": {
+    "128": "icon128.png"
+  },
+  "background": {
+    "scripts": [
+      "scripts/background.js"
+    ]
+  },
+  "browser_action": {
+    "default_icon": {
+      "32": "icon.png"
+    },
+    "default_title": "bahamut-warner",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://gbf.game.mbga.jp/*"
+      ],
+      "js": [
+        "bower_components/jquery/dist/jquery.js",
+        "scripts/extra.js",
+        "scripts/contentscript3.js"
+	],
+      "run_at": "document_end",
+      "all_frames": false
+    }
+  ],
+  "permissions": [
+		"notifications","browsingData","tabs" ,"http://localhost/","http://gbf.game.mbga.jp/*","storage"
+  ],
+  "web_accessible_resources": [
+    "reload.js",
+    "inject/click_.js",
+    "inject/load_.js",
+    "inject/engine.js",
+    "inject/select_all_normal.js",
+    "inject/weapon.js"
+  ]
+}

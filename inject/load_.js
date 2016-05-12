@@ -1,0 +1,1 @@
+window.location.hash = '#' + window.localStorage.getItem('_hash');
