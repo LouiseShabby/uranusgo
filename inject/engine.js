@@ -268,13 +268,13 @@ window.Engine = {
       } else if ($('.btn-usual-cancel:visible').length) {
         this.click('.btn-usual-cancel');
         observer.disconnect();
-      } else if ($('.btn-usual-close').length > 0) {
+      } else if ($('.btn-usual-close:visible').length) {
         this.click('.btn-usual-close');
         observer.disconnect();
       }else if ($('.btn-control:visible').length) {
         this.click('.btn-control');
         observer.disconnect();    
-      }else if ($('.btn-usual-close:visible').length) {
+      }else if ($('.btn-usual-close').length) {
         this.click('.btn-usual-close');
         observer.disconnect();    
       }
