@@ -114,42 +114,44 @@ window.Extra = {
 
 	var bbc =setInterval(function () {
 			currtime++;
+			setTimeout(function(){isClick=false},30*1000);
 			//chrome.runtime.sendMessage({type: 'pass', herf: location.hash}, function (response) {});
 			//chrome.runtime.sendMessage({type: 'pass', herf: location.hash}, function (response) {
             //    if (response.isClick == "true") {}
 			//onsole.log(currtime % 10);
 			if ($('.btn-use-full').length > 0) {
 				self.click(".btn-use-full:eq(1)");
+				
 			}
 			if ($('.btn-usual-ok').length == 1) {
                      self.click(".btn-usual-ok");
              }
 			if (/raid_multi/i.test(location.hash)) {
 					clearInterval(bbc);
+					
 			}
 			else if (/result_multi/i.test(location.hash) || /result\//i.test(location.hash)) {
 					if ($('.btn-control').length > 0) {
-						self.click(".btn-control:eq(0)");
+					self.click(".btn-control:eq(0)");
 			}}
 			else if (/#quest\/supporter_raid/i.test(location.hash)) {
-				//clearInterval(bbc);
+				clearInterval(bbc);
 				//return self.sleep(10);
 			}else if (/quest\/assist/i.test(location.hash)) {
-				
-				//	if(isClick == true){return;}
-					for (var i = 0; i < $(".btn-multi-raid").length; i++) {
+					if(isClick == true){return;}
+					else{
+						for (var i = 0; i < $(".btn-multi-raid").length; i++) {
 						
 						//console.log($(".btn-multi-raid:eq(" + i + ")").attr("data-quest-id"));
-						var mu_index = exLis.indexOf($(".btn-multi-raid:eq(" + i + ")").attr("data-quest-id"));
+							var mu_index = exLis.indexOf($(".btn-multi-raid:eq(" + i + ")").attr("data-quest-id"));
 						//console.log("index =========="+mu_index);
-						if (mu_index >= 0) {
-							self.click(".btn-multi-raid:eq(" + i + ")");
-							isClick = true;
-					}
-					if (currtime % 10  == "9") {
-						self.click(".btn-tabs:eq(0)");
-						
-			}}}else {	location.href = "http://gbf.game.mbga.jp/#quest/assist";
+							if (mu_index >= 0) {
+								self.click(".btn-multi-raid:eq(" + i + ")");
+								isClick = true;
+						}}if (currtime % 10  == "9") {
+							self.click(".btn-tabs:eq(0)");
+						}
+			}}else {	location.href = "http://gbf.game.mbga.jp/#quest/assist";
 			}}, 3000); }
 	//randomTime = getRandomInt(0, 5);
 
