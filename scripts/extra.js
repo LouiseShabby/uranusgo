@@ -256,16 +256,17 @@ window.Extra = {
 				clearInterval(bbd);
 				}
 			}, 5000); 
+
 			
 	}
+	 this.waitUntilVisible('.btn-quest-start.se-quest-start').then(function() {
+      this.click('.btn-quest-start.se-quest-start');
+    }.bind(this));	
 	 this.waitUntilVisible('.btn-make-ready-large.not-ready').then(function() {
       this.click('.btn-make-ready-large.not-ready');
     }.bind(this));
     this.waitUntilVisible('.btn-execute-ready.se-ok').then(function() {
       this.click('.btn-execute-ready.se-ok');
-    }.bind(this));
-	this.waitUntilVisible('.btn-quest-start.se-quest-start').then(function() {
-      this.click('.btn-quest-start.se-quest-start');
     }.bind(this));
   },
   '_handle_coopraid/offer': function() {
