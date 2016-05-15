@@ -97,7 +97,9 @@ var Client = {
     }.bind(this), true);
   },
   '_handle_item': function() {
-    if (window.localStorage.getItem('restore-action-point') !== 'true') {
+	var self =this;
+	var getTimeOut = setTimeout(function(){ self.load(window.localStorage.getItem('quest-id'));},20*1000);
+	if (window.localStorage.getItem('restore-action-point') !== 'true') {
       return;
     }
     window.localStorage.setItem('restore-action-point', 'false');
@@ -106,8 +108,10 @@ var Client = {
     }.bind(this)).then(function() {
       if (this.restoreFullAP()) {
         this.click('.prt-normal .lis-item.se[data-index=0]');
+		clearTimeout(getTimeOut);
       } else {
         this.click('.prt-normal .lis-item.se[data-index=1]');
+		clearTimeout(getTimeOut);
       }
       return this.waitUntilVisible('.btn-usual-use');
     }.bind(this)).then(function() {
