@@ -4,6 +4,7 @@ window.SkillChecker = {
   'ディレイ': function() {}
 }
 var runFlag = 0;
+//var ifnotrunTime = window.localStorage.getItem("reloadtime");
 
 setInterval(function(){if ($('.btn-usual-ok').length >0) {
 		self.click(".btn-usual-ok");	
@@ -14,8 +15,16 @@ setInterval(function(){if ($('.btn-usual-ok').length >0) {
 setInterval(function(){skiperror();},1000);
 
 setInterval(function(){runFlag = 0;},10000);
+/*
+if(window.localStorage.getItem("setreloadtime")=='true'&& ifnotrunTime >10;){
+    setInterval(function(){ifnotrun();},ifnotrunTime*1000);
+}else{
+    setInterval(function(){ifnotrun();},60000);
+}
+*/
+   setInterval(function(){ifnotrun();},30000);
 
-setInterval(function(){ifnotrun();},60000);
+
 
 function ifnotrun(){
 	if(runFlag == 0){pageReload();}
@@ -32,7 +41,7 @@ function skiperror(){
 	}
         return false;
 	}
-	if (getStrMatch(String($("div.txt-popup-header").find("p").html()), "エラー")) {
+	if (getStrMatch(String($("div.prt-popup-header").find("p").html()), "エラー")) {
 		if (getStrMatchFront(location.hash,"#raid")) {
 			setTimeout("pageReload()",1000);
 		} else {

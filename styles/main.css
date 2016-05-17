@@ -2,3 +2,24 @@ body {
   padding: 20px;
   width: 200px;
 }
+legend{
+	display:block;
+	width:100%;
+	padding:0;
+	margin-top:10px;
+	margin-bottom: 0px;
+	font-size:21px;
+	line-height:inherit;
+	color:#333;
+	border:0;
+	border-top:1px solid #e5e5e5
+}
+legend1{
+	display:block;
+	width:100%;
+	padding:0;
+	font-size:21px;
+	line-height:inherit;
+	color:#333;
+	border:0;
+}
