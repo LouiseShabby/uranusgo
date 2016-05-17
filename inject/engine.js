@@ -4,25 +4,32 @@ window.SkillChecker = {
   'ディレイ': function() {}
 }
 var runFlag = 0;
-//var ifnotrunTime = window.localStorage.getItem("reloadtime");
+var ifnotrunTime =0;
+
 
 setInterval(function(){if ($('.btn-usual-ok').length >0) {
 		self.click(".btn-usual-ok");	
 }},1000);
 
-//setInterval(function(){turnWaitCancel();},10);
+setInterval(function(){turnWaitCancel();},100);
 
 setInterval(function(){skiperror();},1000);
 
 setInterval(function(){runFlag = 0;},10000);
-/*
-if(window.localStorage.getItem("setreloadtime")=='true'&& ifnotrunTime >10;){
-    setInterval(function(){ifnotrun();},ifnotrunTime*1000);
+
+if(window.localStorage.getItem('setreloadtime')=='true'&& window.localStorage.getItem('reloadtime')>10){
+	
+	ifnotrunTime = window.localStorage.getItem('reloadtime')*1000;
+	
+    setInterval(function(){
+		console.log("reloadtime = "+ifnotrunTime);
+		ifnotrun();
+		},ifnotrunTime);
 }else{
     setInterval(function(){ifnotrun();},60000);
 }
-*/
-   setInterval(function(){ifnotrun();},30000);
+
+ //  setInterval(function(){ifnotrun();},30000);
 
 
 
@@ -112,6 +119,9 @@ function goMypage() {
 window.Engine = {
   start: function() {
 	this.debug('Engine Start!!');
+	if(window.localStorage.getItem('assistIsClick')){
+		window.localStorage.setItem('assistIsClick','false');
+	}
 	window.localStorage.setItem('xuecaiGo',0);
     this.observers = [];
     this.observeEnd();
@@ -187,6 +197,7 @@ window.Engine = {
     }
 	runFlag = 1;
 	//setTimeout("remainTime()",60*1000);  
+	this.debug('reloadtime = '+ifnotrunTime);
     this.turn = turn;
     var currentWave = this.wave;
     var allFull = 0;	 

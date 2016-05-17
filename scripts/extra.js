@@ -24,6 +24,9 @@ window.Extra = {
 			 console.log(exLis);
 		}
 	}
+	if(window.localStorage.getItem('autoSeachEx') === 'true'){
+		location.href = "http://gbf.game.mbga.jp/#quest/assist";
+	}
   },
   '_handle_result_multi/empty':function() {
     var self = this;
@@ -99,26 +102,37 @@ window.Extra = {
       });
     }.bind(this));
   },
+  '_handle_quest/assist/unclaimed': function() {
+	if(window.localStorage.getItem('assistIsClick')){
+		window.localStorage.setItem('assistIsClick','false');
+	}
+	var self = this;
+	var bbc =setInterval(function(){
+				if ($('.btn-multi-raid ').length > 0) {
+				self.click(".btn-multi-raid:eq(0)");
+				clearInterval(bbc);
+			}
+	},1000);
+  },
   '_handle_quest/assist': function() {
     var self = this;
     var found = false;
 	var isClick = false;
 	var exLis = [];
-	for(var i=1;i<=6;i++){
-		if(window.localStorage.getItem("seachEx-"+i) != ""){
-			exLis.push(window.localStorage.getItem("seachEx-"+i));
-		}
+	if(!window.localStorage.getItem('assistIsClick')){
+		window.localStorage.setItem('assistIsClick','false');
 	}
-	//console.log($('.btn-multi-raid').length);
+	setTimeout(function(){
+		window.localStorage.setItem('assistIsClick','false');
+	},20000);
 	if(window.localStorage.getItem('autoSeachEx') === 'true'){
-
-	var bbc =setInterval(function () {
-			currtime++;
-			setTimeout(function(){isClick=false},30*1000);
-			//chrome.runtime.sendMessage({type: 'pass', herf: location.hash}, function (response) {});
-			//chrome.runtime.sendMessage({type: 'pass', herf: location.hash}, function (response) {
-            //    if (response.isClick == "true") {}
-			//onsole.log(currtime % 10);
+		for(var i=1;i<=6;i++){
+			if(window.localStorage.getItem("seachEx-"+i) != ""){
+				exLis.push(window.localStorage.getItem("seachEx-"+i));
+				}
+		}
+		var bbb =setInterval(function (){
+			console.log("isClick ========================"+window.localStorage.getItem('assistIsClick'));
 			if ($('.btn-use-full').length > 0) {
 				self.click(".btn-use-full:eq(1)");
 				
@@ -126,33 +140,33 @@ window.Extra = {
 			if ($('.btn-usual-ok').length == 1) {
                      self.click(".btn-usual-ok");
              }
-			if (/raid_multi/i.test(location.hash)) {
-					clearInterval(bbc);
-					
-			}
-			else if (/result_multi/i.test(location.hash) || /result\//i.test(location.hash)) {
-					if ($('.btn-control').length > 0) {
-					self.click(".btn-control:eq(0)");
-			}}
-			else if (/#quest\/supporter_raid/i.test(location.hash)) {
-				clearInterval(bbc);
-				//return self.sleep(10);
-			}else if (/quest\/assist/i.test(location.hash)) {
-					if(isClick == true){return;}
-					else{
-						for (var i = 0; i < $(".btn-multi-raid").length; i++) {
-						
+		},5000);
+		
+
+		var bbc =setInterval(function () {
+
+			//chrome.runtime.sendMessage({type: 'pass', herf: location.hash}, function (response) {});
+ 			//if(window.localStorage.getItem('assistIsClick') == 'true'){
+			//		clearInterval(bbc);;}
+			for (var i = 0; i < $(".btn-multi-raid").length; i++) {
 						//console.log($(".btn-multi-raid:eq(" + i + ")").attr("data-quest-id"));
-							var mu_index = exLis.indexOf($(".btn-multi-raid:eq(" + i + ")").attr("data-quest-id"));
+				var mu_index = exLis.indexOf($(".btn-multi-raid:eq(" + i + ")").attr("data-quest-id"));
 						//console.log("index =========="+mu_index);
-							if (mu_index >= 0) {
-								self.click(".btn-multi-raid:eq(" + i + ")");
-								isClick = true;
-						}}if (currtime % 10  == "9") {
-							self.click(".btn-tabs:eq(0)");
-						}
-			}}else {	location.href = "http://gbf.game.mbga.jp/#quest/assist";
-			}}, 3000); }
+				if (mu_index >= 0 && window.localStorage.getItem('assistIsClick') == 'false') {
+					self.click(".btn-multi-raid:eq(" + i + ")");
+				}}
+			
+			}, 1000);
+			
+		 var bbd = setTimeout(function (){	
+			if(window.localStorage.getItem('assistIsClick') == 'false'){
+					//self.click(".btn-tabs:eq(0)")
+					window.location.reload();}},20000);
+			 
+			 
+		 }
+		 		
+	
 	//randomTime = getRandomInt(0, 5);
 
 	/*	 
@@ -240,7 +254,119 @@ window.Extra = {
 					self.click(".btn-make-ready-large");
 					clearInterval(ok);					
 					}*/
-		}, 2000);
+		    }, 2000);
+			if(window.localStorage.getItem('ptcoopraid') =='1'){
+			var bba =setInterval(function () {
+				if ($('.btn-open-stage-2').length == 1) {
+					self.click(".btn-open-stage-2");
+					clearInterval(bba);
+					}
+				}, 5000); 
+			var bbb =setInterval(function () {
+				if ($('.btn-forward').length > 0) {
+					self.click(".btn-forward");
+					clearInterval(bbb);
+					}
+				}, 5000); 
+			var bbc =setInterval(function () {
+				if ($('.btn-stage-detail').length >0) {
+					if($('.btn-stage-detail:eq(2)').attr("data-stage-id")==10){
+						self.click(".btn-stage-detail:eq(2)");
+						clearInterval(bbc);
+					}}
+				}, 5000); 
+			var bbd =setInterval(function () {
+					if ($('.btn-set-quest').length >0) {
+					self.click(".btn-set-quest:eq(0)");	
+					clearInterval(bbd);
+					}
+				}, 5000); 
+	    	}else if(window.localStorage.getItem('ptcoopraid') =='2'){
+			var bba =setInterval(function () {
+				if ($('.btn-open-stage-3').length == 1) {
+					self.click(".btn-open-stage-3");
+					clearInterval(bba);
+					}
+				}, 5000); 
+			var bbc =setInterval(function () {
+				if ($('.btn-stage-detail').length >0) {
+					var count = $('.btn-stage-detail').length - 1;
+					self.click(".btn-stage-detail:eq(" + count + ")");
+					clearInterval(bbc);
+					}
+				}, 5000); 
+			var bbd =setInterval(function () {
+					if ($('.btn-set-quest').length >0) {
+					var count2 = $('.btn-set-quest').length - 3;
+					self.click(".btn-set-quest:eq(" + count2 + ")");	
+					clearInterval(bbd);
+					}
+				}, 5000); 
+			}else if(window.localStorage.getItem('ptcoopraid') =='3'){
+			var bba =setInterval(function () {
+				if ($('.btn-open-stage-3').length == 1) {
+					self.click(".btn-open-stage-3");
+					clearInterval(bba);
+					}
+				}, 5000); 
+			var bbc =setInterval(function () {
+				if ($('.btn-stage-detail').length >0) {
+					var count = $('.btn-stage-detail').length - 3;
+					self.click(".btn-stage-detail:eq(" + count + ")");
+					clearInterval(bbc);
+					}
+				}, 5000); 
+			var bbd =setInterval(function () {
+					if ($('.btn-set-quest').length >0) {
+					var count2 = $('.btn-set-quest').length - 2;
+					self.click(".btn-set-quest:eq(" + count2 + ")");	
+					clearInterval(bbd);
+					}
+				}, 5000); 
+			}else if(window.localStorage.getItem('ptcoopraid') =='4'){
+			var bba =setInterval(function () {
+				if ($('.btn-open-stage-3').length == 1) {
+					self.click(".btn-open-stage-3");
+					clearInterval(bba);
+					}
+				}, 5000); 
+			var bbc =setInterval(function () {
+				if ($('.btn-stage-detail').length >0) {
+					var count = $('.btn-stage-detail').length - 2;
+					self.click(".btn-stage-detail:eq(" + count + ")");
+					clearInterval(bbc);
+					}
+				}, 5000); 
+			var bbd =setInterval(function () {
+					if ($('.btn-set-quest').length >0) {
+					var count2 = $('.btn-set-quest').length - 1;
+					self.click(".btn-set-quest:eq(" + count2 + ")");	
+					clearInterval(bbd);
+					}
+				}, 5000); 
+			}else if(window.localStorage.getItem('ptcoopraid') =='5'){
+			var bba =setInterval(function () {
+				if ($('.btn-open-stage-3').length == 1) {
+					self.click(".btn-open-stage-3");
+					clearInterval(bba);
+					}
+				}, 5000); 
+			var bbc =setInterval(function () {
+				if ($('.btn-stage-detail').length >0) {
+					var count = $('.btn-stage-detail').length - 3;
+					self.click(".btn-stage-detail:eq(" + count + ")");
+					clearInterval(bbc);
+					}
+				}, 5000); 
+			var bbd =setInterval(function () {
+					if ($('.btn-set-quest').length >0) {
+					var count2 = $('.btn-set-quest').length - 1;
+					self.click(".btn-set-quest:eq(" + count2 + ")");	
+					clearInterval(bbd);
+					}
+				}, 5000); 
+			}
+		/*
 		var bba =setInterval(function () {
 			
 			if ($('.btn-open-stage-2').length == 1) {
@@ -268,7 +394,7 @@ window.Extra = {
 				}
 			}, 5000); 
 			
-			
+	*/		
 	}
 	var room =setInterval(function () {
 	self.waitUntilVisible('.btn-make-ready-large.not-ready').then(function() {
@@ -316,4 +442,3 @@ window.Extra = {
   }
 }
 
-var currtime=0;

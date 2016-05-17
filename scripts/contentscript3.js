@@ -169,6 +169,9 @@ var Client = {
     return window.localStorage.getItem(key);
   },
   chooseSupporterByPref: function() {
+	if(window.localStorage.getItem('assistIsClick')){
+			window.localStorage.setItem('assistIsClick','true');
+	}
     var prefs = [];
 	var set
 	var set_attribute = [];
@@ -200,7 +203,7 @@ var Client = {
     }
 	
 	var url = window.localStorage.getItem('quest-id');
-	setTimeout("remainTime()",100*1000);  
+	setTimeout("remainTime()",10*1000);  
 	
     if (this.getPreference('dragon-girl') === 'true') {
       prefs.push('ジ・オーダー・グランデ');
@@ -220,6 +223,9 @@ var Client = {
       if (supporters.length) {
         var userID = supporters[0].parentNode.parentNode.parentNode.dataset.supporterUserId;
         button = '[data-supporter-user-id="' + userID + '"][data-attribute="'+ set_attribute +'"]';
+		if(window.localStorage.getItem('assistIsClick')){
+			window.localStorage.setItem('assistIsClick','false');
+		}
         return true;
       }
     }, this);
@@ -268,6 +274,9 @@ var Client = {
         return a.effectAmount < b.effectAmount;
       });
       button = '[data-supporter-user-id="' + candidates[0].id + '"][data-attribute="'+ set_attribute +'"]';
+	 	if(window.localStorage.getItem('assistIsClick')){
+			window.localStorage.setItem('assistIsClick','false');
+		}
     }
 
     return this.sleep(3).then(function() {
@@ -293,12 +302,21 @@ var Client = {
     }.bind(this));
   },
   '_handle_quest/supporter_raid': function() {
+	var self = this;
+	var bbb =setInterval(function (){
+			if ($('.btn-usual-ok').length == 1) {
+                     self.click(".btn-usual-ok");
+             }
+		},1000);
     this['_handle_quest/supporter']();
   },
   '_handle_quest/supporter': function() {
     if (window.localStorage.getItem('auto-choose-supporter') === 'false') {
       return;
     }
+	if(window.localStorage.getItem('assistIsClick')){
+			window.localStorage.setItem('assistIsClick','true');
+	}
     this.waitUntilVisible('.btn-supporter').then(function() {
       this.chooseSupporterByPref();  
     }.bind(this));
@@ -342,11 +360,14 @@ var Client = {
     }.bind(this));
   },
   '_handle_result_multi': function() {
+	var bbc =setTimeout(function(){
+		location.reload();
+	},10000);
     this._handle_result();
   },
   '_handle_result': function() {
     if (this.isFarmingQuest()) {
-      this.sleep(5).then(function() {
+      this.sleep(1).then(function() {
         this.load(window.localStorage.getItem('quest-id'));
       }.bind(this));
       return;

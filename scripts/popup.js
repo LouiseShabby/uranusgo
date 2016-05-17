@@ -20,6 +20,14 @@ var Popup = {
 	//$('#saveList').on('click', function() {
   //    $('#seachEx-1').trigger('change');
   //  });	
+	$('input[name="reloadtime"]').val(window.localStorage.getItem('reloadtime'));
+	$('#setreloadtime-ok').on('click', function() {
+      $('#reloadtime').trigger('change');
+    });	
+    $('input[name="ptcoopraid"]').val([localStorage["ptcoopraid"]]);
+	$('input[name="ptcoopraid"]').change(function() {
+		localStorage["ptcoopraid"] = $('input[name="ptcoopraid"]:checked').val();
+	});
 	$('input[name="ptZokusei"]').val([localStorage["ptZokusei"]]);
 	$('input[name="ptZokusei"]').change(function() {
 		localStorage["ptZokusei"] = $('input[name="ptZokusei"]:checked').val();

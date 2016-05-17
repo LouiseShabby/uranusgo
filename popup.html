@@ -75,6 +75,18 @@
     <div>
      <input id="master" name="master" type="checkbox" />我是房主
     </div> 
+    <div class="buttonGroup" style="vertical-align:middle; padding:3px 0;"> 
+     <input type="radio" name="ptcoopraid" value="1" id="ptcoopraid-1" /><!--
+	 --><label for="ptcoopraid-1">罐子</label><!--
+	 --><input type="radio" name="ptcoopraid" value="2" id="ptcoopraid-2" /><!--
+	 --><label for="ptcoopraid-2">信念</label><!--
+	 --><input type="radio" name="ptcoopraid" value="3" id="ptcoopraid-3" /><!--
+	 --><label for="ptcoopraid-3">人马</label><!--
+	 --><input type="radio" name="ptcoopraid" value="4" id="ptcoopraid-4" /><!--
+	 --><label for="ptcoopraid-4">光妃</label><!--
+	 --><input type="radio" name="ptcoopraid" value="5" id="ptcoopraid-5" /><!--
+	 --><label for="ptcoopraid-5">幻魔</label>
+    </div> 
    </fieldset> 
     <legend>自動任務</legend> 
     <input style="width: 100%" type="text" name="quest-id" id="quest-id" placeholder="輸入完整任務進入路徑後按Start，或從下方選擇" /> 
@@ -100,7 +112,7 @@
 	 --><label for="ptZokusei-6">闇</label> 
     </div> 
     <div>
-     <input name="select" type="checkbox" />自定義召喚，需要先勾選召喚獸屬性（此功能測試中）
+     <input name="select" type="checkbox" />自定義召喚，需要先勾選召喚獸屬性
     </div> 
     <input style="width: 100%" type="text" name="select-id" id="select-id" placeholder="此處輸入召喚名字(此功能測試中)" /> 
     <button type="button" class="btn btn-info" id="OK">確定</button> 
@@ -112,11 +124,14 @@
      <img src="http://gbf.game-a.mbga.jp/assets/img/sp/assets/item/normal/s/2.jpg" /> 
     </div> 
     <div> 
+	 <div><input name="setreloadtime" type="checkbox" />启用自定义战斗刷新间隔（秒）</div> 
+	 <input style="width: 50%" type="text" name="reloadtime" id="reloadtime" placeholder="刷新间隔（默认10S）" /> 
+     <button type="button" class="btn btn-info" id="setreloadtime-ok">確定</button> 
      <div><input name="normal-attack-only" type="checkbox" />只使用普通攻擊</div> 
      <div><input name="FCopen" type="checkbox" />使用FC</div> 
      <div><input name="FCrefresh" type="checkbox" />奥义完成后自动刷新</div> 
      <div><input name="xuecaibichi" type="checkbox" />雪菜</div> 
-    <div><input name="auto-summon" type="checkbox" />自動召喚</div> 
+     <div><input name="auto-summon" type="checkbox" />自動召喚</div> 
      <div><input name="auto-medal" type="checkbox" />自動抽戰貨</div> 
      <div><input name="use-green-potion" type="checkbox" />自動使用綠色藥水藍色藥水</div> 
      <div><input name="use-event-potion" type="checkbox" />自動使用事件藥水</div> 
