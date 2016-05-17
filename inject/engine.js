@@ -32,7 +32,7 @@ function skiperror(){
 	}
         return false;
 	}
-	if (getStrMatch(String($("div.txt-popup-body").find("p").html()), "エラー")) {
+	if (getStrMatch(String($("div.txt-popup-header").find("p").html()), "エラー")) {
 		if (getStrMatchFront(location.hash,"#raid")) {
 			setTimeout("pageReload()",1000);
 		} else {
