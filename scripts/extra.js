@@ -44,7 +44,11 @@ window.Extra = {
   },
    '_handle_quest': function() {
 	  var self = this;
-	  console.log(window.localStorage.getItem('autoSeachEx'));
+	  	
+    	if((window.localStorage.getItem('master')=='true')
+		||(window.localStorage.getItem('coopraid')=='true')){
+			location.href = "http://gbf.game.mbga.jp/#coopraid";
+		}
 	  if(window.localStorage.getItem('autoSeachEx') === 'true'){
 		  setInterval(function () {
 			  if ($('.btn-usual-ok').length > 0) {
@@ -58,8 +62,11 @@ window.Extra = {
   },
   '_handle_quest/index': function() {
 	  var self = this;
-	  console.log(window.localStorage.getItem('autoSeachEx'));
-	  if(window.localStorage.getItem('autoSeachEx') === 'true'){
+    	if((window.localStorage.getItem('master')=='true')
+		||(window.localStorage.getItem('coopraid')=='true')){
+			location.href = "http://gbf.game.mbga.jp/#coopraid";
+		}	  
+		if(window.localStorage.getItem('autoSeachEx') === 'true'){
 		  setInterval(function () {
 			  if ($('.btn-usual-ok').length > 0) {
 						self.click(".btn-usual-ok:eq(0)");
@@ -103,16 +110,17 @@ window.Extra = {
     }.bind(this));
   },
   '_handle_quest/assist/unclaimed': function() {
-	if(window.localStorage.getItem('assistIsClick')){
-		window.localStorage.setItem('assistIsClick','false');
+	  if(window.localStorage.getItem('assistIsClick')){
+		window.localStorage.setItem('assistIsClick','true');
 	}
 	var self = this;
 	var bbc =setInterval(function(){
 				if ($('.btn-multi-raid ').length > 0) {
 				self.click(".btn-multi-raid:eq(0)");
 				clearInterval(bbc);
-			}
-	},1000);
+				if(window.localStorage.getItem('assistIsClick')){
+					window.localStorage.setItem('assistIsClick','false');
+	}}},1000);
   },
   '_handle_quest/assist': function() {
     var self = this;
@@ -241,7 +249,15 @@ window.Extra = {
 		}.bind(this));
 	//}   */
 	var self = this;
+	
+	
+	if((window.localStorage.getItem('master')=='true')
+		||(window.localStorage.getItem('coopraid')=='true')){
+				setTimeout(function(){
+					window.location.reload();},15000)
+		}
 	if(window.localStorage.getItem('master')=='true'){
+	
 		var ok =setInterval(function () {
 			if ($('.btn-usual-ok').length >0) {
 				self.click(".btn-usual-ok");	
