@@ -32,14 +32,15 @@ window.Extra = {
     var self = this;
 	//  console.log(window.localStorage.getItem('autoSeachEx'));
 	 
-		  setInterval(function () {
+		 var bbc = setInterval(function () {
 			  if ($('.btn-control').length > 0) {
 						self.click(".btn-control");
 					}
 				else{
 					 if(window.localStorage.getItem('autoSeachEx') === 'true'){
-					 location.href = "http://gbf.game.mbga.jp/#quest/assist";}
-				}
+					 location.href = "http://gbf.game.mbga.jp/#quest/assist";
+					 clearInterval(bbc);
+				}}
 	  }, 2000);
   },
    '_handle_quest': function() {
@@ -50,12 +51,13 @@ window.Extra = {
 			location.href = "http://gbf.game.mbga.jp/#coopraid";
 		}
 	  if(window.localStorage.getItem('autoSeachEx') === 'true'){
-		  setInterval(function () {
+			var bbc = setInterval(function () {
 			  if ($('.btn-usual-ok').length > 0) {
 						self.click(".btn-usual-ok:eq(0)");
 					}
 				else{
 						location.href = "http://gbf.game.mbga.jp/#quest/assist";
+						clearInterval(bbc);
 				}
 	  }, 2000);}
        
@@ -67,12 +69,13 @@ window.Extra = {
 			location.href = "http://gbf.game.mbga.jp/#coopraid";
 		}	  
 		if(window.localStorage.getItem('autoSeachEx') === 'true'){
-		  setInterval(function () {
+			var bbc = setInterval(function () {
 			  if ($('.btn-usual-ok').length > 0) {
 						self.click(".btn-usual-ok:eq(0)");
 					}
 				else{
 						location.href = "http://gbf.game.mbga.jp/#quest/assist";
+						clearInterval(bbc);
 				}
 	  }, 2000);}
        
