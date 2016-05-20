@@ -56,7 +56,7 @@ function skiperror(){
 		}
 		return false;
 	}
-    if (getStrMatch(String($("div.prt-popup-header").find("p").html()), "このバトルは終了")) {
+    if (getStrMatch(String($("div.prt-popup-header").find("p").html()), "終了")) {
          setTimeout("pageReload()",1000);
         return false;
     }
@@ -119,6 +119,13 @@ function goMypage() {
 window.Engine = {
   start: function() {
 	this.debug('Engine Start!!');
+	if(window.localStorage.getItem('coopraid')=='true'){
+
+		  if (this.turn === undefined) {
+		this.eachTurn(0);
+		return;
+	  }
+	}
 	if(window.localStorage.getItem('assistIsClick')){
 		window.localStorage.setItem('assistIsClick','false');
 	}

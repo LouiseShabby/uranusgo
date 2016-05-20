@@ -154,6 +154,7 @@ window.Extra = {
 						//console.log("index =========="+mu_index);
 				if (mu_index >= 0 && window.localStorage.getItem('assistIsClick') == 'false') {
 					self.click(".btn-multi-raid:eq(" + i + ")");
+					return;
 				}}
 			
 			}, 1000);
@@ -254,117 +255,117 @@ window.Extra = {
 					self.click(".btn-make-ready-large");
 					clearInterval(ok);					
 					}*/
-		    }, 2000);
+		    }, 1000);
 			if(window.localStorage.getItem('ptcoopraid') =='1'){
 			var bba =setInterval(function () {
 				if ($('.btn-open-stage-2').length == 1) {
 					self.click(".btn-open-stage-2");
 					clearInterval(bba);
 					}
-				}, 5000); 
+				}, 1000); 
 			var bbb =setInterval(function () {
 				if ($('.btn-forward').length > 0) {
 					self.click(".btn-forward");
 					clearInterval(bbb);
 					}
-				}, 5000); 
+				}, 1000); 
 			var bbc =setInterval(function () {
 				if ($('.btn-stage-detail').length >0) {
 					if($('.btn-stage-detail:eq(2)').attr("data-stage-id")==10){
 						self.click(".btn-stage-detail:eq(2)");
 						clearInterval(bbc);
 					}}
-				}, 5000); 
+				}, 1000); 
 			var bbd =setInterval(function () {
 					if ($('.btn-set-quest').length >0) {
 					self.click(".btn-set-quest:eq(0)");	
 					clearInterval(bbd);
 					}
-				}, 5000); 
+				}, 1000); 
 	    	}else if(window.localStorage.getItem('ptcoopraid') =='2'){
 			var bba =setInterval(function () {
 				if ($('.btn-open-stage-3').length == 1) {
 					self.click(".btn-open-stage-3");
 					clearInterval(bba);
 					}
-				}, 5000); 
+				}, 1000); 
 			var bbc =setInterval(function () {
 				if ($('.btn-stage-detail').length >0) {
 					var count = $('.btn-stage-detail').length - 1;
 					self.click(".btn-stage-detail:eq(" + count + ")");
 					clearInterval(bbc);
 					}
-				}, 5000); 
+				}, 1000); 
 			var bbd =setInterval(function () {
 					if ($('.btn-set-quest').length >0) {
 					var count2 = $('.btn-set-quest').length - 3;
 					self.click(".btn-set-quest:eq(" + count2 + ")");	
 					clearInterval(bbd);
 					}
-				}, 5000); 
+				}, 1000); 
 			}else if(window.localStorage.getItem('ptcoopraid') =='3'){
 			var bba =setInterval(function () {
 				if ($('.btn-open-stage-3').length == 1) {
 					self.click(".btn-open-stage-3");
 					clearInterval(bba);
 					}
-				}, 5000); 
+				}, 1000); 
 			var bbc =setInterval(function () {
 				if ($('.btn-stage-detail').length >0) {
 					var count = $('.btn-stage-detail').length - 3;
 					self.click(".btn-stage-detail:eq(" + count + ")");
 					clearInterval(bbc);
 					}
-				}, 5000); 
+				}, 1000); 
 			var bbd =setInterval(function () {
 					if ($('.btn-set-quest').length >0) {
 					var count2 = $('.btn-set-quest').length - 2;
 					self.click(".btn-set-quest:eq(" + count2 + ")");	
 					clearInterval(bbd);
 					}
-				}, 5000); 
+				}, 1000); 
 			}else if(window.localStorage.getItem('ptcoopraid') =='4'){
 			var bba =setInterval(function () {
 				if ($('.btn-open-stage-3').length == 1) {
 					self.click(".btn-open-stage-3");
 					clearInterval(bba);
 					}
-				}, 5000); 
+				}, 1000); 
 			var bbc =setInterval(function () {
 				if ($('.btn-stage-detail').length >0) {
 					var count = $('.btn-stage-detail').length - 2;
 					self.click(".btn-stage-detail:eq(" + count + ")");
 					clearInterval(bbc);
 					}
-				}, 5000); 
+				}, 1000); 
 			var bbd =setInterval(function () {
 					if ($('.btn-set-quest').length >0) {
 					var count2 = $('.btn-set-quest').length - 1;
 					self.click(".btn-set-quest:eq(" + count2 + ")");	
 					clearInterval(bbd);
 					}
-				}, 5000); 
+				}, 1000); 
 			}else if(window.localStorage.getItem('ptcoopraid') =='5'){
 			var bba =setInterval(function () {
 				if ($('.btn-open-stage-3').length == 1) {
 					self.click(".btn-open-stage-3");
 					clearInterval(bba);
 					}
-				}, 5000); 
+				}, 1000); 
 			var bbc =setInterval(function () {
 				if ($('.btn-stage-detail').length >0) {
 					var count = $('.btn-stage-detail').length - 3;
 					self.click(".btn-stage-detail:eq(" + count + ")");
 					clearInterval(bbc);
 					}
-				}, 5000); 
+				}, 1000); 
 			var bbd =setInterval(function () {
 					if ($('.btn-set-quest').length >0) {
 					var count2 = $('.btn-set-quest').length - 1;
 					self.click(".btn-set-quest:eq(" + count2 + ")");	
 					clearInterval(bbd);
 					}
-				}, 5000); 
+				}, 1000); 
 			}
 		/*
 		var bba =setInterval(function () {
@@ -405,7 +406,7 @@ window.Extra = {
     }.bind(self));
 	self.waitUntilVisible('.btn-quest-start.se-quest-start').then(function() {
       self.click('.btn-quest-start.se-quest-start');
-    }.bind(self));},3000);
+    }.bind(self));},1000);
 
   },
   '_handle_coopraid/offer': function() {
