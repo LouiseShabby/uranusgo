@@ -14,8 +14,9 @@ window.Extra = {
     this.inject('inject/weapon.js');
   },
   '_handle_mypage': function() {
-    var exLis = [];
+    //var exLis = [];
 	console.log("111 = "+window.localStorage.getItem('seachEx-1'));
+	/*
 	for(var i=1;i<=6;i++){
 		console.log(window.localStorage.getItem("seachEx-"+i));
 	
@@ -24,9 +25,24 @@ window.Extra = {
 			 console.log(exLis);
 		}
 	}
+	*/
+	var searchName = window.localStorage.getItem('seachTwitter');
+	var requesturl = "http://realtime.search.yahoo.co.jp/search?p=参加者募集+"+searchName+"&ei=UTF-8";
+	
+	
+	var htmlobj=$.ajax({url:requesturl,async:false});
+	
+	
+	var str = htmlobj.responseText;
+	var s = str.indexOf('ID：')+3;//第一个=出现的位置
+	var e = str.indexOf(' Lv');//第一个&出现的位置
+	var re = str.substring(s,e);//返回的值
+	console.log(re);
+	
 	if(window.localStorage.getItem('autoSeachEx') === 'true'){
 		location.href = "http://gbf.game.mbga.jp/#quest/assist";
 	}
+	
   },
   '_handle_result_multi/empty':function() {
     var self = this;
@@ -137,46 +153,108 @@ window.Extra = {
 		window.localStorage.setItem('assistIsClick','false');
 	},20000);
 	if(window.localStorage.getItem('autoSeachEx') === 'true'){
-		for(var i=1;i<=6;i++){
-			if(window.localStorage.getItem("seachEx-"+i) != ""){
-				exLis.push(window.localStorage.getItem("seachEx-"+i));
-				}
-		}
-		var bbb =setInterval(function (){
-			console.log("isClick ========================"+window.localStorage.getItem('assistIsClick'));
-			if ($('.btn-use-full').length > 0) {
-				self.click(".btn-use-full:eq(1)");
-				
-			}
-			if ($('.btn-usual-ok').length == 1) {
-                     self.click(".btn-usual-ok");
-             }
-		},5000);
+		if(window.localStorage.getItem("ptSearchType")=='1'){
 		
-
-		var bbc =setInterval(function () {
-
-			//chrome.runtime.sendMessage({type: 'pass', herf: location.hash}, function (response) {});
- 			//if(window.localStorage.getItem('assistIsClick') == 'true'){
-			//		clearInterval(bbc);;}
-			for (var i = 0; i < $(".btn-multi-raid").length; i++) {
-						//console.log($(".btn-multi-raid:eq(" + i + ")").attr("data-quest-id"));
-				var mu_index = exLis.indexOf($(".btn-multi-raid:eq(" + i + ")").attr("data-quest-id"));
-						//console.log("index =========="+mu_index);
-				if (mu_index >= 0 && window.localStorage.getItem('assistIsClick') == 'false') {
-					self.click(".btn-multi-raid:eq(" + i + ")");
-					return;
-				}}
+			for(var i=1;i<=6;i++){
+				if(window.localStorage.getItem("seachEx-"+i) != ""){
+					exLis.push(window.localStorage.getItem("seachEx-"+i));
+					}
+			}
+			var bbb =setInterval(function (){
+				console.log("isClick ========================"+window.localStorage.getItem('assistIsClick'));
+				if ($('.btn-use-full').length > 0) {
+					self.click(".btn-use-full:eq(1)");
+					
+				}
+				if ($('.btn-usual-ok').length == 1) {
+						 self.click(".btn-usual-ok");
+				 }
+			},5000);
 			
-			}, 1000);
+
+			var bbc =setInterval(function () {
+
+				//chrome.runtime.sendMessage({type: 'pass', herf: location.hash}, function (response) {});
+				//if(window.localStorage.getItem('assistIsClick') == 'true'){
+				//		clearInterval(bbc);;}
+				for (var i = 0; i < $(".btn-multi-raid").length; i++) {
+							//console.log($(".btn-multi-raid:eq(" + i + ")").attr("data-quest-id"));
+					var mu_index = exLis.indexOf($(".btn-multi-raid:eq(" + i + ")").attr("data-quest-id"));
+							//console.log("index =========="+mu_index);
+					if (mu_index >= 0 && window.localStorage.getItem('assistIsClick') == 'false') {
+						self.click(".btn-multi-raid:eq(" + i + ")");
+						return;
+					}}
+				
+				}, 1000);
+				
+			 var bbd = setTimeout(function (){	
+				if(window.localStorage.getItem('assistIsClick') == 'false'){
+						//self.click(".btn-tabs:eq(0)")
+						window.location.reload();}},20000);
+			 
+			}
+		if(window.localStorage.getItem("ptSearchType")=='2'){	
+				
+				
+				var bbd = setInterval(function(){
+					self.click(".btn-tabs:eq(2)")
+				},5000);
+				
+									
+				
+				var searchName = window.localStorage.getItem('seachTwitter');
+				var requesturl = "http://realtime.search.yahoo.co.jp/search?p=参加者募集+"+searchName+"&ei=UTF-8";
+				var re = "";
+				var bbdb = setInterval(function(){
+					var htmlobj=$.ajax({url:requesturl,async:false});
+					var str = htmlobj.responseText;
+					var getNext = str.indexOf(' Lv')+30;
+					var NextStr = str.substring(getNext);
+					var s = NextStr.indexOf('ID：')+3;
+					var e = NextStr.indexOf(' Lv');
+					
+					re = NextStr.substring(s,e);
+					console.log("参战id========"+re);
+				},5000);
+
 			
-		 var bbd = setTimeout(function (){	
-			if(window.localStorage.getItem('assistIsClick') == 'false'){
-					//self.click(".btn-tabs:eq(0)")
-					window.location.reload();}},20000);
-			 
-			 
-		 }
+				
+				var bbb =setInterval(function (){
+					console.log("isClick ========================"+window.localStorage.getItem('assistIsClick'));
+					if ($('.btn-post-key').length >0&&document.querySelector('.frm-battle-key').type=='text') {
+						self.click(".btn-post-key");	
+					}	
+					if ($('.btn-use-full').length > 0) {
+						self.click(".btn-use-full:eq(1)");
+						
+					}
+					if ($('.btn-usual-ok').length == 1) {
+							 self.click(".btn-usual-ok");
+					 }
+				},5000);
+				
+				
+				
+					var bbf = setInterval(function(){
+						if(document.querySelector('.frm-battle-key').type=='password'){
+							document.querySelector('.frm-battle-key').type='text';
+							document.querySelector('.frm-battle-key').value=re;
+							clearInterval(bbf);
+						}	
+					},5000);
+				
+				
+			
+			
+	
+				var bbd = setTimeout(function (){	
+				if(window.localStorage.getItem('assistIsClick') == 'false'){
+						//self.click(".btn-tabs:eq(0)")
+						window.location.reload();}},20000);
+		
+		}		
+	}
 		 		
 	
 	//randomTime = getRandomInt(0, 5);

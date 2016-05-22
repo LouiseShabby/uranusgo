@@ -32,6 +32,11 @@ var Popup = {
 	$('input[name="ptZokusei"]').change(function() {
 		localStorage["ptZokusei"] = $('input[name="ptZokusei"]:checked').val();
 	});
+	$('input[name="ptSearchType"]').val([localStorage["ptSearchType"]]);
+	$('input[name="ptSearchType"]').change(function() {
+		localStorage["ptSearchType"] = $('input[name="ptSearchType"]:checked').val();
+	});
+	$('#seachTwitter').val(window.localStorage.getItem('seachTwitter'));
 	$('#seachEx-1').val(window.localStorage.getItem('seachEx-1'));
 	$('#seachEx-2').val(window.localStorage.getItem('seachEx-2'));
 	$('#seachEx-3').val(window.localStorage.getItem('seachEx-3'));	
@@ -39,6 +44,7 @@ var Popup = {
 	$('#seachEx-5').val(window.localStorage.getItem('seachEx-5'));
 	$('#seachEx-6').val(window.localStorage.getItem('seachEx-6'));	
 	$('#saveList').on('click', function() {
+		$("#seachTwitter").trigger('change');
 		for(var i=1;i<=6;i++){
 			    $("#seachEx-"+i).trigger('change');
 	}});	
