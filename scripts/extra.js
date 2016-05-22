@@ -197,9 +197,12 @@ window.Extra = {
 		if(window.localStorage.getItem("ptSearchType")=='2'){	
 				
 				
-				var bbd = setInterval(function(){
-					self.click(".btn-tabs:eq(2)")
-				},5000);
+				var bbe = setInterval(function(){
+					if($('.btn-post-key').length=0){
+						self.click(".btn-tabs:eq(2)");
+						clearInterval(bbe);
+					}	
+				},1000);
 				
 									
 				
@@ -232,7 +235,7 @@ window.Extra = {
 					if ($('.btn-usual-ok').length == 1) {
 							 self.click(".btn-usual-ok");
 					 }
-				},5000);
+				},1000);
 				
 				
 				
