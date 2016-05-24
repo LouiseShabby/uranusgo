@@ -203,7 +203,7 @@ var Client = {
     }
 	
 	var url = window.localStorage.getItem('quest-id');
-	setTimeout("remainTime()",10*1000);  
+	//setTimeout("remainTime()",10*1000);  
 	
     if (this.getPreference('dragon-girl') === 'true') {
       prefs.push('ジ・オーダー・グランデ');
@@ -303,11 +303,14 @@ var Client = {
   },
   '_handle_quest/supporter_raid': function() {
 	var self = this;
-	var bbb =setInterval(function (){
+	if(window.localStorage.getItem('autoSeachEx') === 'true'){
+			var bbb =setInterval(function (){
 			if ($('.btn-usual-ok').length == 1) {
                      self.click(".btn-usual-ok");
              }
 		},1000);
+	}
+
     this['_handle_quest/supporter']();
   },
   '_handle_quest/supporter': function() {
@@ -360,14 +363,16 @@ var Client = {
     }.bind(this));
   },
   '_handle_result_multi': function() {
-	var bbc =setTimeout(function(){
-		location.reload();
-	},10000);
+	if(window.localStorage.getItem('autoSeachEx') === 'true'){ 
+		var bbc =setTimeout(function(){
+			location.reload();
+		},10000);
+	}
     this._handle_result();
   },
   '_handle_result': function() {
     if (this.isFarmingQuest()) {
-      this.sleep(1).then(function() {
+      this.sleep(3).then(function() {
         this.load(window.localStorage.getItem('quest-id'));
       }.bind(this));
       return;

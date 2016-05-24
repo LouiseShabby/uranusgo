@@ -6,11 +6,11 @@ window.SkillChecker = {
 var runFlag = 0;
 var ifnotrunTime =0;
 
-
+/*
 setInterval(function(){if ($('.btn-usual-ok').length >0) {
 		self.click(".btn-usual-ok");	
 }},1000);
-
+*/
 setInterval(function(){turnWaitCancel();},100);
 
 setInterval(function(){skiperror();},1000);
@@ -129,12 +129,10 @@ window.Engine = {
 	if(window.localStorage.getItem('assistIsClick')){
 		window.localStorage.setItem('assistIsClick','false');
 	}
-	window.localStorage.setItem('xuecaiGo',0);
     this.observers = [];
     this.observeEnd();
-		//This.sleep(3);
 
-   if (window.location.hash.indexOf('raid_multi') >= 0) {
+	if (window.location.hash.indexOf('raid_multi') >= 0) {
       this._handle_raid_multi();
     } else {
       this._handle_raid();
@@ -190,10 +188,10 @@ window.Engine = {
 	this.debug('inject complete!!');
     Promise.race([
      this.waitUntilVisible('div.prt-popup-header:contains("救援依頼")'),
-      this.sleep(2)
+      this.sleep(1)
     ]).then(function() {
       this.click('.btn-usual-cancel');
-      return this.sleep(3);
+      return this.sleep(1);
     }.bind(this)).then(function() {
       this.eachTurn(0);
     }.bind(this));
@@ -203,6 +201,8 @@ window.Engine = {
       return;
     }
 	runFlag = 1;
+	window.localStorage.setItem('xuecaiGo',0);
+
 	//setTimeout("remainTime()",60*1000);  
 	this.debug('reloadtime = '+ifnotrunTime);
     this.turn = turn;
@@ -228,7 +228,7 @@ window.Engine = {
                             if ($(".prt-member .lis-character3 .prt-gauge-special-inner").attr('style').split(':')[1].replace(/%;/, "") >= 70) {
 						allFull = 1;}}}
 				if (allFull == 1) {fcGo = 1;
-             if ($(".btn-lock").hasClass("lock1")) {this.click(".btn-lock"); }}}
+						if ($(".btn-lock").hasClass("lock1")) {this.click(".btn-lock"); }}}
       else {
                      if ($(".btn-lock").hasClass("lock0")) {
                           this.click(".btn-lock");} }}
@@ -255,7 +255,7 @@ window.Engine = {
       this.attack();
 	  
 	  if (fcGo === 1 && window.localStorage.getItem('FCrefresh') == 'true'){ 
-					this.debug("re");this.sleep(2);window.location.reload();
+					this.debug("re");window.location.reload();
 							this._handle_raid_multi();}
       return Promise.resolve();
     }.bind(this)).then(function() {

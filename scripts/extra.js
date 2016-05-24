@@ -26,18 +26,6 @@ window.Extra = {
 		}
 	}
 	*/
-	var searchName = window.localStorage.getItem('seachTwitter');
-	var requesturl = "http://realtime.search.yahoo.co.jp/search?p=参加者募集+"+searchName+"&ei=UTF-8";
-	
-	
-	var htmlobj=$.ajax({url:requesturl,async:false});
-	
-	
-	var str = htmlobj.responseText;
-	var s = str.indexOf('ID：')+3;//第一个=出现的位置
-	var e = str.indexOf(' Lv');//第一个&出现的位置
-	var re = str.substring(s,e);//返回的值
-	console.log(re);
 	
 	if(window.localStorage.getItem('autoSeachEx') === 'true'){
 		location.href = "http://gbf.game.mbga.jp/#quest/assist";
@@ -47,17 +35,17 @@ window.Extra = {
   '_handle_result_multi/empty':function() {
     var self = this;
 	//  console.log(window.localStorage.getItem('autoSeachEx'));
-	 
-		 var bbc = setInterval(function () {
+	 	if(window.localStorage.getItem('autoSeachEx') === 'true'){
+			var bbc = setInterval(function () {
 			  if ($('.btn-control').length > 0) {
 						self.click(".btn-control");
 					}
 				else{
-					 if(window.localStorage.getItem('autoSeachEx') === 'true'){
 					 location.href = "http://gbf.game.mbga.jp/#quest/assist";
 					 clearInterval(bbc);
-				}}
-	  }, 2000);
+				}
+			}, 2000);
+		}
   },
    '_handle_quest': function() {
 	  var self = this;
@@ -83,8 +71,7 @@ window.Extra = {
     	if((window.localStorage.getItem('master')=='true')
 		||(window.localStorage.getItem('coopraid')=='true')){
 			location.href = "http://gbf.game.mbga.jp/#coopraid";
-		}	  
-		if(window.localStorage.getItem('autoSeachEx') === 'true'){
+		}else if(window.localStorage.getItem('autoSeachEx') === 'true'){
 			var bbc = setInterval(function () {
 			  if ($('.btn-usual-ok').length > 0) {
 						self.click(".btn-usual-ok:eq(0)");
