@@ -4,7 +4,7 @@ var Popup = {
   start: function() {
     this.initSkills();
     this.initQuests();
-
+	//this.setCheckboxs(".ck",array);
     $('#quest-id').val(window.localStorage.getItem('quest-id'));
     $('#start').on('click', function() {
       $('#quest-id').trigger('change');
@@ -36,6 +36,26 @@ var Popup = {
 	$('input[name="ptSearchType"]').change(function() {
 		localStorage["ptSearchType"] = $('input[name="ptSearchType"]:checked').val();
 	});
+	$('#skill-1-1').val(window.localStorage.getItem('skill-1-1'));
+	$('#skill-1-2').val(window.localStorage.getItem('skill-1-2'));
+	$('#skill-1-3').val(window.localStorage.getItem('skill-1-3'));
+	$('#skill-1-4').val(window.localStorage.getItem('skill-1-4'));
+	
+	$('#skill-2-1').val(window.localStorage.getItem('skill-2-1'));
+	$('#skill-2-2').val(window.localStorage.getItem('skill-2-2'));
+	$('#skill-2-3').val(window.localStorage.getItem('skill-2-3'));
+	$('#skill-2-4').val(window.localStorage.getItem('skill-2-4'));
+	
+	$('#skill-3-1').val(window.localStorage.getItem('skill-3-1'));
+	$('#skill-3-2').val(window.localStorage.getItem('skill-3-2'));
+	$('#skill-3-3').val(window.localStorage.getItem('skill-3-3'));
+	$('#skill-3-4').val(window.localStorage.getItem('skill-3-4'));
+	
+	$('#skill-4-1').val(window.localStorage.getItem('skill-4-1'));
+	$('#skill-4-2').val(window.localStorage.getItem('skill-4-2'));
+	$('#skill-4-3').val(window.localStorage.getItem('skill-4-3'));
+	$('#skill-4-4').val(window.localStorage.getItem('skill-4-4'));
+	
 	$('#seachTwitter').val(window.localStorage.getItem('seachTwitter'));
 	$('#seachEx-1').val(window.localStorage.getItem('seachEx-1'));
 	$('#seachEx-2').val(window.localStorage.getItem('seachEx-2'));
@@ -48,6 +68,12 @@ var Popup = {
 		for(var i=1;i<=6;i++){
 			    $("#seachEx-"+i).trigger('change');
 	}});	
+	$('#saveList').on('click', function() {
+		for(var i=1;i<=4;i++){
+			for(var j=1;j<=4;j++){
+			   $("#skill-"+i+"-"+j).trigger('change');
+			}}
+	});
     $('form').on('click', '[data-quest-id]', function() {
       $('#quest-id').val($(this)[0].dataset.questId).trigger('change');
     });
@@ -63,9 +89,39 @@ var Popup = {
       if (window.localStorage.getItem($(this).attr('name')) === 'true') {
         $(this).attr('checked', true);
       }
-    });
+    });/*
+	$("btnsub").on('click', function() {
+        var newResult=[];
+        jQuery("input[type=checkbox][name=checkbox]").each(function(index){
+			jQuery(this).trigger('change');
+            if(jQuery(this).attr("checked")=="checked")
+                newResult[index]= 1;
+            else
+                newResult[index]= 0;
+        });
 		
+		window.localStorage["result"]= newResult.toString();
+	});	*/
 },
+/*
+   setCheckboxs: function(CKname,array) {
+    $(CKname).each(function (index, ele) {
+        if (array[index] == "1") {
+            $(ele).attr("checked", true);
+        }
+        else {
+            $(ele).attr("checked", false);
+        }
+        $(ele).click(function () {
+            if ($(ele).attr("checked") == "checked") {
+                $(ele).attr("checked", false);
+            }
+            else {
+                $(ele).attr("checked", true);
+            }
+        });
+    });
+  },*/
   initQuests: function() {
     var quests = window.localStorage.getItem('quest-database');
     if (!quests) {

@@ -119,30 +119,101 @@ function goMypage() {
 window.Engine = {
   start: function() {
 	this.debug('Engine Start!!');
-	if(window.localStorage.getItem('coopraid')=='true'){
+	var self =this;
+	if(window.localStorage.getItem('easybattle')=='true'){
+		this.debug("gogogo");
+		setInterval(function(){
+			self.new_battle();
+		},1000);
+	
+	  }else{
+		
+		if(window.localStorage.getItem('coopraid')=='true'){
 
-		  if (this.turn === undefined) {
-		this.eachTurn(0);
-		return;
-	  }
-	}
-	if(window.localStorage.getItem('assistIsClick')){
-		window.localStorage.setItem('assistIsClick','false');
-	}
-    this.observers = [];
-    this.observeEnd();
+			  if (this.turn === undefined) {
+			this.eachTurn(0);
+			return;
+		  }
+		}
+		if(window.localStorage.getItem('assistIsClick')){
+			window.localStorage.setItem('assistIsClick','false');
+		}
+		this.observers = [];
+		this.observeEnd();
 
-	if (window.location.hash.indexOf('raid_multi') >= 0) {
-      this._handle_raid_multi();
-    } else {
-      this._handle_raid();
-    }
+		if (window.location.hash.indexOf('raid_multi') >= 0) {
+		  this._handle_raid_multi();
+		} else {
+		  this._handle_raid();
+		}
+	  }	
   },
   debug: function(msg) {
     window.dispatchEvent(new CustomEvent('_debug', {
       detail: arguments
     }))
   },
+  
+  new_battle: function() {
+		
+		  if($(".pop-show .prt-popup-header").length>0){
+             this.click(".pop-show .prt-popup-footer .btn-usual-ok");
+          }
+          if ($(".btn-result").is(":visible")) {
+                  $(".btn-result").trigger("tap");
+                 this.click(".btn-result");
+                  return;
+              }
+		  if(window.localStorage.getItem('xuecaibichi') === 'true'){
+			if ($(".prt-member .lis-character0 .prt-gauge-special-inner").attr('style') == "width: 100%;") {
+                    if ($(".prt-member .lis-character1 .prt-gauge-special-inner").attr('style').split(':')[1].replace(/%;/, "") == 100) {
+                        if ($(".prt-member .lis-character2 .prt-gauge-special-inner").attr('style').split(':')[1].replace(/%;/, "") == 100) {
+                            if ($(".prt-member .lis-character3 .prt-gauge-special-inner").attr('style').split(':')[1].replace(/%;/, "") == 100) {
+                                  window.localStorage.setItem('xuecaiGo',1);}}}}
+				else {			
+					window.localStorage.setItem('xuecaiGo',0);
+                     if ($(".btn-lock").hasClass("lock0")) {
+                          this.click(".btn-lock");}}}		  
+	    	if(window.localStorage.getItem('FCopen') === 'true'){
+				if ($(".prt-member .lis-character0 .prt-gauge-special-inner").attr('style') == "width: 100%;") {
+                    if ($(".prt-member .lis-character1 .prt-gauge-special-inner").attr('style').split(':')[1].replace(/%;/, "") >= 90) {
+                        if ($(".prt-member .lis-character2 .prt-gauge-special-inner").attr('style').split(':')[1].replace(/%;/, "") >= 80) {
+                            if ($(".prt-member .lis-character3 .prt-gauge-special-inner").attr('style').split(':')[1].replace(/%;/, "") >= 70) {
+						allFull = 1;}}}
+				if (allFull == 1) {fcGo = 1;
+						if ($(".btn-lock").hasClass("lock1")) {this.click(".btn-lock"); }}}
+				else {
+                     if ($(".btn-lock").hasClass("lock0")) {
+                          this.click(".btn-lock");} }
+			}
+
+              if ($(".btn-attack-start").hasClass("display-on")) {
+                 if (window.localStorage.getItem('normal-attack-only') === 'true') {
+                     this.click(".btn-attack-start");
+                      return;
+                  }
+			  var c =0;	  
+			  for(var i=0;i<=3;i++){
+				  for(var j=0;j<=3;j++){
+				       this.debug("skill =================="+(window.localStorage.getItem("skill-"+(i+1)+"-"+(j+1))));
+					   this.debug("c============"+c);
+						if(window.localStorage.getItem("skill-"+(i+1)+"-"+(j+1))=='1'
+								&& $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available")
+								&& !$(".prt-command-chara:eq(" + i + ")").hasClass("ability-disable"))
+									{
+										this.click(".lis-ability:eq(" + c + ")");		
+										return;
+			 						}
+						c++;			
+			 	}
+			  }
+				  
+				 this.click(".btn-attack-start");  
+
+           }   
+  },
+  
+  
   isMultiRaid: function() {
     return window.location.hash.indexOf('raid_multi') >= 0;
   },
@@ -276,13 +347,13 @@ window.Engine = {
         this.click('.btn-result');
       }
     }.bind(this));
-	this.debug("observeEnd2");	
+	this.debug("observeEnd2");	/*
     observer.observe(document.querySelector('.prt-command-end'), {
       childList: true,
       subtree: true,
       attributes: true,
       characterData: false
-    });
+    });*/
 	this.debug("observeEnd3");
     this.observers.push(observer);
   },

@@ -326,7 +326,7 @@ var Client = {
   },
   '_handle_raid': function() {
     Promise.race([this.waitUntilVisible('.prt-start-direction'),
-                 this.sleep(6)])
+                 this.sleep(3)])
     .then(function() {
 
       console.log('ready to inject');
