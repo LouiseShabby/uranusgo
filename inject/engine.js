@@ -164,6 +164,11 @@ window.Engine = {
                  this.click(".btn-result");
                   return;
               }
+		  if ($(".btn-attack-start").hasClass("display-on")) {
+                 if (window.localStorage.getItem('normal-attack-only') === 'true') {
+                     this.click(".btn-attack-start");
+                      return;
+                  }	  
 		  if(window.localStorage.getItem('xuecaibichi') === 'true'){
 			if ($(".prt-member .lis-character0 .prt-gauge-special-inner").attr('style') == "width: 100%;") {
                     if ($(".prt-member .lis-character1 .prt-gauge-special-inner").attr('style').split(':')[1].replace(/%;/, "") == 100) {
@@ -174,7 +179,7 @@ window.Engine = {
 					window.localStorage.setItem('xuecaiGo',0);
                      if ($(".btn-lock").hasClass("lock0")) {
                           this.click(".btn-lock");}}}		  
-	    	if(window.localStorage.getItem('FCopen') === 'true'){
+	    	else if(window.localStorage.getItem('FCopen') === 'true'){
 				if ($(".prt-member .lis-character0 .prt-gauge-special-inner").attr('style') == "width: 100%;") {
                     if ($(".prt-member .lis-character1 .prt-gauge-special-inner").attr('style').split(':')[1].replace(/%;/, "") >= 90) {
                         if ($(".prt-member .lis-character2 .prt-gauge-special-inner").attr('style').split(':')[1].replace(/%;/, "") >= 80) {
@@ -186,24 +191,24 @@ window.Engine = {
                      if ($(".btn-lock").hasClass("lock0")) {
                           this.click(".btn-lock");} }
 			}
-
-              if ($(".btn-attack-start").hasClass("display-on")) {
-                 if (window.localStorage.getItem('normal-attack-only') === 'true') {
-                     this.click(".btn-attack-start");
-                      return;
-                  }
-			  var c =0;	  
+          	  var c =0;	  
 			  for(var i=0;i<=3;i++){
 				  for(var j=0;j<=3;j++){
 				       this.debug("skill =================="+(window.localStorage.getItem("skill-"+(i+1)+"-"+(j+1))));
 					   this.debug("c============"+c);
 						if(window.localStorage.getItem("skill-"+(i+1)+"-"+(j+1))=='1'
 								&& $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available")
-								&& !$(".prt-command-chara:eq(" + i + ")").hasClass("ability-disable"))
-									{
+								&& !$(".prt-command-chara:eq(" + i + ")").hasClass("ability-disable")){
 										this.click(".lis-ability:eq(" + c + ")");		
 										return;
-			 						}
+			 			}
+						else if(window.localStorage.getItem("skill-"+(i+1)+"-"+(j+1))=='8'
+								&& window.localStorage.getItem('xuecaiGo')=='1'
+								&& $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available")
+								&& !$(".prt-command-chara:eq(" + i + ")").hasClass("ability-disable")){
+										this.click(".lis-ability:eq(" + c + ")");		
+										return;
+			 			}								
 						c++;			
 			 	}
 			  }
