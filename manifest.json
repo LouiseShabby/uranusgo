@@ -1,6 +1,6 @@
 {
   "name": "海豹母猪大家族",
-  "version": "1.0.1",
+  "version": "3.0.1",
   "manifest_version": 3,
   "description": "我以后只抽超得！https://coding.net/u/yoshinoshabby/p/boost8/git",
   "icons": {
@@ -15,7 +15,7 @@
     "default_icon": {
       "32": "icon.png"
     },
-    "default_title": "bahamut-warner",
+    "default_title": "boost8-master",
     "default_popup": "popup.html"
   },
   "content_scripts": [
