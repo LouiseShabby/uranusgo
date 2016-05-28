@@ -64,6 +64,16 @@ window.Extra = {
 						clearInterval(bbc);
 				}
 	  }, 2000);}
+	  else if (window.localStorage.getItem('quest-id') !== '' &&
+           window.localStorage.getItem('quest-id') !== null){
+			   	var bbc = setInterval(function () {
+					if ($(".pop-show .prt-popup-header").length > 0) {
+						self.click(".btn-usual-ok");
+				}},1000);
+		  
+	  }
+	  
+	  
        
   },
   '_handle_quest/index': function() {
