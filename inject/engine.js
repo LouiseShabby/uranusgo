@@ -708,13 +708,13 @@ window.Engine = {
 		var bossBuff = window.stage.gGameStatus.boss.param[0].condition.buff.reduce(function(a,b){return a+b.status+',';},'');
 		var allFull = 0;
 		var fcGo = 0;
-		//this.debug(this.isInjured100(1);
-/*
+	
+
 		if (battleFG == '1') {
-			window.localStorage.setItem('runFG', '1')
-		} else if (battleFG == '0') {
-			window.localStorage.setItem('runFG', '1')
-		}*/
+			window.localStorage.setItem('runFG', '1');
+		} else {
+			window.localStorage.setItem('runFG', '0');
+		}
 		if ($(".pop-show .prt-popup-header").length > 0) {
 			this.click(".pop-show .prt-popup-footer .btn-usual-ok")
 		}
