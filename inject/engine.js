@@ -705,18 +705,31 @@ window.Engine = {
 		var bossMaxStar = window.stage.gGameStatus.boss.param[0].recastmax - 1;
 		var bossStar = window.stage.gGameStatus.boss.param[0].recastmax - window.stage.gGameStatus.boss.param[0].recast;
 		var bossRecast = window.stage.gGameStatus.boss.param[0].recast;
-		var bossBuff = window.stage.gGameStatus.boss.param[0].condition.buff.reduce(function(a,b){return a+b.status+',';},'');
+		var bossBuff = "";
+		if(window.stage.gGameStatus.boss.param[0].condition.buff != undefined){
+			bossBuff = window.stage.gGameStatus.boss.param[0].condition.buff.reduce(function(a,b){return a+b.status+',';},'');
+		}
 		var allFull = 0;
 		var fcGo = 0;
 	
-
+		this.debug("battleFG");
 		if (battleFG == '1') {
 			window.localStorage.setItem('runFG', '1');
 		} else {
 			window.localStorage.setItem('runFG', '0');
 		}
+		//if ($(".prt-tips-box").length > 0) {
+		//	this.click(".pop-show .prt-popup-footer .btn-usual-ok")
+		//}
 		if ($(".pop-show .prt-popup-header").length > 0) {
+			if(".btn-event-use".length >0 && window.localStorage.getItem('use-event-revive')=='true'){
+				this.click(".btn-event-use")
+			}
+			if(".btn-cheer".length >0){
+				this.click(".btn-cheer")
+			}
 			this.click(".pop-show .prt-popup-footer .btn-usual-ok")
+			
 		}
 		if ($(".btn-result").is(":visible")) {
 			$(".btn-result").trigger("tap");
@@ -724,6 +737,7 @@ window.Engine = {
 			return
 		}
 		if ($(".btn-attack-start").hasClass("display-on")) {
+			this.debug("btn start a");
 			//this.healIfInjured();
 			if (window.localStorage.getItem('normal-attack-only') === 'true') {
 				this.click(".btn-attack-start");
