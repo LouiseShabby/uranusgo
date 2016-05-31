@@ -56,6 +56,15 @@ var Popup = {
 	$('#skill-4-3').val(window.localStorage.getItem('skill-4-3'));
 	$('#skill-4-4').val(window.localStorage.getItem('skill-4-4'));
 	
+	$('#summon-1').val(window.localStorage.getItem('summon-1'));
+	$('#summon-2').val(window.localStorage.getItem('summon-2'));
+	$('#summon-3').val(window.localStorage.getItem('summon-3'));
+	$('#summon-4').val(window.localStorage.getItem('summon-4'));
+	$('#summon-5').val(window.localStorage.getItem('summon-5'));
+	$('#summon-6').val(window.localStorage.getItem('summon-6'));
+
+	
+	
 	$('#seachTwitter').val(window.localStorage.getItem('seachTwitter'));
 	$('#seachEx-1').val(window.localStorage.getItem('seachEx-1'));
 	$('#seachEx-2').val(window.localStorage.getItem('seachEx-2'));
@@ -73,6 +82,9 @@ var Popup = {
 			for(var j=1;j<=4;j++){
 			   $("#skill-"+i+"-"+j).trigger('change');
 			}}
+		for(var i=1;i<=6;i++){
+			    $("#summon-"+i).trigger('change');
+		}
 	});
     $('form').on('click', '[data-quest-id]', function() {
       $('#quest-id').val($(this)[0].dataset.questId).trigger('change');

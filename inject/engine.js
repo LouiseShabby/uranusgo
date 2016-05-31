@@ -23,12 +23,14 @@ if (window.localStorage.getItem('setreloadtime') == 'true' && window.localStorag
 		ifnotrun()
 	}, 60000)
 }
+
 function ifnotrun() {
 	if (window.localStorage.getItem('runFG') == 0) {
 		pageReload()
 	}
 	return
 }
+
 function skiperror() {
 	if (getStrMatch(String($("div.prt-error-infomation").find("p").html()), "エラーが発生しました。")) {
 		if (getStrMatchFront(location.hash, "#raid")) {
@@ -51,12 +53,14 @@ function skiperror() {
 		return false
 	}
 }
+
 function turnWaitCancel() {
 	if ("直前のターンを処理中です" == $("#pop div.txt-popup-body").html() && $("#pop div.btn-usual-ok").attr("oshita") == undefined) {
 		$("#pop div.btn-usual-ok").attr("oshita", "1");
 		tap($("#pop div.btn-usual-ok"))
 	}
 }
+
 function getStrMatchFront(str1, str2) {
 	var str = " " + str1;
 	if (str.indexOf(" " + str2) !== -1) {
@@ -65,6 +69,7 @@ function getStrMatchFront(str1, str2) {
 		return false
 	}
 }
+
 function getStrMatchRear(str1, str2) {
 	var str = str1 + " ";
 	if (str.indexOf(str2 + " ") !== -1) {
@@ -73,6 +78,7 @@ function getStrMatchRear(str1, str2) {
 		return false
 	}
 }
+
 function getStrMatchAll(str1, str2) {
 	var str = " " + str1 + " ";
 	if (str.indexOf(" " + str2 + " ") !== -1) {
@@ -81,6 +87,7 @@ function getStrMatchAll(str1, str2) {
 		return false
 	}
 }
+
 function getStrMatch(str1, str2) {
 	if (str1.indexOf(str2) != -1) {
 		return true
@@ -88,10 +95,12 @@ function getStrMatch(str1, str2) {
 		return false
 	}
 }
+
 function pageReload() {
 	location.reload();
 	window.Engine.start()
 }
+
 function goMypage() {
 	location.href = "http://gbf.game.mbga.jp/#mypage"
 }
@@ -532,7 +541,7 @@ window.Engine = {
 		}
 	},
 	castAllSkill: function(npcId) {
-		if (this.isBlock(npcId)  || this.isSleep(npcId) ) {
+		if (this.isBlock(npcId) || this.isSleep(npcId)) {
 			this.debug("skill id ========================" + npcId);
 			return this.waitUntilInvisible('.prt-command-chara[pos="' + (npcId + 1) + '"]')
 		}
@@ -577,7 +586,7 @@ window.Engine = {
 		return (window.localStorage.getItem('use-green-potion') !== 'true' || this.greenPotionCount === 0) && (window.localStorage.getItem('use-green-potion') !== 'true' || this.bluePotionCount === 0) && (window.localStorage.getItem('use-event-potion') !== 'true' || this.eventPotionCount === 0) && (window.localStorage.getItem('use-event-revive') !== 'true' || this.eventReviveCount === 0)
 	},
 	heal: function(index) {
-		if (!this.isInjured(index) || this.noPotion()) {
+		if (!this.isInjured50(index) || this.noPotion()) {
 			return Promise.resolve()
 		}
 		this.click('.btn-temporary');
@@ -662,7 +671,7 @@ window.Engine = {
 			return true
 		}
 		return false
-	},	
+	},
 	isInjured50: function(index) {
 		var injured = -1;
 		var $npchp = $('.prt-gauge-hp:visible').eq(index);
@@ -706,30 +715,37 @@ window.Engine = {
 		var bossStar = window.stage.gGameStatus.boss.param[0].recastmax - window.stage.gGameStatus.boss.param[0].recast;
 		var bossRecast = window.stage.gGameStatus.boss.param[0].recast;
 		var bossBuff = "";
-		if(window.stage.gGameStatus.boss.param[0].condition.buff != undefined){
-			bossBuff = window.stage.gGameStatus.boss.param[0].condition.buff.reduce(function(a,b){return a+b.status+',';},'');
+		if (window.stage.gGameStatus.boss.param[0].condition.buff != undefined) {
+			bossBuff = window.stage.gGameStatus.boss.param[0].condition.buff.reduce(function(a, b) {
+				return a + b.status + ',';
+			}, '');
 		}
 		var allFull = 0;
 		var fcGo = 0;
-	
-		this.debug("battleFG");
+		//isInjured
+		//this.debug(window.localStorage.getItem('skill-2-3'));
 		if (battleFG == '1') {
 			window.localStorage.setItem('runFG', '1');
 		} else {
 			window.localStorage.setItem('runFG', '0');
 		}
-		//if ($(".prt-tips-box").length > 0) {
-		//	this.click(".pop-show .prt-popup-footer .btn-usual-ok")
-		//}
+		if ($(".prt-tips-box").length > 0) {
+			//this.click(".prt-tips-box")
+		}
+
 		if ($(".pop-show .prt-popup-header").length > 0) {
-			if(".btn-event-use".length >0 && window.localStorage.getItem('use-event-revive')=='true'){
+			if (".btn-event-use".length > 0 && window.localStorage.getItem('use-event-revive') == 'true') {
 				this.click(".btn-event-use")
 			}
-			if(".btn-cheer".length >0){
+			if (".btn-cheer".length > 0) {
 				this.click(".btn-cheer")
 			}
-			this.click(".pop-show .prt-popup-footer .btn-usual-ok")
-			
+			if($('div.prt-popup-header:contains("アイテムを使用")')){
+                return
+            }else{
+                this.click(".pop-show .prt-popup-footer .btn-usual-ok")
+            }
+
 		}
 		if ($(".btn-result").is(":visible")) {
 			$(".btn-result").trigger("tap");
@@ -739,11 +755,15 @@ window.Engine = {
 		if ($(".btn-attack-start").hasClass("display-on")) {
 			this.debug("btn start a");
 			//this.healIfInjured();
+			for (var p = 0; p <= 3; p++) {
+				this.heal(p);
+			}
 			if (window.localStorage.getItem('normal-attack-only') === 'true') {
 				this.click(".btn-attack-start");
 				return
 			}
 			if (ballteCount == ballteCountTotal) {
+/*
 				if (window.localStorage.getItem('auto-summon') === 'true') {
 					if ($('.summon-off').length == 0) {
 						this.debug('summon-on');
@@ -760,6 +780,10 @@ window.Engine = {
 						}
 					}
 				}
+				*/
+
+
+
 				if (window.localStorage.getItem('xuecaibichi') === 'true') {
 					if ($(".prt-member .lis-character0 .prt-gauge-special-inner").attr('style') == "width: 100%;") {
 						if ($(".prt-member .lis-character1 .prt-gauge-special-inner").attr('style').split(':')[1].replace(/%;/, "") == 100) {
@@ -796,10 +820,47 @@ window.Engine = {
 						}
 					}
 				}
+				if (window.localStorage.getItem('auto-summon') === 'true') {
+					for (var i = 0; i < 6; i++) {
+						if ($(".lis-summon:eq(" + i + ")").hasClass("btn-summon-available")&&
+								window.localStorage.getItem("summon-"+(i+1)) == '1') {
+							$(".btn-summon-use").attr("summon-id", $(".lis-summon:eq(" + i + ")").attr("summon-id"));
+							this.click(".btn-summon-use");
+							return;
+						}else if($(".lis-summon:eq(" + i + ")").hasClass("btn-summon-available")&&
+								window.localStorage.getItem("summon-"+(i+1)) == '3' && 	bossMode == '2') {
+							$(".btn-summon-use").attr("summon-id", $(".lis-summon:eq(" + i + ")").attr("summon-id"));
+							this.click(".btn-summon-use");
+							return;
+						}else if($(".lis-summon:eq(" + i + ")").hasClass("btn-summon-available")&&
+								window.localStorage.getItem("summon-"+(i+1)) == '4' && 	bossMode == '3') {
+							$(".btn-summon-use").attr("summon-id", $(".lis-summon:eq(" + i + ")").attr("summon-id"));
+							this.click(".btn-summon-use");
+							return;
+						}else if($(".lis-summon:eq(" + i + ")").hasClass("btn-summon-available")&&
+								window.localStorage.getItem("summon-"+(i+1)) == '4' && 	 bossRecast == '1' && bossMode == '2') {
+							$(".btn-summon-use").attr("summon-id", $(".lis-summon:eq(" + i + ")").attr("summon-id"));
+							this.click(".btn-summon-use");
+							return;
+						}else if($(".lis-summon:eq(" + i + ")").hasClass("btn-summon-available")&&
+								window.localStorage.getItem("summon-"+(i+1)) == '8' && 	allFull == '1') {
+							$(".btn-summon-use").attr("summon-id", $(".lis-summon:eq(" + i + ")").attr("summon-id"));
+							this.click(".btn-summon-use");
+							return;
+						}else if($(".lis-summon:eq(" + i + ")").hasClass("btn-summon-available")&&
+								window.localStorage.getItem("summon-"+(i+1)) == '9' && 	bossStar > '0') {
+							$(".btn-summon-use").attr("summon-id", $(".lis-summon:eq(" + i + ")").attr("summon-id"));
+							this.click(".btn-summon-use");
+							return;
+						}
+						
+					}
+				}
+				
 				var c = 0;
 				for (var i = 0; i <= 3; i++) {
 					for (var j = 0; j <= 3; j++) {
-	
+						this.debug("i === " + window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) + "||||injured ===" + this.isInjured(i));
 						if (window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) == '1' && $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available") && !$(".prt-command-chara:eq(" + i + ")").hasClass("ability-disable")) {
 							this.click(".lis-ability:eq(" + c + ")");
 							return
@@ -827,13 +888,17 @@ window.Engine = {
 						} else if (window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) == '10' && bossBuff.length > '0' && $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available") && !$(".prt-command-chara:eq(" + i + ")").hasClass("ability-disable")) {
 							this.click(".lis-ability:eq(" + c + ")");
 							return
-						}else if (window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) == '15' && this.isInjured50(i) && $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available") && !$(".prt-command-chara:eq(" + i + ")").hasClass("ability-disable")) {
+						} else if (window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) == '15' && this.isInjured50(i) && $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available") && !$(".prt-command-chara:eq(" + i + ")").hasClass("ability-disable")) {
 							this.click(".lis-ability:eq(" + c + ")");
 							return
-						}else if (window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) == '13' && this.isInjured30(i) && $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available") && !$(".prt-command-chara:eq(" + i + ")").hasClass("ability-disable")) {
+						} else if (window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) == '13' && this.isInjured30(i) && $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available") && !$(".prt-command-chara:eq(" + i + ")").hasClass("ability-disable")) {
 							this.click(".lis-ability:eq(" + c + ")");
 							return
-						}else if (window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) == '16' && this.isInjured100(i) && $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available") && !$(".prt-command-chara:eq(" + i + ")").hasClass("ability-disable")) {
+						}
+						//else if (window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) == '16' && this.isInjured(i) == 'true' && $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available") && ".prt-command-chara:eq(" + i + ")").hasClass("ability-disable")) {
+						else if (window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) == '16' && this.isInjured(i) == 'true') {
+
+							this.debug("getWay!!!!!!");
 							this.click(".lis-ability:eq(" + c + ")");
 							return
 						}
@@ -843,13 +908,13 @@ window.Engine = {
 				c = 0;
 				for (var i = 0; i <= 3; i++) {
 					for (var j = 0; j <= 3; j++) {
-						
+
 						if (window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) == '2' && $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available") && !$(".prt-command-chara:eq(" + i + ")").hasClass("ability-disable")) {
 							this.click(".lis-ability:eq(" + c + ")");
 							return
 						}
 						c++;
-						
+
 					}
 				}
 			}
@@ -857,10 +922,10 @@ window.Engine = {
 			if (ballteCount == ballteCountTotal) {
 				if (fcGo === 1 && window.localStorage.getItem('FCrefresh') == 'true') {
 					this.debug("re");
-					setTimeout(function(){
+					setTimeout(function() {
 						window.location.reload();
 						this.Engine.start()
-					},2000);	
+					}, 2000);
 				}
 			}
 		}
