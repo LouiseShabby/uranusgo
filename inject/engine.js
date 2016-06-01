@@ -1,4 +1,4 @@
-window.SkillChecker = {
+﻿window.SkillChecker = {
 	'ディレイ': function() {}
 }
 var runFlag = 0;
@@ -110,6 +110,8 @@ window.Engine = {
 		var self = this;
 		if (window.localStorage.getItem('easybattle') == 'true') {
 			this.debug("gogogo");
+			this.greenPotionCount = 1;
+			this.bluePotionCount = 1;
 			setInterval(function() {
 				self.new_battle()
 			}, 1000)
@@ -734,19 +736,17 @@ window.Engine = {
 		}
 
 		if ($(".pop-show .prt-popup-header").length > 0) {
-			if (".btn-event-use".length > 0 && window.localStorage.getItem('use-event-revive') == 'true') {
-				this.click(".btn-event-use")
+			if(!$('div.prt-popup-header:contains("アイテムを使用")').length > 0){
+				if (".btn-event-use".length > 0 && window.localStorage.getItem('use-event-revive') == 'true') {
+					if (".btn-cheer".length > 0) {
+						this.click(".btn-cheer")
+					}
+					this.click(".btn-event-use")
+				}
+				this.click(".pop-show .prt-popup-footer .btn-usual-ok")
 			}
-			if (".btn-cheer".length > 0) {
-				this.click(".btn-cheer")
-			}
-			if($('div.prt-popup-header:contains("アイテムを使用")')){
-                return
-            }else{
-                this.click(".pop-show .prt-popup-footer .btn-usual-ok")
-            }
-
 		}
+		
 		if ($(".btn-result").is(":visible")) {
 			$(".btn-result").trigger("tap");
 			this.click(".btn-result");
@@ -756,7 +756,37 @@ window.Engine = {
 			this.debug("btn start a");
 			//this.healIfInjured();
 			for (var p = 0; p <= 3; p++) {
-				this.heal(p);
+				if (this.isInjured50(p) && (this.greenPotionCount > 0 || this.bluePotionCount > 0) 
+				&& window.localStorage.getItem('use-green-potion') == 'true') {
+					if($('div.txt-popup-body:contains("回復するメンバーをタッチしてください"):contains("キュアポーションを使用します")').length > 0){
+						this.debug("heal done " + p);
+						this.click('.btn-command-character:visible:eq(' + p + ')');
+						return
+					}else if($('div.txt-popup-body:contains("使用するアイテムを選択してください"):contains("キュアポーション")').length > 0){
+						var greenPotionCount = parseInt($('.having-num').eq(0).text());
+						var bluePotionCount = parseInt($('.having-num').eq(1).text());
+						var eventPotionCount = parseInt($('.having-num').eq(3).text() || 0);
+						var eventReviveCount = parseInt($('.having-num').eq(5).text() || 0);
+						this.greenPotionCount = greenPotionCount;
+						this.bluePotionCount = bluePotionCount;
+						if (greenPotionCount > 0){
+							this.click('.btn-temporary-small');
+							this.greenPotionCount--;
+							return
+						}else if (bluePotionCount > 0) {
+							this.bluePotionCount--;
+							this.click('.item-large.btn-temporary-large');
+							return
+						}else if (window.localStorage.getItem('use-event-potion') === 'true' && eventPotionCount > 0) {
+							this.click('.lis-item.btn-event-item[item-id="1"]');
+							this.eventPotionCount--;
+							return
+						}
+					}else{
+						this.click('.btn-temporary');
+						return
+					}
+				}
 			}
 			if (window.localStorage.getItem('normal-attack-only') === 'true') {
 				this.click(".btn-attack-start");
