@@ -763,27 +763,6 @@ window.Engine = {
 				return
 			}
 			if (ballteCount == ballteCountTotal) {
-/*
-				if (window.localStorage.getItem('auto-summon') === 'true') {
-					if ($('.summon-off').length == 0) {
-						this.debug('summon-on');
-						if ($('.btn-summon-use').attr('style') != undefined && $('.btn-summon-use').attr('summon-id') != '') {
-							this.click('.btn-summon-use');
-							return
-						} else if ($('.lis-summon.on.btn-summon-available:first').length > 0 && $('.summon-show').length > 0) {
-							this.click('.lis-summon.on.btn-summon-available:first');
-							return
-						} else if ($('.summon-on').length > 0) {
-							$('.btn-summon-use').attr('style', 'display: none;');
-							this.click('.summon-on');
-							return
-						}
-					}
-				}
-				*/
-
-
-
 				if (window.localStorage.getItem('xuecaibichi') === 'true') {
 					if ($(".prt-member .lis-character0 .prt-gauge-special-inner").attr('style') == "width: 100%;") {
 						if ($(".prt-member .lis-character1 .prt-gauge-special-inner").attr('style').split(':')[1].replace(/%;/, "") == 100) {
@@ -838,7 +817,12 @@ window.Engine = {
 							this.click(".btn-summon-use");
 							return;
 						}else if($(".lis-summon:eq(" + i + ")").hasClass("btn-summon-available")&&
-								window.localStorage.getItem("summon-"+(i+1)) == '4' && 	 bossRecast == '1' && bossMode == '2') {
+								window.localStorage.getItem("summon-"+(i+1)) == '5' && 	 bossRecast == '1') {
+							$(".btn-summon-use").attr("summon-id", $(".lis-summon:eq(" + i + ")").attr("summon-id"));
+							this.click(".btn-summon-use");
+							return;
+						}else if($(".lis-summon:eq(" + i + ")").hasClass("btn-summon-available")&&
+								window.localStorage.getItem("summon-"+(i+1)) == '6' && 	 bossRecast == '1' && bossMode == '2') {
 							$(".btn-summon-use").attr("summon-id", $(".lis-summon:eq(" + i + ")").attr("summon-id"));
 							this.click(".btn-summon-use");
 							return;
@@ -888,16 +872,15 @@ window.Engine = {
 						} else if (window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) == '10' && bossBuff.length > '0' && $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available") && !$(".prt-command-chara:eq(" + i + ")").hasClass("ability-disable")) {
 							this.click(".lis-ability:eq(" + c + ")");
 							return
-						} else if (window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) == '15' && this.isInjured50(i) && $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available") && !$(".prt-command-chara:eq(" + i + ")").hasClass("ability-disable")) {
+						} else if (window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) == '13' && this.isInjured30(i) && $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available") && !$(".prt-command-chara:eq(" + i + ")").hasClass("ability-disable")) {
 							this.click(".lis-ability:eq(" + c + ")");
 							return
-						} else if (window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) == '13' && this.isInjured30(i) && $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available") && !$(".prt-command-chara:eq(" + i + ")").hasClass("ability-disable")) {
+						} else if (window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) == '15' && this.isInjured50(i) && $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available") && !$(".prt-command-chara:eq(" + i + ")").hasClass("ability-disable")) {
 							this.click(".lis-ability:eq(" + c + ")");
 							return
 						}
 						//else if (window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) == '16' && this.isInjured(i) == 'true' && $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available") && ".prt-command-chara:eq(" + i + ")").hasClass("ability-disable")) {
 						else if (window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) == '16' && this.isInjured(i) == 'true') {
-
 							this.debug("getWay!!!!!!");
 							this.click(".lis-ability:eq(" + c + ")");
 							return
