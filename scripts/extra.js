@@ -5,7 +5,8 @@ window.Extra = {
 		var id = a[a.length - 1];
 		this.waitOnce('.txt-skill-level').then(function() {
 			var t = $('.txt-skill-level').text();
-			var level = t.split(' ')[1] window.localStorage.setItem(id, Number(level))
+            var level = t.split(' ')[1]
+            window.localStorage.setItem(id, Number(level));
 		}.bind(this))
 	},
 	'_handle_party/index': function() {
