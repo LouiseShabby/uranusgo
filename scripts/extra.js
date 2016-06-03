@@ -5,8 +5,8 @@ window.Extra = {
 		var id = a[a.length - 1];
 		this.waitOnce('.txt-skill-level').then(function() {
 			var t = $('.txt-skill-level').text();
-            var level = t.split(' ')[1]
-            window.localStorage.setItem(id, Number(level));
+			var level = t.split(' ')[1] 
+			window.localStorage.setItem(id, Number(level))
 		}.bind(this))
 	},
 	'_handle_party/index': function() {
@@ -24,7 +24,14 @@ window.Extra = {
 			var bbc = setInterval(function() {
 				if ($('.btn-control').length > 0) {
 					self.click(".btn-control")
-				} else {
+				} else if($('.btn-usual-close').length > 0){
+					self.click(".btn-usual-close")
+				}else if($('.btn-usual-ok').length > 0){
+					self.click(".btn-usual-ok:eq(0)")
+					
+				}						
+				else
+				{
 					location.href = "http://gbf.game.mbga.jp/#quest/assist";
 					clearInterval(bbc)
 				}
@@ -33,7 +40,12 @@ window.Extra = {
 			var bbc = setInterval(function() {
 				if ($('.btn-control').length > 0) {
 					self.click(".btn-control")
-				} else {
+				} else if($('.btn-usual-close').length > 0){
+					self.click(".btn-usual-close")
+				}else if($('.btn-usual-ok').length > 0){
+					self.click(".btn-usual-ok:eq(0)")
+					
+				}	 else {
 					location.href = "http://gbf.game.mbga.jp/#coopraid";
 					clearInterval(bbc)
 				}
@@ -228,11 +240,66 @@ window.Extra = {
 	},
 	'_handle_coopraid/room': function() {
 		var self = this;
+		if (window.localStorage.getItem('master') == 'true') {
+			var startRoom = setInterval(function(){
+				if(!$(".btn-quest-start").length>0 && $(".btn-usual-ok").length < 3){
+					var d=document.createElement("div")
+					var b = document.createElement("div")
+					var c = document.querySelector(".prt-3tabs")
+					 
+					var setDetailElm = document.createElement("div");
+					setDetailElm.className = "pop-quest-detail";
+					setDetailElm.style.cursor = "default";
+
+
+					var setBtnElm = document.createElement("span")
+					setBtnElm.className = "btn-usual-ok"
+					setBtnElm.setAttribute("data-quest-id", window.localStorage.getItem('ptcoopraid')), 
+					setBtnElm.setAttribute("data-ap", "20"),
+					setBtnElm.setAttribute("data-required-rank", "10")
+					setBtnElm.textContent =  "罐子"
+					setBtnElm.style.fontSize = "10px"
+					setBtnElm.style.padding = "0px"
+					setBtnElm.style.height = "17px"
+					setBtnElm.style.width = "105px"
+					setBtnElm.style.backgroundImage = "url()"
+					setBtnElm.style.backgroundColor = ""
+					setDetailElm.appendChild(setBtnElm);
+					b.style.position = "relative";
+					b.style.position = "relative";
+					b.appendChild(setDetailElm);
+					c.parentNode.insertBefore(b, c)
+				}else{
+					clearInterval(startRoom)
+				}
+			},1000);
+
+			var a = setInterval(function(){
+				if ($('.btn-use-full').length > 0) {
+						self.click(".btn-use-full:eq(1)")
+					}
+					//btn-usual-cancel
+				if ($('.btn-usual-cancel').length > 0 && $('.btn-reset-quest').length > 0 ) {
+						self.click(".btn-use-full:eq(1)")
+					}	
+				if(!$(".btn-quest-start").length>0){
+					$(".btn-usual-ok").attr("data-quest-id",window.localStorage.getItem('ptcoopraid'))
+					console.log($(".btn-quest-start").length)
+					self.click(".btn-usual-ok")
+				}	
+			},1000);
+		
+		}
+		
+		
 		if ((window.localStorage.getItem('master') == 'true') || (window.localStorage.getItem('coopraid') == 'true')) {
 			setTimeout(function() {
 				window.location.reload()
 			}, 15000)
 		}
+		
+		/*
+		
 		if (window.localStorage.getItem('master') == 'true') {
 			var ok = setInterval(function() {
 				if ($('.btn-usual-ok').length > 0) {
@@ -355,6 +422,8 @@ window.Extra = {
 				}, 1000)
 			}
 		}
+		*/
+		
 		var room = setInterval(function() {
 			self.waitUntilVisible('.btn-make-ready-large.not-ready').then(function() {
 				self.click('.btn-make-ready-large.not-ready')
