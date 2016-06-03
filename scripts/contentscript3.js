@@ -363,6 +363,21 @@ var Client = {
 		}.bind(this));
 	},
 	'_handle_result_multi': function() {
+	    if ((window.localStorage.getItem('master') == 'true') || (window.localStorage.getItem('coopraid') == 'true')) {
+			var bbc = setInterval(function() {
+				if ($('.btn-control').length > 0) {
+					self.click(".btn-control")
+				} else if($('.btn-usual-close').length > 0){
+					self.click(".btn-usual-close")
+				}else if($('.btn-usual-ok').length > 0){
+					self.click(".btn-usual-ok:eq(0)")
+					
+				}	 else {
+					location.href = "http://gbf.game.mbga.jp/#coopraid";
+					clearInterval(bbc)
+				}
+			}, 2000)
+		}
 		if (window.localStorage.getItem('autoSeachEx') === 'true') {
 			var bbc = setTimeout(function() {
 				location.reload();
