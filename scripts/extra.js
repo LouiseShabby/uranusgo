@@ -242,8 +242,22 @@ window.Extra = {
 		var self = this;
 		if (window.localStorage.getItem('master') == 'true') {
 			var startRoom = setInterval(function(){
-				if(!$(".btn-quest-start").length>0 && $(".btn-usual-ok").length < 3){
-					var d=document.createElement("div")
+				if ($('.btn-use-full').length > 0) {
+					self.click(".btn-use-full:eq(1)")
+				}
+					//btn-usual-cancel
+				if ($('.btn-usual-cancel').length > 0 && $('.btn-reset-quest').length > 0 ) {
+						self.click(".btn-use-full:eq(1)")
+				}
+				
+				if(!$(".btn-quest-start").length > 0){
+					$(".btn-usual-ok").attr("data-quest-id",window.localStorage.getItem('ptcoopraid'))
+					console.log($(".btn-quest-start").length)
+					self.click(".btn-usual-ok")
+				}
+				
+				if(!$(".btn-quest-start").length > 0 && $(".btn-usual-ok").length < 1){
+					var d = document.createElement("div")
 					var b = document.createElement("div")
 					var c = document.querySelector(".prt-3tabs")
 					 
@@ -251,11 +265,16 @@ window.Extra = {
 					setDetailElm.className = "pop-quest-detail";
 					setDetailElm.style.cursor = "default";
 
-
+					var dataAp = "0";
+					if(window.localStorage.getItem('ptcoopraid') == "601011"){
+						dataApp = "20";
+					}else{
+						dataAp = "40";
+					}
 					var setBtnElm = document.createElement("span")
 					setBtnElm.className = "btn-usual-ok"
 					setBtnElm.setAttribute("data-quest-id", window.localStorage.getItem('ptcoopraid')), 
-					setBtnElm.setAttribute("data-ap", "20"),
+					setBtnElm.setAttribute("data-ap", dataAp),
 					setBtnElm.setAttribute("data-required-rank", "10")
 					setBtnElm.textContent =  "罐子"
 					setBtnElm.style.fontSize = "10px"
@@ -269,26 +288,8 @@ window.Extra = {
 					b.style.position = "relative";
 					b.appendChild(setDetailElm);
 					c.parentNode.insertBefore(b, c)
-				}else{
-					clearInterval(startRoom)
 				}
-			},1000);
-
-			var a = setInterval(function(){
-				if ($('.btn-use-full').length > 0) {
-						self.click(".btn-use-full:eq(1)")
-					}
-					//btn-usual-cancel
-				if ($('.btn-usual-cancel').length > 0 && $('.btn-reset-quest').length > 0 ) {
-						self.click(".btn-use-full:eq(1)")
-					}	
-				if(!$(".btn-quest-start").length>0){
-					$(".btn-usual-ok").attr("data-quest-id",window.localStorage.getItem('ptcoopraid'))
-					console.log($(".btn-quest-start").length)
-					self.click(".btn-usual-ok")
-				}	
-			},1000);
-		
+			},3000);
 		}
 		
 		
