@@ -19,6 +19,7 @@ var Client = {
 			console.log(evt.detail);
 		});
 	},
+	
 	handleEvent: function() {
 		var hash = window.location.hash.replace('#', '');
 		var a = hash.split('/');
@@ -365,9 +366,7 @@ var Client = {
 	'_handle_result_multi': function() {
 	    if ((window.localStorage.getItem('master') == 'true') || (window.localStorage.getItem('coopraid') == 'true')) {
 			var bbc = setInterval(function() {
-			    console.log("get in bbc!!!!!!!!!");
 				if ($('.btn-control').length > 0) {
-				    console.log("close!!!!!!!!!!!!");
 					self.click(".btn-control")
 				} else if($('.btn-usual-close').length > 0){
 					self.click(".btn-usual-close")
@@ -375,7 +374,6 @@ var Client = {
 					self.click(".btn-usual-ok:eq(0)")
 					
 				}	 else {
-				    console.log("do nothing!!!!!!!!!");
 					location.href = "http://gbf.game.mbga.jp/#coopraid";
 					clearInterval(bbc)
 				}
@@ -557,6 +555,11 @@ var Client = {
 	}
 };
 
+
+ window.alert = function(str){
+	console.log("alert disable!")
+  return ;
+}
 
 
 

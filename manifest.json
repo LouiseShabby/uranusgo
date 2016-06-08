@@ -21,7 +21,8 @@
   "content_scripts": [
     {
       "matches": [
-        "http://gbf.game.mbga.jp/*"
+        "http://gbf.game.mbga.jp/*",
+		"http://game.granbluefantasy.jp/*"
       ],
       "js": [
         "bower_components/jquery/dist/jquery.js",
