@@ -141,10 +141,37 @@ var Client = {
 	},
 	load: function(hash) {
 		console.log('loading ' + hash);
-		this.sleep(Math.random()).then(function() {
-			window.localStorage.setItem('_hash', hash);
-			this.inject('inject/load_.js')
-		}.bind(this));
+		var currentD = new Date();
+		var timeStart = window.localStorage.getItem('timeStart');
+		var timeEnd = window.localStorage.getItem('timeEnd');
+		
+		var startHappyHourD = new Date();
+		startHappyHourD.setHours(timeStart.substring(0, 2),timeStart.substring(2, 4),0);
+		var endHappyHourD = new Date();
+		endHappyHourD.setHours(timeEnd.substring(0, 2),timeEnd.substring(2, 4),0);
+		console.log('setTime： ' + window.localStorage.getItem('setTime'));
+		if(window.localStorage.getItem('setTime') == 'true'){
+			var bba = setInterval(function() {
+				console.log('timeStart： ' + timeStart.substring(0, 2) + ':' + timeStart.substring(2, 4));
+				console.log('timeEnd： ' + timeEnd.substring(0, 2) + ':' + timeEnd.substring(2, 4));
+				console.log("happy hour?")
+				if(currentD >= startHappyHourD && currentD < endHappyHourD ){
+					console.log("yes! let's party");
+					this.sleep(Math.random()).then(function() {
+						window.localStorage.setItem('_hash', hash);
+						this.inject('inject/load_.js')
+					}.bind(this));
+					clearInterval(bba);
+				}else{
+					console.log("no, sorry! please wait");
+				}
+			}, 5000);
+		}else{
+			this.sleep(Math.random()).then(function() {
+				window.localStorage.setItem('_hash', hash);
+				this.inject('inject/load_.js')
+			}.bind(this));
+		}
 	},
 	'_handle_quest/stage': function() {
 		this.waitOnce('.btn-command-forward').then(function() {

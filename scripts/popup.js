@@ -5,6 +5,9 @@ var Popup = {
     this.initSkills();
     this.initQuests();
 	//this.setCheckboxs(".ck",array);
+    $('#timeStart').val(window.localStorage.getItem('timeStart'));
+    $('#timeEnd').val(window.localStorage.getItem('timeEnd'));
+	
     $('#quest-id').val(window.localStorage.getItem('quest-id'));
     $('#start').on('click', function() {
       $('#quest-id').trigger('change');
@@ -17,9 +20,7 @@ var Popup = {
       $('#select-id').trigger('change');
     });	
 	$('#seachEx-1').val(window.localStorage.getItem('seachEx-1'));
-	//$('#saveList').on('click', function() {
-  //    $('#seachEx-1').trigger('change');
-  //  });	
+	
 	$('input[name="reloadtime"]').val(window.localStorage.getItem('reloadtime'));
 	$('#setreloadtime-ok').on('click', function() {
       $('#reloadtime').trigger('change');
