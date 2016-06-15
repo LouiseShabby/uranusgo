@@ -106,16 +106,14 @@ function goMypage() {
 }
 window.Engine = {
 	start: function() {
-		this.debug('Engine Start!!');
 		var self = this;
-		if (window.localStorage.getItem('easybattle') == 'true') {
-			this.debug("gogogo");
+		//if (window.localStorage.getItem('easybattle') == 'true') {
 			this.greenPotionCount = 1;
 			this.bluePotionCount = 1;
 			setInterval(function() {
 				self.new_battle()
 			}, 1000)
-		} else {
+		/*} else {
 			if (window.localStorage.getItem('coopraid') == 'true') {
 				if (this.turn === undefined) {
 					this.eachTurn(0);
@@ -132,7 +130,7 @@ window.Engine = {
 			} else {
 				this._handle_raid()
 			}
-		}
+		}*/
 	},
 	debug: function(msg) {
 		window.dispatchEvent(new CustomEvent('_debug', {
