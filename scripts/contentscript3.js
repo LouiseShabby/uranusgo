@@ -320,19 +320,36 @@ var Client = {
 		if (window.localStorage.getItem('auto-choose-supporter') === 'false') {
 			return;
 		}
-		var timeStart = window.localStorage.getItem('timeStart');
-		var timeEnd = window.localStorage.getItem('timeEnd');
-		var startHappyHourD = new Date();
-		startHappyHourD.setHours(timeStart.substring(0, 2),timeStart.substring(2, 4),0);
-		var endHappyHourD = new Date();
-		endHappyHourD.setHours(timeEnd.substring(0, 2),timeEnd.substring(2, 4),0);
-		console.log('setTime： ' + window.localStorage.getItem('setTime'));
 		var self = this;
 		if(window.localStorage.getItem('setTime') == 'true'){
+			var timeStart = window.localStorage.getItem('timeStart');
+			var timeEnd = window.localStorage.getItem('timeEnd');
+			//escape null pointer
+			if(timeStart == null){
+				timeStart = '0000';
+			}
+			if(timeEnd == null){
+				timeEnd = '0000';
+			}
+			var startHappyHourD = new Date();
+			startHappyHourD.setHours(timeStart.substring(0, 2),timeStart.substring(2, 4),0);
+			var endHappyHourD = new Date();
+			endHappyHourD.setHours(timeEnd.substring(0, 2),timeEnd.substring(2, 4),0);
 			var bba = setInterval(function() {
+				//jumpout once it is false
+				if(window.localStorage.getItem('setTime') == 'false'){
+					console.log('setTime ' + window.localStorage.getItem('setTime'));
+					if (window.localStorage.getItem('assistIsClick')) {
+						window.localStorage.setItem('assistIsClick', 'true');
+					}
+					self.waitUntilVisible('.btn-supporter').then(function() {
+						self.chooseSupporterByPref();
+					}.bind(self));
+					clearInterval(bba);
+				}
 				var currentD = new Date();
-				console.log('timeStart： ' + timeStart.substring(0, 2) + ':' + timeStart.substring(2, 4));
-				console.log('timeEnd： ' + timeEnd.substring(0, 2) + ':' + timeEnd.substring(2, 4));
+				console.log('timeStart ' + timeStart.substring(0, 2) + ':' + timeStart.substring(2, 4));
+				console.log('timeEnd ' + timeEnd.substring(0, 2) + ':' + timeEnd.substring(2, 4));
 				console.log('currentD ' + currentD);
 				if(currentD >= startHappyHourD && currentD < endHappyHourD ){
 					console.log("yes! let's party");
