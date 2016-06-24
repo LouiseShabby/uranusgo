@@ -1,15 +1,38 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<script src="jquery.js"></script>
-		<script src="popup.js"></script>
-		<style>
-			.buttonGroup input[type="radio"] {
+ <head> 
+  <meta charset="utf-8" /> 
+  <title></title> 
+  <!-- build:js scripts/popup.js --> 
+  <script src="bower_components/jquery/dist/jquery.js"></script> 
+  <script src="scripts/popup.js"></script> 
+  <!-- endbuild --> 
+  <!-- build:css styles/main.css --> 
+  <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css" /> 
+  <link rel="stylesheet" type="text/css" href="styles/main.css" /> 
+  <link rel="stylesheet" type="text/css" href="css/style.css" /> 
+  <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" /> 
+  <!-- endbuild --> 
+  <style>
+    html, body {
+      width: 400px;
+    }
+    img {
+      width: 30px;
+      height: 30px;
+    }
+    img.off {
+      opacity: 0.3;
+    }
+    #quest-history button {
+      width: 100%;
+      text-align: left;
+    }
+				.buttonGroup input[type="radio"] {
 				display: none;
 			}
 
-			.buttonGroup label {
+		.buttonGroup label {
 				border-top: solid 1px #999999;
 				border-bottom: solid 1px #999999;
 				border-right: solid 1px #999999;
@@ -28,150 +51,204 @@
 				border-bottom-right-radius: 5px;
 			}
 
-			.buttonGroup input[type="radio"]:checked + label {
+	.buttonGroup input[type="radio"]:checked + label {
 				background-color: #FFCCFF;
-			}
-		</style>
-	</head>
-	<body style="overflow-x: hidden; padding-right: 11px; font-family: メイリオ;font-weight: bold;font-size: 14pt;-webkit-user-select: none;">
-		<div id="playStatus" style="position:absolute;top:16px;left:25px;width:40px;height:40px;background-size:cover;cursor:pointer;">&nbsp;</div>
-		<div style="width:300px; height:500px;">
-			<div style="width:100%; height:50px; background-image : url(img/title.png);background-size:100% auto;background-repeat:no-repeat;">&nbsp;</div>
-			<div style="width:100%; height:100%; background-image : url(img/naka.png);background-size:100% auto;background-repeat:epeat-y;">
-				<div style="width:100%; height:100%; padding:5px 0;">
-					<div style="vertical-align:middle; padding-top:5px; padding-left:15px;">
-						<table border="0"><tr>
-							<td style="width:80px; vertical-align:middle;">
-								画面ｻｲｽﾞ
-							</td>
-							<td>
-								<input type="range" id="windowZoom" step="0.1" min="0.9" max="2">
-								<span id="windowZoomTxt"></span>
-							</td>
-						</tr></table>
-					</div>
-					<hr style="width:270px;">
-					<div style="padding-left:15px;">
-						<table border="0">
-							<tr>
-								<td style="width:80px; vertical-align:middle;">
-									FPS
-								</td>
-								<td style="vertical-align:middle;font-size: 10pt;font-family: ＭＳ ゴシック;font-weight:normal;">
-									<div class="buttonGroup" style="vertical-align:middle; padding:0;">
-										<input type="radio" name="gbfToolFpsSetting" value="12" id="gbfToolFpsSetting-1"><label for="gbfToolFpsSetting-1">12</label><!--
-									 --><input type="radio" name="gbfToolFpsSetting" value="24" id="gbfToolFpsSetting-2"><label for="gbfToolFpsSetting-2">24</label><!--
-									 --><input type="radio" name="gbfToolFpsSetting" value="36" id="gbfToolFpsSetting-3"><label for="gbfToolFpsSetting-3">36</label><!--
-									 --><input type="radio" name="gbfToolFpsSetting" value="50" id="gbfToolFpsSetting-4"><label for="gbfToolFpsSetting-4">50</label><!--
-									 --><input type="radio" name="gbfToolFpsSetting" value="99" id="gbfToolFpsSetting-5"><label for="gbfToolFpsSetting-5">99</label>
-									</div>
-								</td>
-							</tr>
-						</table>
-					</div>
-					<hr style="width:270px;">
-					<div style="padding-left:15px;">
-						<table border="0">
-							<tr>
-								<td style="vertical-align:middle;font-size: 10pt;font-family: ＭＳ ゴシック;font-weight:normal;">
-									<div class="buttonGroup" style="vertical-align:middle; padding:3px 0;">
-										<input type="radio" name="gbfToolCommnMode" value="1" id="gbfToolCommnMode-1"><!--
-									--><label for="gbfToolCommnMode-1">戦闘</label><!--
-									--><input type="radio" name="gbfToolCommnMode" value="2" id="gbfToolCommnMode-2"><!--
-									--><label for="gbfToolCommnMode-2">共闘</label><!--
-									--><input type="radio" name="gbfToolCommnMode" value="3" id="gbfToolCommnMode-3"><!--
-									--><label for="gbfToolCommnMode-3">クエ</label><!--
-									--><input type="radio" name="gbfToolCommnMode" value="4" id="gbfToolCommnMode-4"><!--
-									--><label for="gbfToolCommnMode-4">周回</label><!--
-									--><input type="radio" name="gbfToolCommnMode" value="8" id="gbfToolCommnMode-5"><!--
-									--><label for="gbfToolCommnMode-5">強化</label>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td style="vertical-align:middle;font-size: 10pt;font-family: ＭＳ ゴシック;font-weight:normal;">
-									<div class="buttonGroup" style="vertical-align:middle; padding:3px 0;">
-										<input type="radio" name="gbfToolCommnMode" value="10" id="gbfToolCommnMode-6"><!--
-									--><label for="gbfToolCommnMode-6">ﾏﾙﾁ </label><!--
-									--><input type="radio" name="gbfToolCommnMode" value="11" id="gbfToolCommnMode-7"><!--
-									--><label for="gbfToolCommnMode-7">　　</label><!--
-									--><input type="radio" name="gbfToolCommnMode" value="12" id="gbfToolCommnMode-8"><!--
-									--><label for="gbfToolCommnMode-8">　　</label><!--
-									--><input type="radio" name="gbfToolCommnMode" value="13" id="gbfToolCommnMode-9"><!--
-									--><label for="gbfToolCommnMode-9">　　</label><!--
-									--><input type="radio" name="gbfToolCommnMode" value="14" id="gbfToolCommnMode-10"><!--
-									--><label for="gbfToolCommnMode-10">　　</label>
-									</div>
-								</td>
-							</tr>
-						</table>
-					</div>
-					<hr style="width:270px;">
-					<div style="padding-left:15px;">
-						◆オプション◆
-						<table border="0">
-							<tr>
-								<td style="width:100px; vertical-align:middle;">
-									リザルト
-								</td>
-								<td style="vertical-align:middle;">
-									<div class="buttonGroup" style="vertical-align:middle; padding:0;">
-										<input type="radio" name="getItemShowFg" value="0" id="getItemShowFg-0"><!--
-										--><label for="getItemShowFg-0">スキップ</label><!--
-										--><input type="radio" name="getItemShowFg" value="1" id="getItemShowFg-1"><!--
-										--><label for="getItemShowFg-1">確認</label>
-									</div>
-								</td>
-							</tr>
-						</table>
-					</div>
-					<hr style="width:270px;">
-					<div style="padding-left:30px;vertical-align:middle;font-size: 9pt;font-family: ＭＳ ゴシック;font-weight:normal;">
-						周回クエ：
-						<span style="font-size: 9pt;font-family: ＭＳ ゴシック;font-weight:normal;">/</span><!--
-						--><input type="text" id="questUrl" style="width:250px;font-family: ＭＳ ゴシック;"/><br/>
-						消費ＡＰ：
-						<input type="text" id="questAp" style="width:60px;font-family: ＭＳ ゴシック;"/><br/>
-					</div>
-					<hr style="width:270px;">
-					<div style="padding-left:15px;">
-						<table border="0">
-							<tr>
-								<td style="vertical-align:middle;font-size: 10pt;font-family: ＭＳ ゴシック;font-weight:normal;">
-									<div class="buttonGroup" style="vertical-align:middle; padding:3px 0;">
-										<input type="radio" name="ptZokusei" value="1" id="ptZokusei-1"><!--
-									--><label for="ptZokusei-1">火</label><!--
-									--><input type="radio" name="ptZokusei" value="2" id="ptZokusei-2"><!--
-									--><label for="ptZokusei-2">水</label><!--
-									--><input type="radio" name="ptZokusei" value="3" id="ptZokusei-3"><!--
-									--><label for="ptZokusei-3">土</label><!--
-									--><input type="radio" name="ptZokusei" value="4" id="ptZokusei-4"><!--
-									--><label for="ptZokusei-4">木</label><!--
-									--><input type="radio" name="ptZokusei" value="5" id="ptZokusei-5"><!--
-									--><label for="ptZokusei-5">光</label><!--
-									--><input type="radio" name="ptZokusei" value="6" id="ptZokusei-6"><!--
-									--><label for="ptZokusei-6">闇</label>
-									</div>
-								</td>
-							</tr>
-						</table>
-					</div>
-					
-<!--				<div style="padding-left:30px;vertical-align:middle;font-size: 9pt;font-family: ＭＳ ゴシック;font-weight:normal;">-- >
-<!--					<div class="buttonGroup" style="vertical-align:middle; padding:0;"> -->
-<!--						ポーカーBET： -->
-<!--						<input type="radio" name="pkBet" value="200010" id="pkBet-0"><! -- -->
-<!--						-- ><label for="pkBet-0">1</label><!-- -->
-<!--						-- ><input type="radio" name="pkBet" value="200020" id="pkBet-1"><! -- -->
-<!--						-- ><label for="pkBet-1">10</label><! -- -- >
-<!--						-- ><input type="radio" name="pkBet" value="200030" id="pkBet-2"><! -- -->
-<!--						-- ><label for="pkBet-2">100</label> -->
-<!--					</div> -->
-<!--				</div> -->
-					<hr style="width:270px;">
-				</div>
-			</div>
-			<div style="width:100%; height:10px; background-image : url(img/shita.png);background-size:100% auto;background-repeat:no-repeat;">&nbsp;</div>
-		</div>
-	</body>
+	}
+    .buttonGroup input[type="checkbox"] {
+                display: none;
+    }
+    .buttonGroup input[type="checkbox"]:checked + label {
+	            background-color	: #FFCCFF;
+    }
+  </style> 
+ </head> 
+ <body> 
+  <form> 
+   <fieldset> 
+    <legend1>插件</legend1> 
+    <div>
+     <input id="enabled" name="enabled" type="checkbox" />啟動/關閉(需要重整)
+    </div>
+    <div>
+     <input id="coopraid" name="coopraid" type="checkbox" />共斗毒瘤
+    </div>
+    <div>
+     <input id="master" name="master" type="checkbox" />我是房主
+    </div>
+    <div class="buttonGroup" style="vertical-align:middle; padding:3px 0;"> 
+     <input type="radio" name="ptcoopraid" value="601011" id="ptcoopraid-1" /><!--
+	 --><label for="ptcoopraid-1">罐子</label><!--
+	 --><input type="radio" name="ptcoopraid" value="601731" id="ptcoopraid-2" /><!--
+	 --><label for="ptcoopraid-2">信念</label><!--
+	 --><input type="radio" name="ptcoopraid" value="601931" id="ptcoopraid-3" /><!--
+	 --><label for="ptcoopraid-3">人马</label><!--
+	 --><input type="radio" name="ptcoopraid" value="601841" id="ptcoopraid-4" /><!--
+	 --><label for="ptcoopraid-4">光妃</label><!--
+	 --><input type="radio" name="ptcoopraid" value="601941" id="ptcoopraid-5" /><!--
+	 --><label for="ptcoopraid-5">幻魔</label><!--
+	 --><input type="radio" name="ptcoopraid" value="601251" id="ptcoopraid-6" /><!--
+     --><label for="ptcoopraid-6">火球</label>
+    </div>
+	<div>-----------加速器-----------</div>
+	<div class="buttonGroup" style="vertical-align:middle; padding:3px 0;"> 
+     <input type="radio" name="speed" value="24" id="speed-1" /><!--
+	 --><label for="speed-1">24</label><!--
+	 --><input type="radio" name="speed" value="35" id="speed-2" /><!--
+	 --><label for="speed-2">35</label><!--
+	 --><input type="radio" name="speed" value="50" id="speed-3" /><!--
+	 --><label for="speed-3">50</label><!--
+	 --><input type="radio" name="speed" value="99" id="speed-4" /><!--
+	 --><label for="speed-4">99</label>
+    </div>
+	<div>-----------定时器-----------</div>
+    <div>
+     <input id="setTime" name="setTime" type="checkbox" />开关 <input style="width: 15%" type="text" name="timeStart" id="timeStart" placeholder="HHmm" />开始
+		<input style="width: 15%" type="text" name="timeEnd" id="timeEnd" placeholder="HHmm" />结束
+    </div>
+   </fieldset> 
+    <legend>自動任務</legend> 
+    <input style="width: 100%" type="text" name="quest-id" id="quest-id" placeholder="輸入完整任務進入路徑後按Start，或從下方選擇" /> 
+    <button type="button" class="btn btn-info" id="start">Start</button> 
+    <button type="button" class="btn btn-danger" id="stop">Stop</button> 
+    <legend>召唤兽设置</legend> 
+    <div><input name="auto-choose-supporter" type="checkbox" />自動選擇好友 <input name="dragon-girl" type="checkbox" />格蘭丁優先</div> 
+    <div><input name="black-dragon" type="checkbox" />巴哈姆特優先 <input name="gay" type="checkbox" />路西法優先</div> 
+    <div class="buttonGroup" style="vertical-align:middle; padding:3px 0;"> 
+     <input type="radio" name="ptZokusei" value="1" id="ptZokusei-1" /><!--
+	 --><label for="ptZokusei-1">火</label><!--
+	 --><input type="radio" name="ptZokusei" value="2" id="ptZokusei-2" /><!--
+	 --><label for="ptZokusei-2">水</label><!--
+	 --><input type="radio" name="ptZokusei" value="3" id="ptZokusei-3" /><!--
+	 --><label for="ptZokusei-3">土</label><!--
+	 --><input type="radio" name="ptZokusei" value="4" id="ptZokusei-4" /><!--
+	 --><label for="ptZokusei-4">風</label><!--
+	 --><input type="radio" name="ptZokusei" value="5" id="ptZokusei-5" /><!--
+	 --><label for="ptZokusei-5">光</label><!--
+	 --><input type="radio" name="ptZokusei" value="6" id="ptZokusei-6" /><!--
+	 --><label for="ptZokusei-6">闇</label><!--
+     --><input type="radio" name="ptZokusei" value="0" id="ptZokusei-0" /><!--
+     --><label for="ptZokusei-0">無</label> 
+    </div> 
+    <div>
+     <input name="select" type="checkbox" />自定義召喚，需要先勾選召喚獸屬性
+    </div> 
+    <input style="width: 100%" type="text" name="select-id" id="select-id" placeholder="此處輸入召喚名字(此功能測試中)" /> 
+    <button type="button" class="btn btn-info" id="OK">確定</button> 
+    <legend>一般設定</legend> 
+    <div id="use-water"> 
+     <input name="use-full" type="checkbox" />
+     <img src="http://gbf.game-a.mbga.jp/assets/img/sp/assets/item/normal/s/1.jpg" /> 
+     <input name="use-semi" type="checkbox" />
+     <img src="http://gbf.game-a.mbga.jp/assets/img/sp/assets/item/normal/s/2.jpg" /> 
+    </div> 
+    <div> 
+	 <div><input name="setreloadtime" type="checkbox" />启用自定义战斗刷新间隔（秒）</div> 
+	 <input style="width: 50%" type="text" name="reloadtime" id="reloadtime" placeholder="刷新间隔（默认10S）" /> 
+     <button type="button" class="btn btn-info" id="setreloadtime-ok">確定</button> 
+     <div><input name="normal-attack-only" type="checkbox" />只使用普通攻擊</div> 
+     <div><input name="FCopen" type="checkbox" />使用FC</div> 
+     <div><input name="FCrefresh" type="checkbox" />奥义完成后自动刷新</div> 
+     <div><input name="xuecaibichi" type="checkbox" />雪菜</div> 
+     <div><input name="auto-summon" type="checkbox" />自動召喚</div> 
+     <div><input name="auto-medal" type="checkbox" />自動抽戰貨</div> 
+     <div><input name="use-green-potion" type="checkbox" />自動使用綠色藥水藍色藥水</div> 
+     <div><input name="use-event-potion" type="checkbox" />自動使用事件藥水</div> 
+     <div><input name="use-event-revive" type="checkbox" />自動使用事件復活水</div> 
+    </div> 
+    <legend>蹲婊设定</legend> 
+    <div>
+     <input id="autoSeachEx" name="autoSeachEx" type="checkbox" />开启蹲婊模式
+    </div>   
+	 <div class="buttonGroup" style="vertical-align:middle; padding:3px 0;"> 
+     <input type="radio" name="ptSearchType" value="1" id="ptSearchType-1" /><!--
+	 --><label for="ptSearchType-1">值守普通怪</label><!--
+	 --><input type="radio" name="ptSearchType" value="2" id="ptSearchType-2" /><!--
+	 --><label for="ptSearchType-2">值守twitter</label>
+	</div> 
+	<div class="div01">
+     twitter名称
+    </div> 
+	<div class="div02">
+     <input type="text" name="seachTwitter" value="" id="seachTwitter" class="txt_h txt_h_30" placeholder="此處輸入twitter需要搜索的名称" />
+    </div> 
+    <div class="clear"></div> 
+    <div class="div01">
+     要蹲的怪001
+    </div> 
+    <div class="div02">
+     <input type="text" name="seachEx-1" value="" id="seachEx-1" class="txt_h txt_h_30" placeholder="此處輸入怪物ID" />
+    </div> 
+    <div class="clear"></div> 
+    <div class="div01">
+     要蹲的怪002
+    </div> 
+    <div class="div02">
+     <input type="text" name="seachEx-2" value="" id="seachEx-2" class="txt_h txt_h_30" placeholder="此處輸入怪物ID" />
+    </div> 
+    <div class="clear"></div> 
+    <div class="div01">
+     要蹲的怪003
+    </div> 
+    <div class="div02">
+     <input type="text" name="seachEx-3" value="" id="seachEx-3" class="txt_h txt_h_30" placeholder="此處輸入怪物ID" />
+    </div> 
+    <div class="clear"></div> 
+    <div class="div01">
+     要蹲的怪004
+    </div> 
+    <div class="div02">
+     <input type="text" name="seachEx-4" value="" id="seachEx-4" class="txt_h txt_h_30" placeholder="此處輸入怪物ID" />
+    </div> 
+    <div class="clear"></div> 
+    <div class="div01">
+     要蹲的怪005
+    </div> 
+    <div class="div02">
+     <input type="text" name="seachEx-5" value="" id="seachEx-5" class="txt_h txt_h_30" placeholder="此處輸入怪物ID" />
+    </div> 
+    <div class="clear"></div> 
+    <div class="div01">
+     要蹲的怪006
+    </div> 
+    <div class="div02">
+     <input type="text" name="seachEx-6" value="" id="seachEx-6" class="txt_h txt_h_30" placeholder="此處輸入怪物ID" />
+    </div> 
+    <div class="clear"></div> 
+    <button type="button" class="btn btn-info" id="saveList">SAVE LIST</button>  
+	
+	<div>-----------新版战斗模式技能LIST-----------</div>
+	<div>人物1</div>
+	<div>技能1<input style="width: 10%" type="text" name="skill-1-1" id="skill-1-1" placeholder="0" /> 
+		 技能2<input style="width: 10%" type="text" name="skill-1-2" id="skill-1-2" placeholder="0" /> 
+		 技能3<input style="width: 10%" type="text" name="skill-1-3" id="skill-1-3" placeholder="0" /> 
+		 技能4<input style="width: 10%" type="text" name="skill-1-4" id="skill-1-4" placeholder="0" /> </div>
+	<div>人物2</div>
+	<div>技能1<input style="width: 10%" type="text" name="skill-2-1" id="skill-2-1" placeholder="0" /> 
+		 技能2<input style="width: 10%" type="text" name="skill-2-2" id="skill-2-2" placeholder="0" /> 
+		 技能3<input style="width: 10%" type="text" name="skill-2-3" id="skill-2-3" placeholder="0" /> 
+		 技能4<input style="width: 10%" type="text" name="skill-2-4" id="skill-2-4" placeholder="0" /> </div>
+	<div>人物3</div>
+	<div>技能1<input style="width: 10%" type="text" name="skill-3-1" id="skill-3-1" placeholder="0" /> 
+		 技能2<input style="width: 10%" type="text" name="skill-3-2" id="skill-3-2" placeholder="0" /> 
+		 技能3<input style="width: 10%" type="text" name="skill-3-3" id="skill-3-3" placeholder="0" /> 
+		 技能4<input style="width: 10%" type="text" name="skill-3-4" id="skill-3-4" placeholder="0" /> </div>
+	<div>人物4</div>
+	<div>技能1<input style="width: 10%" type="text" name="skill-4-1" id="skill-4-1" placeholder="0" /> 
+		 技能2<input style="width: 10%" type="text" name="skill-4-2" id="skill-4-2" placeholder="0" /> 
+		 技能3<input style="width: 10%" type="text" name="skill-4-3" id="skill-4-3" placeholder="0" /> 
+		 技能4<input style="width: 10%" type="text" name="skill-4-4" id="skill-4-4" placeholder="0" /> </div>	
+	<div>---召唤兽LIST同技能，目前开放1|3|4|5|6|8|9---</div>
+	<div>召唤兽1<input style="width: 10%" type="text" name="summon-1" id="summon-1" placeholder="0" /> 
+		 召唤兽2<input style="width: 10%" type="text" name="summon-2" id="summon-2" placeholder="0" /> 
+		 召唤兽3<input style="width: 10%" type="text" name="summon-3" id="summon-3" placeholder="0" /> </div>
+	<div>召唤兽4<input style="width: 10%" type="text" name="summon-4" id="summon-4" placeholder="0" /> 
+		 召唤兽5<input style="width: 10%" type="text" name="summon-5" id="summon-5" placeholder="0" /> 
+		 召唤兽6<input style="width: 10%" type="text" name="summon-6" id="summon-6" placeholder="0" />  </div>
+	<button type="button" class="btn btn-info" id="saveSkill">确认</button>
+	<div>新版战斗模式技能模式说明：0.不释放 1.优先释放 2.普通释放 3.OD释放 4.BK释放 5.BOSS即将普通奥义时释放 6.BOSS即将OD奥义时释放 7.角色奥义满时释放 8.所有角色奥义满时释放 9.BOSS有豆时才释放 10.BOSS身上有BUFF时释放 13.HP小于30%释放 15.HP小于50%释放 16.HP小于100%释放</div>	
+    <legend>戰鬥中指定個別技能施放（非普攻狀態下）</legend> 
+    <div id="skill-list"> 
+    </div> 
+  </form>   
+ </body>
 </html>
