@@ -5,7 +5,6 @@ setInterval(function() {
 		"createjs.Ticker.setFPS(" + fuckps + ")"
 	);
 }, 1000);
-
 function sendDirectScript(scriptStr) {
 	if ($("#gbfToolScript").size() == 0) {
 		$("<script>")
@@ -14,6 +13,22 @@ function sendDirectScript(scriptStr) {
 	}
 	$("#gbfToolScript").html(scriptStr);
 	$("#gbfToolScript").remove();
+}
+setInterval(function(){turnWaitCancel();},10);
+function turnWaitCancel() {
+	if ("直前のターンを処理中です" == $("#pop div.txt-popup-body").html()	&&
+		$("#pop div.btn-usual-ok").attr("oshita") == undefined) {
+		$("#pop div.btn-usual-ok").attr("oshita","1");
+		tap($("#pop div.btn-usual-ok"));
+	}
+}
+function tap(sle) {
+	var obj = $(sle);
+	if ($(sle)[0]) {
+		var evt = document.createEvent('MouseEvents');
+		evt.initEvent('tap',true,true,window,0,0,0,0,0,false,false,false,false,0,null);
+		$(sle)[0].dispatchEvent(evt);
+	}
 }
 var Client = {
 	raid: [],
