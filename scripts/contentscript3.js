@@ -6,13 +6,13 @@ setInterval(function() {
 	);
 }, 1000);
 function sendDirectScript(scriptStr) {
-	if ($("#gbfToolScript").size() == 0) {
+	if ($("#tempSpeedScript").size() == 0) {
 		$("<script>")
-			.attr("id","gbfToolScript")
+			.attr("id","tempSpeedScript")
 			.appendTo("body");
 	}
-	$("#gbfToolScript").html(scriptStr);
-	$("#gbfToolScript").remove();
+	$("#tempSpeedScript").html(scriptStr);
+	$("#tempSpeedScript").remove();
 }
 setInterval(function(){turnWaitCancel();},10);
 function turnWaitCancel() {
