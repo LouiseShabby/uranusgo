@@ -74,6 +74,21 @@ window.Extra = {
 			}, 1000)
 		}
 	},
+	'_handle_event':function(){
+	    var self = this;
+	    if ((window.localStorage.getItem('master') == 'true') || (window.localStorage.getItem('coopraid') == 'true')) {
+			location.href = "http://gbf.game.mbga.jp/#coopraid"
+		} else if (window.localStorage.getItem('autoSeachEx') === 'true') {
+			var bbc = setInterval(function() {
+				if ($('.btn-usual-ok').length > 0) {
+					self.click(".btn-usual-ok:eq(0)")
+				} else {
+					location.href = "http://gbf.game.mbga.jp/#quest/assist";
+					clearInterval(bbc)
+				}
+			}, 2000)
+		}
+	},
 	'_handle_quest/index': function() {
 		var self = this;
 		if ((window.localStorage.getItem('master') == 'true') || (window.localStorage.getItem('coopraid') == 'true')) {
