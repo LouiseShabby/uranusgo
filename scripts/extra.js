@@ -74,7 +74,7 @@ window.Extra = {
 			}, 1000)
 		}
 	},
-	'_handle_event':function(){
+	'_handle_event/advent009':function(){
 	    var self = this;
 	    if ((window.localStorage.getItem('master') == 'true') || (window.localStorage.getItem('coopraid') == 'true')) {
 			location.href = "http://gbf.game.mbga.jp/#coopraid"
