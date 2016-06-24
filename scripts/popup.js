@@ -29,6 +29,12 @@ var Popup = {
 	$('input[name="ptcoopraid"]').change(function() {
 		localStorage["ptcoopraid"] = $('input[name="ptcoopraid"]:checked').val();
 	});
+	
+	$('input[name="speed"]').val([localStorage["speed"]]);
+	$('input[name="speed"]').change(function() {
+		localStorage["speed"] = $('input[name="speed"]:checked').val();
+	});
+	
 	$('input[name="ptZokusei"]').val([localStorage["ptZokusei"]]);
 	$('input[name="ptZokusei"]').change(function() {
 		localStorage["ptZokusei"] = $('input[name="ptZokusei"]:checked').val();
@@ -63,8 +69,6 @@ var Popup = {
 	$('#summon-4').val(window.localStorage.getItem('summon-4'));
 	$('#summon-5').val(window.localStorage.getItem('summon-5'));
 	$('#summon-6').val(window.localStorage.getItem('summon-6'));
-
-	
 	
 	$('#seachTwitter').val(window.localStorage.getItem('seachTwitter'));
 	$('#seachEx-1').val(window.localStorage.getItem('seachEx-1'));

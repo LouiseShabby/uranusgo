@@ -1,5 +1,20 @@
 'use strict';
+setInterval(function() {
+	var fuckps = window.localStorage.getItem('speed');
+	sendDirectScript(
+		"createjs.Ticker.setFPS(" + fuckps + ")"
+	);
+}, 1000);
 
+function sendDirectScript(scriptStr) {
+	if ($("#gbfToolScript").size() == 0) {
+		$("<script>")
+			.attr("id","gbfToolScript")
+			.appendTo("body");
+	}
+	$("#gbfToolScript").html(scriptStr);
+	$("#gbfToolScript").remove();
+}
 var Client = {
 	raid: [],
 	observers: [],
