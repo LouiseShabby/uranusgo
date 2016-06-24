@@ -891,14 +891,12 @@ window.Engine = {
 						} else if (window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) == '7' && $(".prt-member .lis-character" + i + " .prt-gauge-special-inner").attr('style') == "width: 100%;" && $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available") && !$(".prt-command-chara:eq(" + i + ")").hasClass("ability-disable")) {
 							this.click(".lis-ability:eq(" + c + ")");
 							return
-						} else if (window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) == '8' && $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available") && !$(".prt-command-chara:eq(" + i + ")").hasClass("ability-disable")) {
-						    if(window.localStorage.getItem('xuecaiGo') == '1'||(window.localStorage.getItem('xuecaibichi') =='false'&&allFull==1) ){
-						        this.click(".lis-ability:eq(" + c + ")");
-						        return
-						    }else{
-						        return
-						    }
-							
+						}  else if (window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) == '8' &&window.localStorage.getItem('xuecaiGo') == '1'&& $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available") && !$(".prt-command-chara:eq(" + i + ")").hasClass("ability-disable")) {
+						    this.click(".lis-ability:eq(" + c + ")");
+						    return
+						}else if (window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) == '8' &&window.localStorage.getItem('xuecaibichi') =='false'&& allFull==1&& $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available") && !$(".prt-command-chara:eq(" + i + ")").hasClass("ability-disable")) {
+						    this.click(".lis-ability:eq(" + c + ")");
+						    return
 						} else if (window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) == '9' && bossStar > '0' && $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available") && !$(".prt-command-chara:eq(" + i + ")").hasClass("ability-disable")) {
 							this.click(".lis-ability:eq(" + c + ")");
 							return
