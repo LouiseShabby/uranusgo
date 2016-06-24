@@ -216,7 +216,8 @@ window.Engine = {
 						this.click(".btn-lock")
 					}
 				}
-			} else {
+			}
+			if (allFull == 0){
 				if ($(".btn-lock").hasClass("lock0")) {
 					this.click(".btn-lock")
 				}
@@ -792,7 +793,6 @@ window.Engine = {
 				return
 			}
 			if (ballteCount == ballteCountTotal) {
-			    xuecaiGo = 0;
 				if (window.localStorage.getItem('xuecaibichi') === 'true') {
 					if ($(".prt-member .lis-character0 .prt-gauge-special-inner").attr('style') == "width: 100%;") {
 						if ($(".prt-member .lis-character1 .prt-gauge-special-inner").attr('style').split(':')[1].replace(/%;/, "") == 100) {
@@ -826,11 +826,12 @@ window.Engine = {
 								this.click(".btn-lock")
 							}
 						}
-					} else {
-						if ($(".btn-lock").hasClass("lock0")) {
-							this.click(".btn-lock")
-						}
 					}
+        			if (allFull == 0){
+        				if ($(".btn-lock").hasClass("lock0")) {
+        					this.click(".btn-lock")
+        				}
+        			}
 				}
 				if (window.localStorage.getItem('auto-summon') === 'true') {
 					for (var i = 0; i < 6; i++) {
