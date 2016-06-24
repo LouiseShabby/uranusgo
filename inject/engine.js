@@ -715,6 +715,7 @@ window.Engine = {
 		var bossStar = window.stage.gGameStatus.boss.param[0].recastmax - window.stage.gGameStatus.boss.param[0].recast;
 		var bossRecast = window.stage.gGameStatus.boss.param[0].recast;
 		var bossBuff = "";
+		var xuecaiGo = 0;
 		if (window.stage.gGameStatus.boss.param[0].condition.buff != undefined) {
 			bossBuff = window.stage.gGameStatus.boss.param[0].condition.buff.reduce(function(a, b) {
 				return a + b.status + ',';
@@ -791,20 +792,24 @@ window.Engine = {
 				return
 			}
 			if (ballteCount == ballteCountTotal) {
+			    xuecaiGo = 0;
 				if (window.localStorage.getItem('xuecaibichi') === 'true') {
 					if ($(".prt-member .lis-character0 .prt-gauge-special-inner").attr('style') == "width: 100%;") {
 						if ($(".prt-member .lis-character1 .prt-gauge-special-inner").attr('style').split(':')[1].replace(/%;/, "") == 100) {
 							if ($(".prt-member .lis-character2 .prt-gauge-special-inner").attr('style').split(':')[1].replace(/%;/, "") == 100) {
 								if ($(".prt-member .lis-character3 .prt-gauge-special-inner").attr('style').split(':')[1].replace(/%;/, "") == 100) {
-									window.localStorage.setItem('xuecaiGo', 1)
+									xuecaiGo = 1;
 								}
 							}
 						}
-					} else {
+					}
+					if (xuecaiGo == 0){
 						window.localStorage.setItem('xuecaiGo', 0);
 						if ($(".btn-lock").hasClass("lock0")) {
 							this.click(".btn-lock")
 						}
+					}else{
+					    window.localStorage.setItem('xuecaiGo', 1);
 					}
 				} else if (window.localStorage.getItem('FCopen') === 'true') {
 					if ($(".prt-member .lis-character0 .prt-gauge-special-inner").attr('style') == "width: 100%;") {
@@ -891,10 +896,10 @@ window.Engine = {
 						} else if (window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) == '7' && $(".prt-member .lis-character" + i + " .prt-gauge-special-inner").attr('style') == "width: 100%;" && $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available") && !$(".prt-command-chara:eq(" + i + ")").hasClass("ability-disable")) {
 							this.click(".lis-ability:eq(" + c + ")");
 							return
-						}  else if (window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) == '8' &&window.localStorage.getItem('xuecaiGo') == '1'&& $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available") && !$(".prt-command-chara:eq(" + i + ")").hasClass("ability-disable")) {
+						}  else if (window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) == '8' && window.localStorage.getItem('xuecaiGo') == '1' && $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available") && !$(".prt-command-chara:eq(" + i + ")").hasClass("ability-disable")) {
 						    this.click(".lis-ability:eq(" + c + ")");
 						    return
-						}else if (window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) == '8' &&window.localStorage.getItem('xuecaibichi') =='false'&& allFull==1&& $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available") && !$(".prt-command-chara:eq(" + i + ")").hasClass("ability-disable")) {
+						}  else if (window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) == '8' && window.localStorage.getItem('xuecaibichi') =='false'&& allFull == 1&& $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available") && !$(".prt-command-chara:eq(" + i + ")").hasClass("ability-disable")) {
 						    this.click(".lis-ability:eq(" + c + ")");
 						    return
 						} else if (window.localStorage.getItem("skill-" + (i + 1) + "-" + (j + 1)) == '9' && bossStar > '0' && $(".lis-ability:eq(" + c + ")").hasClass("btn-ability-available") && !$(".prt-command-chara:eq(" + i + ")").hasClass("ability-disable")) {
