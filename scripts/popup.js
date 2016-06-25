@@ -1,8 +1,8 @@
 'use strict';
 
 var Popup = {
-  start: function() {
-    this.initSkills();
+	start: function() {
+    //this.initSkills();
     this.initQuests();
 	//this.setCheckboxs(".ck",array);
     $('#timeStart').val(window.localStorage.getItem('timeStart'));
