@@ -758,8 +758,13 @@ window.Engine = {
 			for (var p = 0; p <= 3; p++) {
 				if (this.isInjured50(p) && (this.greenPotionCount > 0 || this.bluePotionCount > 0) 
 				&& window.localStorage.getItem('use-green-potion') == 'true') {
-					if($('div.txt-popup-body:contains("回復するメンバーをタッチしてください"):contains("キュアポーションを使用します")').length > 0){
-						this.debug("heal done " + p);
+					if($('div.txt-confirm:contains("オールポーションを使用します")').length > 0){
+						this.debug("heal all done " + p);
+						this.bluePotionCount--;
+						this.click('.btn-usual-use');
+						return
+					}else if($('div.txt-popup-body:contains("回復するメンバーをタッチしてください"):contains("キュアポーションを使用します")').length > 0){
+						this.greenPotionCount--;
 						this.click('.btn-command-character:visible:eq(' + p + ')');
 						return
 					}else if($('div.txt-popup-body:contains("使用するアイテムを選択してください"):contains("キュアポーション")').length > 0){
@@ -771,10 +776,8 @@ window.Engine = {
 						this.bluePotionCount = bluePotionCount;
 						if (greenPotionCount > 0){
 							this.click('.btn-temporary-small');
-							this.greenPotionCount--;
 							return
 						}else if (bluePotionCount > 0) {
-							this.bluePotionCount--;
 							this.click('.item-large.btn-temporary-large');
 							return
 						}else if (window.localStorage.getItem('use-event-potion') === 'true' && eventPotionCount > 0) {
