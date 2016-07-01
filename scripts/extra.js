@@ -14,7 +14,9 @@ window.Extra = {
 	},
 	'_handle_mypage': function() {
 		console.log("111 = " + window.localStorage.getItem('seachEx-1'));
-		if (window.localStorage.getItem('autoSeachEx') === 'true') {
+		if ((window.localStorage.getItem('master') == 'true') || (window.localStorage.getItem('coopraid') == 'true')) {
+			location.href = "http://gbf.game.mbga.jp/#coopraid"
+		}else if (window.localStorage.getItem('autoSeachEx') === 'true') {
 			location.href = "http://gbf.game.mbga.jp/#quest/assist"
 		}
 	},
@@ -42,10 +44,10 @@ window.Extra = {
 					self.click(".btn-control")
 				} else if($('.btn-usual-close').length > 0){
 					self.click(".btn-usual-close")
-				}else if($('.btn-usual-ok').length > 0){
+				} else if($('.btn-usual-ok').length > 0){
 					self.click(".btn-usual-ok:eq(0)")
 					
-				}	 else {
+				} else {
 					location.href = "http://gbf.game.mbga.jp/#coopraid";
 					clearInterval(bbc)
 				}
